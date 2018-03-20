@@ -1,0 +1,3781 @@
+;==================================================
+;== FOURTH AGE: TOTAL WAR - The Dominion of Men  ==
+;==================================================
+
+; Coded by Aradan 2008-2012 for The Dominion of Men
+
+;=======================
+;== CUSTOM ANIMATIONS == (no scale size = 1.0)
+;=======================
+
+; MEN
+; fs_2handed_halftrollberserker = 1.2
+; fs_standard_bearer_halftrollberserker = 1.2
+; fs_hillmanaxeman = 1.1
+; fs_swert_semi_fast_spearman = 1.1
+; fs_swert_semi_fast_spearman = 1.1
+; fs_dual - dual Wield, used for corsair and berserker (by Shrimpy)
+; fs_mumak_crew_javelin - Crew of mumakil, throws javelins
+; fs_mumak - fs_indian_giant_elephant - Scaled up (4?) and slowed down 350%
+; fs_axeman (+ slow, semi_fast, fast) - Swordsman animations with stabs replaced with now slashes
+; fs_gladius (+ slow, semi_fast, fast) - gladius (EB animation) - for ekets
+; fs_staff - No modifications as of now, for use with units with staffs
+; fs_unarmed - No modifications as of now, for use with units without weapons, punches and kicks
+; fs_2h_swordsman - two-handed swordsman (EB animation)
+; fs_thp_f_spearman (+ fast) - two-handed foot spearman/pikeman (EB animation)
+; fs_thp_m_spearman - two-handed mounted spearman (EB animation) for Riddermark Spears
+; fs_m_bearer - mounted standard bearer (EB animation)
+;
+; DWARVES
+; fs_dwarf_2handed = 0.81 (0.8 causes problem with torches)
+; fs_dwarf_axeman = 0.8
+; fs_dwarf_firearm = 0.8
+; fs_dwarf_fast_archer = 0.8
+; fs_dwarf_semi_fast_spearman = 0.8
+; fs_dwarf_fast_thp_f_spearman = 0.8
+; fs_dwarf_fast_javelinman = 0.8
+; fs_dwarf_standard_bearer = 0.8
+; fs_dwarf_hc_swordsman = 0.8
+; fs_dwarf_carriage_ballistae_crew = 0.8
+; fs_dwarf_chariot_sword = 0.8
+;
+; ELVES
+; fs_elf_standard_bearer = 1.05
+; fs_elf_fast_spearman = 1.05
+; fs_elf_fast_archer = 1.05
+; fs_elf_fast_swordsman = 1.05
+; fs_elf_fast_axeman = 1.05
+; fs_elf_fast_thp_f_spearman = 1.05
+; fs_elf_2handed = 1.05
+; fs_elf_2h_swordsman = 1.05
+; fs_elf_hc_swordsman = 1.05
+; fs_elf_hc_spearman = 1.05
+; fs_elf_hc_archer = 1.05
+; fs_elf_m_bearer = 1.05
+;
+; HOBBITS
+; fs_hobbit_dagger = 0.7
+; fs_hobbit_archer = 0.7
+; fs_hobbit_2handed = 0.7
+;
+; SNAGAS
+; fs_snaga_fast_archer = 0.75
+; fs_snaga_fast_dagger 0.75
+; fs_snaga_semi_fast_archer = 0.75 (unused)
+; fs_snaga_semi_fast_dagger 0.75 (unused)
+;
+; LESSER ORCS
+; fs_orc_fast_dagger = 0.8
+; fs_orc_fast_archer = 0.8
+; fs_orc_fast_spearman = 0.8
+; fs_orc_fast_swordsman = 0.8
+; fs_orc_semi_fast_dagger = 0.8 (unused - too slow)
+; fs_orc_semi_fast_archer = 0.8 (unused - too slow)
+; fs_orc_semi_fast_spearman = 0.8 (unused - too slow)
+; fs_orc_semi_fast_swordsman = 0.8 (unused - too slow)
+;
+; GREATER ORCS
+; fs_orc_axeman = 0.85
+; fs_orc_dual = 0.85
+;
+; WARGS & RIDERS (ridden by the smallest snagas)
+; fs_orc_hc_archer = 0.7
+; fs_orc_hc_swordsman = 0.7
+; fs_warg_fast_horse = 0.73
+;
+; URUKS & ORC-MEN (half orcs)
+; use normal animations (1.0)
+;
+; TROLLS
+; fs_troll = 2.0
+;
+; PONIES
+; fs_pony = 0.7
+
+;======================================================================================================================================================
+
+;=========================
+;== MODEL CATEGORY INDEX == (ctrl+f, search for "@id")
+;=========================
+
+;--------------------------------------------------------
+; ID	|	Category		|     Models	|
+;--------------------------------------------------------
+; @01	|	Mounts and Animals	|	17	|
+; @02	|	Elves			|	22	|
+; @03	|	Dwarves			|	16	|
+; @04	|	Shire			|	4	|
+; @05	|	Reunited Kingdom	|	39	|
+; @06	|	Cult			|	11	|
+; @07	|	Harad			|	25	|
+; @08	|	Rohan			|	13	|
+; @09	|	Dale			|	14	|
+; @10	|	Beornings		|	9	|
+; @11	|	Rhovanion		|	8	|
+; @12	|	Rhun			|	16	|
+; @13	|	Khand			|	13	|
+; @14	|	Dunland			|	17	|
+; @15	|	Orcs			|	16	|
+; @16	|	Mercenaries and Rebels	|	4	|
+;--------------------------------------------------------
+
+; Total Models = 255 / 255
+
+;======================================================================================================================================================
+
+;=======================================================================================
+;
+;		@01 MOUNTS AND ANIMALS
+;
+;=======================================================================================
+
+
+type		horse_light
+skeleton	fs_fast_horse
+scale		0.8
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4amount_horselight_elves.tga
+texture		saxons,				bi/fatw/data/models_unit/textures/4amount_horselight_dwarv.tga
+texture		empire_east,			bi/fatw/data/models_unit/textures/4amount_horselight_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4amount_horselight_adun.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4amount_horselight_tharb.tga
+texture		empire_west_rebels,		bi/fatw/data/models_unit/textures/4amount_horselight_shire.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4amount_horselight_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4amount_horselight_haron.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4amount_horselight_farh.tga
+texture		huns,				bi/fatw/data/models_unit/textures/4amount_horselight_rohan.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4amount_horselight_dale.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4amount_horselight_dorw.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4amount_horselight_rhov.tga
+texture		burgundii,			bi/fatw/data/models_unit/textures/4amount_horselight_beorn.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4amount_horselight_rhun.tga
+texture		alemanni,			bi/fatw/data/models_unit/textures/4amount_horselight_khand.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4amount_horselight_dunl.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4amount_horselight_northr.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4amount_horselight_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4amount_horselight_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4amount_horseunarmoured.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_horse_light_sprite.spr
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_horse_light_sprite.spr
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_horse_light_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_horse_light_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_horse_light_sprite.spr
+model_sprite	empire_west_rebels,	60.0,	bi/fatw/data/sprites/empire_west_rebels_horse_light_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_horse_light_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_horse_light_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_horse_light_sprite.spr
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_horse_light_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_horse_light_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_horse_light_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_horse_light_sprite.spr
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_horse_light_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_horse_light_sprite.spr
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_horse_light_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_horse_light_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_horse_light_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/horse_light_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_horse_light_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		horse_medium
+skeleton	fs_medium_horse
+scale		0.85
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4amount_horsemedium_elves.tga
+texture		saxons,				bi/fatw/data/models_unit/textures/4amount_horsemedium_dwarv.tga
+texture		empire_east,			bi/fatw/data/models_unit/textures/4amount_horsemedium_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4amount_horsemedium_adun.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4amount_horsemedium_tharb.tga
+texture		empire_west_rebels,		bi/fatw/data/models_unit/textures/4amount_horsemedium_shire.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4amount_horsemedium_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4amount_horsemedium_haron.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4amount_horsemedium_farh.tga
+texture		huns,				bi/fatw/data/models_unit/textures/4amount_horsemedium_rohan.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4amount_horsemedium_dale.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4amount_horsemedium_dorw.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4amount_horsemedium_rhov.tga
+texture		burgundii,			bi/fatw/data/models_unit/textures/4amount_horsemedium_beorn.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4amount_horsemedium_rhun.tga
+texture		alemanni,			bi/fatw/data/models_unit/textures/4amount_horsemedium_khand.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4amount_horsemedium_dunl.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4amount_horsemedium_northr.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4amount_horsemedium_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4amount_horsemedium_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4amount_horseunarmoured.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_horse_medium_sprite.spr
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_horse_medium_sprite.spr
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_horse_medium_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_horse_medium_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_horse_medium_sprite.spr
+model_sprite	empire_west_rebels,	60.0,	bi/fatw/data/sprites/empire_west_rebels_horse_medium_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_horse_medium_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_horse_medium_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_horse_medium_sprite.spr
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_horse_medium_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_horse_medium_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_horse_medium_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_horse_medium_sprite.spr
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_horse_medium_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_horse_medium_sprite.spr
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_horse_medium_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_horse_medium_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_horse_medium_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/horse_medium_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_horse_medium_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		horse_heavy
+skeleton	fs_medium_horse
+scale		0.9
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4amount_horseheavy_elves.tga
+texture		saxons,				bi/fatw/data/models_unit/textures/4amount_horseheavy_dwarv.tga
+texture		empire_east,			bi/fatw/data/models_unit/textures/4amount_horseheavy_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4amount_horseheavy_adun.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4amount_horseheavy_tharb.tga
+texture		empire_west_rebels,		bi/fatw/data/models_unit/textures/4amount_horseheavy_shire.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4amount_horseheavy_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4amount_horseheavy_haron.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4amount_horseheavy_farh.tga
+texture		huns,				bi/fatw/data/models_unit/textures/4amount_horseheavy_rohan.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4amount_horseheavy_dale.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4amount_horseheavy_dorw.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4amount_horseheavy_rhov.tga
+texture		burgundii,			bi/fatw/data/models_unit/textures/4amount_horseheavy_beorn.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4amount_horseheavy_rhun.tga
+texture		alemanni,			bi/fatw/data/models_unit/textures/4amount_horseheavy_khand.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4amount_horseheavy_dunl.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4amount_horseheavy_northr.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4amount_horseheavy_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4amount_horseheavy_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4amount_horseheadarmour.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_horse_heavy_sprite.spr
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_horse_heavy_sprite.spr
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_horse_heavy_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_horse_heavy_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_horse_heavy_sprite.spr
+model_sprite	empire_west_rebels,	60.0,	bi/fatw/data/sprites/empire_west_rebels_horse_heavy_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_horse_heavy_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_horse_heavy_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_horse_heavy_sprite.spr
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_horse_heavy_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_horse_heavy_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_horse_heavy_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_horse_heavy_sprite.spr
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_horse_heavy_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_horse_heavy_sprite.spr
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_horse_heavy_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_horse_heavy_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_horse_heavy_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/horse_heavy_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_horse_heavy_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		4amount_horseheadarmour
+skeleton	fs_medium_horse
+scale		0.95
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4amount_horseheadarmour_rohan.tga
+texture		empire_east,			bi/fatw/data/models_unit/textures/4amount_horseheadarmour_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4amount_horseheadarmour_adun.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4amount_horseheadarmour_tharb.tga
+texture		burgundii,			bi/fatw/data/models_unit/textures/4amount_horseheadarmour_beorn.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4amount_horseheadarmour_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4amount_horseheadarmour_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4amount_horseheadarmour.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4amount_horseheadarmour_sprite.spr
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4amount_horseheadarmour_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4amount_horseheadarmour_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4amount_horseheadarmour_sprite.spr
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4amount_horseheadarmour_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4amount_horseheadarmour_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4amount_horseheadarmour_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+type		4amount_horseheadarmourgc
+skeleton	fs_medium_horse
+scale		1.0
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4amount_horseheadarmour_gc.tga
+model_flexi					bi/fatw/data/models_unit/4amount_horseheadarmour.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4amount_horseheadarmourgc_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+type		4amount_horsenoldor
+skeleton	fs_fast_horse
+scale		0.8
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4amount_horsenoldor_elves.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4amount_horsenoldor_merc.tga
+model_flexi					bi/fatw/data/models_unit/4amount_horsenoldor.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4amount_horsenoldor_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4amount_horsenoldor_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+type		4amount_horsebarded_cult
+skeleton	fs_horse
+scale		1.0
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4amount_horsebarded_cult_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4amount_horsebarded_cult_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4amount_horsebarded_cult_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4amount_horsebarded_cult_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4amount_horsebarded.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4amount_horsebarded_cult_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4amount_horsebarded_cult_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4amount_horsebarded_cult_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4amount_horsebarded_cult_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		4amount_horsebarded
+skeleton	fs_horse
+scale		1.0
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4amount_horsebarded_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4amount_horsebarded_adun.tga
+model_flexi					bi/fatw/data/models_unit/4amount_horsebarded.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4amount_horsebarded_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4amount_horsebarded_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		4amount_horserotkh
+skeleton	fs_horse
+scale		1.05
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4amount_horserotkh.tga
+model_flexi					bi/fatw/data/models_unit/4amount_horserotkh.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4amount_horserotkh_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		4amount_horseserpent
+skeleton	fs_horse
+scale		1.0
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4amount_horseserpent.tga
+model_flexi					bi/fatw/data/models_unit/4amount_horseserpent.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4amount_horseserpent_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		horse_cataphract
+skeleton	fs_horse
+scale		1.0
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4amount_horsecataphract_dwarv.tga
+;texture	franks,				bi/fatw/data/models_unit/textures/4amount_horsecataphract_rhun.tga
+texture		alemanni,			bi/fatw/data/models_unit/textures/4amount_horsecataphract_khand.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4amount_horsecataphract_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4amount_horsecataphract_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4amount_horsecataphract.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_horse_cataphract_sprite.spr
+;model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_horse_cataphract_sprite.spr
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_horse_cataphract_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/horse_cataphract_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_horse_cataphract_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		4amount_horsekoda
+skeleton	fs_horse
+scale		1.0
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4amount_horsekoda.tga
+model_flexi					bi/fatw/data/models_unit/4amount_horsekoda.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4amount_horsekoda_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		4amount_mumak
+skeleton	fs_mumak_small
+scale		3
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4amount_mumak.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4amount_mumak_farh.tga
+model_flexi					bi/fatw/data/models_unit/4amount_mumak.cas, max
+;model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4amount_mumak_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		4amount_horsetwin
+skeleton	fs_horse
+scale		0.95
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4amount_horsetwin_rhun.tga
+texture		alemanni,			bi/fatw/data/models_unit/textures/4amount_horsetwin_rebel.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4amount_horsetwin_rebel.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4amount_horsetwin_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4amount_horsetwin.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4amount_horsetwin_sprite.spr
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4amount_horsetwin_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4amount_horsetwin_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4amount_horsetwin_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		4amount_pony
+skeleton	fs_pony
+scale		0.68
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4amount_pony.tga
+model_flexi					bi/fatw/data/models_unit/4amount_pony.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4amount_pony_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		4amount_warg
+skeleton	fs_warg_fast_horse
+scale		0.7
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4amount_warg_adun.tga
+texture		berbers,		bi/fatw/data/models_unit/textures/4amount_warg_adun.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4amount_warg_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4amount_warg.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4amount_warg_sprite.spr
+model_sprite	berbers,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4amount_warg_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4amount_warg_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		4a_orc_troll
+skeleton	fs_troll ; this is a scaled up version of fs_2handed
+scale		2
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_troll_adun.tga
+texture		berbers,		bi/fatw/data/models_unit/textures/4a_orc_troll_adun.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_troll_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_troll.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_troll_sprite.spr
+model_sprite	berbers,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_troll_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_troll_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		4a_orc_ologhai
+skeleton	fs_troll ; this is a scaled up version of fs_2handed
+scale		2
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_ologhai.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_ologhai.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_ologhai_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+type		wardog ; texture draws relative to cas file (i.e. not read from texture line)
+skeleton	fs_dog
+scale		0.87
+indiv_range	40
+;texture	celts,				bi/fatw/data/models_unit/textures/BI_unit_hounds_of_culann_dog_celts.tga
+;texture	burgundii,			bi/fatw/data/models_unit/textures/BI_unit_hounds_of_culann_dog_celts.tga
+;texture	franks,				bi/fatw/data/models_unit/textures/BI_unit_hounds_of_culann_dog_celts.tga
+;texture	slave,				bi/fatw/data/models_unit/textures/BI_unit_hounds_of_culann_dog_celts.tga
+model_flexi					bi/fatw/data/models_unit/BI_unit_hounds_of_culann_dog.cas, max
+;model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_wardog_sprite.spr
+;model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_wardog_sprite.spr
+;model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_wardog_sprite.spr
+;model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_wardog_sprite.spr
+model_tri	700, 0.3f, 0.3f, 0.3f
+
+
+;=======================================================================================
+;
+;		@02 ELVES
+;
+;=======================================================================================
+
+
+type		4a_elf_general
+skeleton	fs_elf_fast_swordsman
+skeleton_horse		fs_elf_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_elf_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_general.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_general.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_general_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_elf_captain
+skeleton	fs_elf_fast_swordsman
+skeleton_horse		fs_elf_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_elf_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_captain.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_captain.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_captain_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_elf_bearer
+skeleton	fs_elf_standard_bearer
+skeleton_horse		fs_elf_m_bearer
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_elf_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_bearer_elves.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_elf_bearer_merc.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_bearer.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_bearer_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_elf_bearer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_elf_bodyguard
+skeleton	fs_elf_fast_spearman, fs_elf_fast_swordsman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_bodyguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_bodyguard.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_bodyguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_elf_threshold
+skeleton	fs_elf_fast_spearman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_threshold.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_threshold.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_threshold_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_elf_sword
+skeleton	fs_elf_fast_swordsman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_sword.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_sword.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_sword_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_elf_mariner
+skeleton	fs_elf_fast_swordsman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_mariner.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_mariner.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_mariner_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_elf_lindonguard
+skeleton	fs_elf_fast_thp_f_spearman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_lindonguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_lindonguard.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_lindonguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_elf_noldorsword
+skeleton	fs_elf_fast_swordsman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_noldorsword.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_noldorsword.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_noldorsword_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_elf_bow
+skeleton	fs_elf_fast_archer, fs_elf_fast_swordsman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_bow.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_bow.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_bow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_elf_greenbow
+skeleton	fs_elf_fast_archer, fs_elf_fast_axeman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_greenbow.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_greenbow.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_greenbow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_elf_galadscout
+skeleton	fs_elf_fast_archer, fs_elf_fast_swordsman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_galadscout.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_galadscout.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_galadscout_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_elf_galadwarrior
+skeleton	fs_elf_fast_archer, fs_elf_fast_swordsman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_galadwarrior.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_galadwarrior.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_galadwarrior_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_elf_greenguard
+skeleton	fs_elf_fast_archer, fs_elf_2handed
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_greenguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_greenguard.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_greenguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_elf_scout
+skeleton	fs_elf_hc_archer, fs_elf_hc_spearman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_scout.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_scout.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_scout_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_elf_rider
+skeleton	fs_elf_hc_swordsman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_rider.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_rider.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_rider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_elf_imladrislancer
+skeleton	fs_hc_spearman, fs_hc_swordsman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_imladrislancer.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_imladrislancer.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_imladrislancer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_elf_noldorrider
+skeleton	fs_hc_spearman, fs_hc_swordsman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_noldorrider.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_noldorrider.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_noldorrider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_elf_elvellynspear
+skeleton	fs_spearman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_elvellynspear.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_elvellynspear.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_elvellynspear_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_elf_elvellynsword
+skeleton	fs_swordsman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_elvellynsword.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_elvellynsword.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_elvellynsword_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_elf_elvellynguard
+skeleton	fs_spearman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_elvellynguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_elvellynguard.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_elvellynguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_elf_elvellynkinsmen
+skeleton	fs_slow_swordsman
+indiv_range	40
+texture		sarmatians,				bi/fatw/data/models_unit/textures/4a_elf_elvellynkinsmen.tga
+texture		empire_west,				bi/fatw/data/models_unit/textures/4a_elf_elvellynkinsmen.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_elvellynkinsmen.cas, max
+model_sprite	sarmatians,			60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_elvellynkinsmen_sprite.spr
+model_sprite	empire_west,			60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_elvellynkinsmen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_elf_elvellynrider
+skeleton	fs_hc_swordsman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_elf_elvellynsword.tga
+model_flexi					bi/fatw/data/models_unit/4a_elf_elvellynsword.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_elf_elvellynrider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;=======================================================================================
+;
+;		@03 DWARVES
+;
+;=======================================================================================
+
+
+type		4a_dwarf_general
+skeleton	fs_dwarf_axeman
+skeleton_horse		fs_dwarf_hc_swordsman	; dwarves should never use this
+skeleton_elephant	fs_forest_elephant_rider ; dwarves should never use this
+skeleton_chariot	fs_dwarf_chariot_sword ; dwarves should never use this
+skeleton_camel		fs_dwarf_hc_swordsman ; dwarves should never use this
+skeleton_scorpion_cart	fs_dwarf_carriage_ballistae_crew
+scale		0.95
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_general.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_general.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_general_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_dwarf_captain
+skeleton	fs_dwarf_axeman
+skeleton_horse		fs_dwarf_hc_swordsman	; dwarves should never use this
+skeleton_elephant	fs_forest_elephant_rider ; dwarves should never use this
+skeleton_chariot	fs_chariot_sword ; dwarves should never use this
+skeleton_camel		fs_dwarf_hc_swordsman ; dwarves should never use this
+skeleton_scorpion_cart	fs_dwarf_carriage_ballistae_crew
+scale		0.95
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_captain.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_captain.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_captain_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_dwarf_bearer
+skeleton	fs_dwarf_standard_bearer
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_bearer.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_bearer.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_bearer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dwarf_bodyguard
+skeleton	fs_dwarf_2handed
+scale		0.93
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_bodyguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_bodyguard.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_bodyguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dwarf_miner
+skeleton	fs_dwarf_axeman
+scale		0.9
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_miner.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_miner.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_miner_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dwarf_wainbowcrew
+skeleton	fs_dwarf_carriage_ballistae_crew, fs_dwarf_chariot_sword
+scale		0.9
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_miner.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_miner.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_wainbowcrew_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dwarf_axe
+skeleton	fs_dwarf_axeman
+scale		0.9
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_axe.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_axe.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_axe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dwarf_warhammer
+skeleton	fs_dwarf_2handed
+scale		0.9
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_warhammer.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_warhammer.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_warhammer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dwarf_shieldbreaker
+skeleton	fs_dwarf_axeman
+scale		0.9
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_shieldbreaker.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_shieldbreaker.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_shieldbreaker_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dwarf_longaxe
+skeleton	fs_dwarf_fast_thp_f_spearman
+scale		0.9
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_longaxe.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_longaxe.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_longaxe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dwarf_dotih
+skeleton	fs_dwarf_2handed
+scale		0.9
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_dotih.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_dotih.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_dotih_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dwarf_bow
+skeleton	fs_dwarf_fast_archer, fs_dwarf_axeman
+scale		0.9
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_bow.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_bow.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_bow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dwarf_axethrower
+skeleton	fs_dwarf_fast_javelinman, fs_dwarf_axeman
+scale		0.9
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_axethrower.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_axethrower.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_axethrower_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;type		4a_dwarf_blunderbuss
+;skeleton	fs_dwarf_firearm, fs_dwarf_2handed
+;scale		0.9
+;indiv_range	40
+;texture		saxons,				;bi/fatw/data/models_unit/textures/4a_dwarf_blunderbuss.tga
+;model_flexi					bi/fatw/data/models_unit/4a_dwarf_blunderbuss.cas, max
+;model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_blunderbuss_sprite.spr
+;model_tri	400, 0.5f, 0.5f, 0.5f
+
+;type				welsh_spearman ; also Rabble mercenaries - NOTE: this WORKS, but doesn't bring ;up the 'merc rabble' unit texture (using Welsh version instead).  Maybe use the NI version instead?
+;skeleton			fs_semi_fast_javelinman, fs_semi_fast_spearman
+;indiv_range			40
+;texture			goths,bi/vi2/data/models_unit/textures/ATW_Bonheddwyr1_5.tga
+;texture			berbers,bi/fatw3/data/models_unit/textures/ATW_frameaman1_4.tga
+;texture			slave,bi/vi2/data/models_unit/textures/ATW_Bonheddwyr1_2.tga
+;texture			berbers,bi/fatw3/data/models_unit/textures/ATW_Bonheddwyr1_2.tga
+;model_flexi		bi/fatw3/data/models_unit/ATW_BONHEDDWYR_fix.cas, 15
+;model_flexi		bi/fatw3/data/models_unit/ATW_BONHEDDWYR_med.cas, 30
+;model_flexi		bi/fatw3/data/models_unit/ATW_BONHEDDWYR_low.cas, 40
+;model_flexi		bi/fatw3/data/models_unit/ATW_BONHEDDWYR_lowest.cas, max
+;model_sprite	goths, 		60.0, bi/vi2/data/sprites/goths_welsh_spearman_sprite.spr
+;model_sprite	berbers, 		60.0, bi/fatw3/data/sprites/welsh_spearman_sprite.spr
+;model_sprite	slave, 		60.0, bi/vi2/data/sprites/slave_welsh_spearman_sprite.spr
+;model_tri			400, 0.5f, 0.5f, 0.5f
+
+type				merc_marcherfolk
+skeleton			fs_semi_fast_javelinman, fs_semi_fast_spearman
+indiv_range			40
+texture			berbers,bi/fatw3/data/models_unit/textures/ATW_frameaman1_4.tga
+model_flexi		bi/fatw3/data/models_unit/ATW_BONHEDDWYR_fix.cas, 15
+model_flexi		bi/fatw3/data/models_unit/ATW_BONHEDDWYR_med.cas, 30
+model_flexi		bi/fatw3/data/models_unit/ATW_BONHEDDWYR_low.cas, 40
+model_flexi		bi/fatw3/data/models_unit/ATW_BONHEDDWYR_lowest.cas, max
+model_sprite	berbers, 		60.0, bi/fatw3/data/sprites/merc_marcherfolk_sprite.spr
+model_tri			400, 0.5f, 0.5f, 0.5f
+
+type		4a_dwarf_mercguard
+skeleton	fs_thp_f_spearman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_mercguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_mercguard.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_mercguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dwarf_merchearth
+skeleton	fs_javelinman, fs_swordsman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dwarf_merchearth.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dwarf_merchearth.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_dwarf_merchearth_rhun.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_dwarf_merchearth_northr.tga
+model_flexi					bi/fatw/data/models_unit/4a_dwarf_merchearth.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_merchearth_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/saxons_4a_dwarf_merchearth_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_dwarf_merchearth_sprite.spr
+model_sprite	lombardi,			60.0,	bi/fatw/data/sprites/lombardi_4a_dwarf_merchearth_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;=======================================================================================
+;
+;		@04 SHIRE
+;
+;=======================================================================================
+
+
+type		4a_shire_general
+skeleton	fs_hobbit_dagger
+scale		0.8
+indiv_range	40
+texture		empire_west_rebels,		bi/fatw/data/models_unit/textures/4a_shire_general.tga
+model_flexi					bi/fatw/data/models_unit/4a_shire_general.cas, max
+model_sprite	empire_west_rebels,	60.0,	bi/fatw/data/sprites/empire_west_rebels_4a_shire_general_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_shire_captain
+skeleton	fs_hobbit_dagger
+scale		0.8
+indiv_range	40
+texture		empire_west_rebels,		bi/fatw/data/models_unit/textures/4a_shire_captain.tga
+model_flexi					bi/fatw/data/models_unit/4a_shire_captain.cas, max
+model_sprite	empire_west_rebels,	60.0,	bi/fatw/data/sprites/empire_west_rebels_4a_shire_captain_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_shire_bounder
+skeleton	fs_hobbit_2handed
+scale		0.8
+indiv_range	40
+texture		empire_west_rebels,		bi/fatw/data/models_unit/textures/4a_shire_bounder.tga
+model_flexi					bi/fatw/data/models_unit/4a_shire_bounder.cas, max
+model_sprite	empire_west_rebels,	60.0,	bi/fatw/data/sprites/empire_west_rebels_4a_shire_bounder_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_shire_archer
+skeleton	fs_hobbit_archer, fs_hobbit_dagger
+scale		0.8
+indiv_range	40
+texture		empire_west_rebels,		bi/fatw/data/models_unit/textures/4a_shire_archer.tga
+model_flexi					bi/fatw/data/models_unit/4a_shire_archer.cas, max
+model_sprite	empire_west_rebels,	60.0,	bi/fatw/data/sprites/empire_west_rebels_4a_shire_archer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;=======================================================================================
+;
+;		@05 REUNITED KINGDOM - (Includes generic models)
+;
+;=======================================================================================
+
+
+type		4a_rk_general
+skeleton	fs_swordsman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_general_rk.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_general_tharb.tga
+texture		empire_east_rebels, 		bi/fatw/data/models_unit/textures/4a_rk_general_adun.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_general_rk.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_general.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_general_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_general_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_general_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_general_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_captain
+skeleton	fs_swordsman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_captain_rk.tga
+texture		empire_east_rebels, 		bi/fatw/data/models_unit/textures/4a_rk_captain_adun.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_captain_tharb.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_captain_rk.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_captain.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_captain_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_captain_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_captain_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_captain_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_officer
+skeleton	fs_swordsman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_officer_rk.tga
+texture		empire_east_rebels, 		bi/fatw/data/models_unit/textures/4a_rk_officer_adun.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_officer_tharb.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_officer_rk.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_officer.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_officer_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_officer_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_officer_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_officer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_bearer
+skeleton	fs_standard_bearer
+skeleton_horse		fs_m_bearer
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_bearer_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_bearer_adun.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_bearer_tharb.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_bearer_merc.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_bearer.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_bearer_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_bearer_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_bearer_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_bearer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_bodyguard
+skeleton	fs_hc_spearman, fs_hc_swordsman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_bodyguard_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_bodyguard_adun.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_bodyguard_merc.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_bodyguard.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_bodyguard_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_bodyguard_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_bodyguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_gondorhillmen
+skeleton	fs_spearman
+indiv_range	40
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_gondorhillmen_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_gondorhillmen_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_gondorhillmen.cas, max
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_gondorhillmen_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_gondorhillmen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_gondoraxe
+skeleton	fs_2handed
+indiv_range	40
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_gondoraxe_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_gondoraxe_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_gondoraxe.cas, max
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_gondoraxe_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_gondoraxe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_mordormen
+skeleton	fs_semi_fast_axeman
+indiv_range	40
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_mordormen_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_mordormen_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_mordormen.cas, max
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_mordormen_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_mordormen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_eriadorspear
+skeleton	fs_spearman
+indiv_range	40
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_eriadorspear_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_eriadorspear_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_eriadorspear.cas, max
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_eriadorspear_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_eriadorspear_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_tharbadmilitia
+skeleton	fs_spearman
+indiv_range	40
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_tharbadmilitia.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_tharbadmilitia.cas, max
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_tharbadmilitia_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_militia
+skeleton	fs_spearman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_militia_rk.tga
+texture		empire_east_rebels, 		bi/fatw/data/models_unit/textures/4a_rk_militia_adun.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_militia_tharb.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_militia_levy.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_militia.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_militia_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_militia_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_militia_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_militia_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_eriadoraxe
+skeleton	fs_axeman
+indiv_range	40
+;texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_eriadoraxe_tharb.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_rk_eriadoraxe_tharb.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_eriadoraxe_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_eriadoraxe_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_eriadoraxe.cas, max
+;model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_eriadoraxe_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_eriadoraxe_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_eriadoraxe_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_eriadoraxe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_sword
+skeleton	fs_slow_swordsman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_sword_rk.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_sword_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_sword_adun.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_rk_sword_dale.tga
+texture		huns,				bi/fatw/data/models_unit/textures/4a_rk_sword_rohan.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_sword_levy.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_sword.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_sword_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_sword_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_sword_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_rk_sword_sprite.spr
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rk_sword_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_sword_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_mariner
+skeleton	fs_gladius
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_mariner_rk.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_mariner_tharb.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_mariner_adun.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_mariner.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_mariner_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_mariner_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_mariner_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_spear
+skeleton	fs_slow_spearman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_spear_rk.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_spear_rk.tga
+texture		empire_east_rebels, 		bi/fatw/data/models_unit/textures/4a_rk_spear_adun.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_spear.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_spear_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_spear_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_spear_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_lossaxe
+skeleton	fs_2handed
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_lossaxe_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_lossaxe_adun.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_lossaxe_tharb.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_lossaxe.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_lossaxe_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_lossaxe_sprite.spr
+model_sprite	empire_west,	60.0,	bi/fatw/data/sprites/empire_west_4a_rk_lossaxe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_maa
+skeleton	fs_slow_swordsman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_maa_rk.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_rk_maa_dale.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_rk_maa_dorw.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_rk_maa_haron.tga
+texture		huns,				bi/fatw/data/models_unit/textures/4a_rk_maa_rohan.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_maa_tharb.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_maa_merc.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_maa.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_maa_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_rk_maa_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_rk_maa_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_rk_maa_sprite.spr
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rk_maa_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_maa_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_maa_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_merchantguard
+skeleton	fs_slow_swordsman
+indiv_range	40
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_merchantguard_tharb.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_maa_merc.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_maa.cas, max
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_merchantguard_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_sword_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_mace
+skeleton	fs_slow_axeman
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_mace.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_rk_mace_farh.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_rk_mace_harad.tga
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_rk_mace_khand.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_rk_mace_northr.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rk_mace_rhun.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_mace.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_mace_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_rk_mace_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_rk_mace_sprite.spr
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_rk_mace_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4a_rk_mace_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rk_mace_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_black
+skeleton	fs_slow_swordsman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_rk_black_dwarv.tga
+texture		empire_east_rebels, 		bi/fatw/data/models_unit/textures/4a_rk_black_adun.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_black_merc.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_black.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_rk_black_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_black_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_black_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_citadel
+skeleton	fs_slow_spearman, fs_slow_swordsman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_citadel_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_citadel_adun.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_citadel.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_citadel_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_citadel_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;type		4a_rk_nurn
+;skeleton	fs_slow_2handed
+;indiv_range	40
+;texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_nurn.tga
+;model_flexi					bi/fatw/data/models_unit/4a_rk_nurn.cas, max
+;model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_nurn_sprite.spr
+;model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_crew
+skeleton	fs_swordsman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_crew_rk.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_crew_tharb.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_crew_adun.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_rk_crew_haron.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_rk_crew_dale.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_crew.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_crew_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_crew_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_crew_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_rk_crew_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_rk_crew_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_eriadorscout
+skeleton	fs_semi_fast_javelinman, fs_semi_fast_swordsman
+indiv_range	40
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_eriadorscout_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_eriadorscout_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_eriadorscout.cas, max
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_eriadorscout_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_eriadorscout_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_eriadorhunter
+skeleton	fs_semi_fast_archer, fs_semi_fast_dagger
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_eriadorhunter_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_eriadorhunter_adun.tga
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_rk_eriadorhunter_dwarv.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_eriadorhunter_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_eriadorhunter_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_eriadorhunter.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_eriadorhunter_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_eriadorhunter_sprite.spr
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_rk_eriadorhunter_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_eriadorhunter_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_eriadorhunter_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_bow
+skeleton	fs_archer, fs_dagger
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_bow_rk.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_bow_tharb.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_bow_adun.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_rk_bow_dorw.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_bow_levy.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_bow.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_bow_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_bow_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_bow_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_rk_bow_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_bow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_blackroot
+skeleton	fs_archer, fs_swordsman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_rk_blackroot_dwarv.tga
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_blackroot_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_blackroot_adun.tga
+texture		empire_west,		bi/fatw/data/models_unit/textures/4a_rk_blackroot_tharb.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_blackroot_merc.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_blackroot.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_rk_blackroot_sprite.spr
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_blackroot_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_blackroot_sprite.spr
+model_sprite	empire_west,	60.0,	bi/fatw/data/sprites/empire_west_4a_rk_blackroot_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_blackroot_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_longbow
+skeleton	fs_archer, fs_swordsman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_longbow_rk.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_longbow_tharb.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_longbow_adun.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_longbow.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_longbow_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rk_longbow_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_longbow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_guardhaven
+skeleton	fs_archer, fs_thp_f_spearman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_guardhaven_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_guardhaven_adun.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_guardhaven.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_guardhaven_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_guardhaven_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_ranger
+skeleton	fs_archer, fs_swordsman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_rk_ranger_elves.tga
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_ranger_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_ranger_adun.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_ranger_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_ranger_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_ranger.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_rk_ranger_sprite.spr
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_ranger_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_ranger_sprite.spr
+model_sprite	merc,	60.0,	bi/fatw/data/sprites/4a_rk_ranger_sprite.spr
+model_sprite	slave,	60.0,	bi/fatw/data/sprites/slave_4a_rk_ranger_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_northranger
+skeleton	fs_archer, fs_2h_swordsman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_northranger.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_northranger.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_northranger.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_northranger_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;type		4a_rk_white
+;skeleton	fs_archer, fs_slow_swordsman
+;indiv_range	40
+;texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_white_rk.tga
+;texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_white_adun.tga
+;model_flexi					bi/fatw/data/models_unit/4a_rk_white.cas, max
+;model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_white_sprite.spr
+;model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_white_sprite.spr
+;model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_eriadorrider
+skeleton	fs_hc_spearman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_eriadorrider_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_eriadorrider_adun.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_eriadorrider_tharb.tga
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_rk_eriadorrider_dwarv.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_eriadorrider_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_eriadorrider_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_eriadorrider.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_eriadorrider_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_eriadorrider_sprite.spr
+model_sprite	empire_west,	60.0,	bi/fatw/data/sprites/empire_west_4a_rk_eriadorrider_sprite.spr
+model_sprite	saxons,	60.0,	bi/fatw/data/sprites/saxons_4a_rk_eriadorrider_sprite.spr
+model_sprite	merc,	60.0,	bi/fatw/data/sprites/4a_rk_eriadorrider_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_eriadorrider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_cavlight
+skeleton	fs_hc_swordsman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_cavlight_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_cavlight_adun.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_cavlight.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_cavlight_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_cavlight_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_outrider
+skeleton	fs_hc_javelinman, fs_hc_swordsman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_outrider_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rk_outrider_adun.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rk_outrider_tharb.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_outrider.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_outrider_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rk_outrider_sprite.spr
+model_sprite	empire_west,	60.0,	bi/fatw/data/sprites/empire_west_4a_rk_outrider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_cavking
+skeleton	fs_hc_swordsman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_cavking.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_cavking.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_cavking_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_greycompany
+skeleton	fs_hc_archer, fs_hc_swordsman
+indiv_range	40
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rk_greycompany.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_greycompany.cas, max
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rk_greycompany_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_koda
+skeleton	fs_hc_spearman, fs_hc_swordsman
+scale		1.02
+indiv_range	40
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_koda.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_koda.cas, max
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_koda_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_hillmen_levies
+skeleton	fs_spearman
+indiv_range	40
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_hillmen_levies_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_hillmen_levies_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_hillmen_levies.cas, max
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_hillmen_levies_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_hillmen_levies_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_hillmenaxe
+skeleton	fs_javelinman, fs_semi_fast_axeman
+indiv_range	40
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_hillmenaxe_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_hillmenaxe_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_hillmenaxe.cas, max
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_hillmenaxe_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_hillmenaxe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_lossoth
+skeleton	fs_semi_fast_javelinman, fs_semi_fast_spearman
+indiv_range	40
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rk_lossoth_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_lossoth_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_lossoth.cas, max
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rk_lossoth_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_lossoth_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rk_druedain
+skeleton	fs_dwarf_fast_javelinman, fs_dwarf_semi_fast_spearman
+scale		0.95
+indiv_range	40
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rk_druedain.tga
+model_flexi					bi/fatw/data/models_unit/4a_rk_druedain.cas, max
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rk_druedain_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;=======================================================================================
+;
+;		@06 SHADOW CULT
+;
+;=======================================================================================
+
+
+type		4a_mf_bearer
+skeleton	fs_standard_bearer
+skeleton_horse		fs_m_bearer
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_bearer_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_mf_bearer_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_mf_bearer_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_mf_bearer_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_bearer.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_bearer_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_mf_bearer_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_mf_bearer_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_mf_bearer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_mf_grimspear
+skeleton	fs_spearman
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_grimspear_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_mf_grimspear_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_mf_grimspear_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_mf_grimspear_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_mf_grimspear_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_grimspear.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_grimspear_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_mf_grimspear_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_mf_grimspear_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_mf_grimspear_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_mf_grimspear_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_mf_darksword
+skeleton	fs_slow_swordsman
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_darksword_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_mf_darksword_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_mf_darksword_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_mf_darksword_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_darksword.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_darksword_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_mf_darksword_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_mf_darksword_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_mf_darksword_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_mf_cultist
+skeleton	fs_semi_fast_dagger
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_cultist.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_mf_cultist_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_mf_cultist_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_mf_cultist_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_mf_cultist_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_cultist.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_cultist_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_mf_cultist_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_mf_cultist_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_mf_cultist_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_mf_cultist_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_mf_shadowspear
+skeleton	fs_slow_spearman
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_shadowspear_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_mf_shadowspear_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_mf_shadowspear_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_mf_shadowspear_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_mf_shadowspear_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_shadowspear.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_shadowspear_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_mf_shadowspear_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_mf_shadowspear_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_mf_shadowspear_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_mf_shadowspear_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_mf_shadowaxe
+skeleton	fs_slow_2handed
+scale		1.1
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_shadowaxe_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_mf_shadowaxe_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_mf_shadowaxe_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_mf_shadowaxe_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_shadowaxe.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_shadowaxe_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_mf_shadowaxe_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_mf_shadowaxe_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_mf_shadowaxe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_mf_shadowbow
+skeleton	fs_archer, fs_slow_2handed
+scale		1.1
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_shadowbow_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_mf_shadowbow_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_mf_shadowbow_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_mf_shadowbow_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_shadowbow.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_shadowbow_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_mf_shadowbow_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_mf_shadowbow_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_mf_shadowbow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_mf_shadowsword
+skeleton	fs_slow_swordsman
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_shadowsword_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_mf_shadowsword_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_mf_shadowsword_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_mf_shadowsword_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_mf_shadowsword_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_shadowsword.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_shadowsword_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_mf_shadowsword_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_mf_shadowsword_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_mf_shadowsword_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_mf_shadowsword_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_mf_grondsmen
+skeleton	fs_hillmanaxeman
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_grondsmen_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_mf_grondsmen_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_mf_grondsmen_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_mf_grondsmen_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_grondsmen.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_grondsmen_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_mf_grondsmen_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_mf_grondsmen_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_mf_grondsmen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_mf_stonecutters
+skeleton	fs_2h_swordsman
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_stonecutters_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_mf_stonecutters_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_mf_stonecutters_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_mf_stonecutters_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_stonecutters.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_stonecutters_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_mf_stonecutters_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_mf_stonecutters_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_mf_stonecutters_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_mf_darkbow
+skeleton	fs_archer, fs_swordsman
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_darkbow_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_mf_darkbow_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_mf_darkbow_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_mf_darkbow_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_mf_darkbow_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_darkbow.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_darkbow_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_mf_darkbow_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_mf_darkbow_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_mf_darkbow_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_mf_darkbow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_mf_cavshade
+skeleton	fs_hc_spearman
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_cavshade_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_mf_cavshade_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_mf_cavshade_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_mf_cavshade_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_mf_cavshade_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_cavshade.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_cavshade_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_mf_cavshade_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_mf_cavshade_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_mf_cavshade_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_mf_cavshade_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_mf_shadowrider
+skeleton	fs_hc_spearman, fs_hc_swordsman
+scale		1.1
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_shadowrider_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_mf_shadowrider_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_mf_shadowrider_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_mf_shadowrider_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_shadowrider.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_shadowrider_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_mf_shadowrider_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_mf_shadowrider_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_mf_shadowrider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_mf_knight
+skeleton	fs_hc_spearman, fs_hc_swordsman
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_mf_knight.tga
+model_flexi					bi/fatw/data/models_unit/4a_mf_knight.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_mf_knight_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;=======================================================================================
+;
+;		@07 HARAD
+;
+;=======================================================================================
+
+
+type		4a_harad_general
+skeleton	fs_swordsman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_general_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_harad_general_haron.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_general_farh.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_general_harad.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_general.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_general_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harad_general_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_general_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_general_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_captain
+skeleton	fs_swordsman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_captain_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_harad_captain_haron.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_captain_farh.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_captain_harad.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_captain.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_captain_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harad_captain_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_captain_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_captain_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_bearer
+skeleton	fs_standard_bearer
+skeleton_horse		fs_m_bearer
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_bearer_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_harad_bearer_haron.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_bearer_farh.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_harad_bearer_merc.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_bearer.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_bearer_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harad_bearer_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_bearer_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_harad_bearer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_bodyguard
+skeleton	fs_hc_archer, fs_hc_swordsman
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_bodyguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_bodyguard.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_bodyguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;type		4a_harondor_bodyguard
+;skeleton	fs_hc_spearman, fs_hc_swordsman
+;indiv_range	40
+;texture		berbers,			;bi/fatw/data/models_unit/textures/4a_harondor_bodyguard.tga
+;model_flexi					bi/fatw/data/models_unit/4a_harondor_bodyguard.cas, max
+;model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harondor_bodyguard_sprite.spr
+;model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_footmen
+skeleton	fs_semi_fast_spearman
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_footmen_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_harad_footmen_haron.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_footmen_farh.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_harad_footmen_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_footmen_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_footmen.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_footmen_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harad_footmen_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_footmen_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_harad_footmen_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_footmen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_sword
+skeleton	fs_javelinman, fs_swordsman
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_sword_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_harad_sword_haron.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_sword_farh.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_harad_sword_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_sword_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_sword.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_sword_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harad_sword_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_sword_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_harad_sword_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_sword_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_spear
+skeleton	fs_spearman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_harad_spear_dwarv.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_spear_farh.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_harad_spear_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_spear_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_spear.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_harad_spear_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_spear_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_harad_spear_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_spear_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_corsair
+skeleton	fs_dual
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_corsair_harad.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_corsair_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_corsair.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_corsair_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_corsair_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_spearserp
+skeleton	fs_spearman
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_spearserp.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_spearserp_farh.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_harad_spearserp_haron.tga
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_harad_spearserp_khand.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_harad_spearserp_rhun.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_spearserp.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_spearserp_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_spearserp_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harad_spearserp_sprite.spr
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_harad_spearserp_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_harad_spearserp_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_harondor
+skeleton	fs_swordsman
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_harondor_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_harad_harondor_haron.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_harondor_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_harondor.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_harondor_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harad_harondor_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_harondor_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_farharadmen
+skeleton	fs_2handed_halftrollberserker
+scale		1.4
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_farharadmen_harad.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_farharadmen_farh.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_farharadmen_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_farharadmen.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_farharadmen_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_farharadmen_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_farharadmen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_umbarguard
+skeleton	fs_slow_spearman, fs_slow_axeman
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_umbarguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_umbarguard.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_umbarguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_blacknum
+skeleton	fs_2h_swordsman
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_blacknum.tga
+texture		empire_east_rebels,			bi/fatw/data/models_unit/textures/4a_harad_blacknum_adun.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_blacknum.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_blacknum_sprite.spr
+model_sprite	empire_east_rebels,		60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_harad_blacknum_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_desertskirm
+skeleton	fs_semi_fast_javelinman, fs_semi_fast_swordsman
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_desertskirm_harad.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_harad_desertskirm_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_desertskirm_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_desertskirm.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_desertskirm_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_harad_desertskirm_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_desertskirm_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_plainskirm
+skeleton	fs_semi_fast_javelinman, fs_semi_fast_dagger
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_plainskirm_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_harad_plainskirm_haron.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_harad_plainskirm_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_plainskirm_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_plainskirm.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_plainskirm_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harad_plainskirm_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_harad_plainskirm_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_plainskirm_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_swertingskirm
+skeleton	fs_swert_semi_fast_javelinman, fs_swert_semi_fast_spearman
+scale		1.05
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_harad_swertingskirm_dwarv.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_swertingskirm_farh.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_harad_swertingskirm_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_swertingskirm_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_swertingskirm.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_harad_swertingskirm_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_swertingskirm_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_harad_swertingskirm_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_swertingskirm_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_redarcher
+skeleton	fs_semi_fast_archer, fs_semi_fast_dagger
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_redarcher_harad.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_redarcher_farh.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_harad_redarcher_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_redarcher_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_redarcher.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_redarcher_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_redarcher_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_harad_redarcher_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_redarcher_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_corsairarcher
+skeleton	fs_semi_fast_archer, fs_semi_fast_swordsman
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_corsairarcher_harad.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_corsairarcher_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_corsairarcher.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_corsairarcher_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_corsairarcher_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_archer
+skeleton	fs_archer, fs_dagger
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_archer_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_harad_archer_haron.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_harad_archer_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_archer.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_archer_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harad_archer_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_harad_archer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_parchereb
+skeleton	fs_semi_fast_archer, fs_thp_f_spearman
+indiv_range	40
+texture		merc,				bi/fatw/data/models_unit/textures/4a_harad_parchereb_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_parchereb_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_parchereb.cas, max
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_harad_parchereb_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_parchereb_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_cavrider
+skeleton	fs_hc_swordsman
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_cavrider_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_harad_cavrider_haron.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_cavrider_farh.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_harad_cavrider_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_cavrider_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_cavrider.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_cavrider_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harad_cavrider_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_cavrider_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_harad_cavrider_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_cavrider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_cavharnen
+skeleton	fs_hc_spearman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_harad_cavharnen_dwarv.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_cavharnen_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_harad_cavharnen_haron.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_cavharnen_farh.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_harad_cavharnen_rhun.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_harad_cavharnen_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_cavharnen_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_cavharnen.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_harad_cavharnen_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_cavharnen_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harad_cavharnen_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_cavharnen_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_harad_cavharnen_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_harad_cavharnen_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_cavharnen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_cavscarlet
+skeleton	fs_hc_spearman, fs_hc_swordsman
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_cavscarlet_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_harad_cavscarlet_haron.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_cavscarlet_farh.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_harad_cavscarlet_merc.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_cavscarlet.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_cavscarlet_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harad_cavscarlet_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_cavscarlet_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_harad_cavscarlet_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_cavskirm
+skeleton	fs_hc_javelinman, fs_hc_swordsman
+indiv_range	40
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_cavskirm_harad.tga
+texture		berbers,			bi/fatw/data/models_unit/textures/4a_harad_cavskirm_haron.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_harad_cavskirm_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_harad_cavskirm_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_cavskirm.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_cavskirm_sprite.spr
+model_sprite	berbers,		60.0,	bi/fatw/data/sprites/berbers_4a_harad_cavskirm_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_harad_cavskirm_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_harad_cavskirm_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_harad_mumakcrew
+skeleton	fs_mumak_crew_javelin
+indiv_range	4
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_harad_mumakcrew.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_harad_mumakcrew_farh.tga
+model_flexi					bi/fatw/data/models_unit/4a_harad_mumakcrew.cas, max
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_harad_mumakcrew_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_harad_mumakcrew_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;=======================================================================================
+;
+;		@08 ROHAN
+;
+;=======================================================================================
+
+
+;type		4a_rohan_bodyguard
+;skeleton	fs_hc_spearman, fs_hc_swordsman
+;indiv_range	40
+;texture		huns,				bi/fatw/data/models_unit/textures/4a_rohan_bodyguard.tga
+;model_flexi					bi/fatw/data/models_unit/4a_rohan_bodyguard.cas, max
+;model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_bodyguard_sprite.spr
+;model_tri	400, 0.5f, 0.5f, 0.5f
+
+type				merc_butescarle
+skeleton			fs_2handed
+indiv_range			40
+texture				goths, bi/fatw3/data/models_unit/textures/ATW_geneats3.tga
+model_flexi				bi/fatw3/data/models_unit/ATW_geneats.cas, max
+model_sprite			goths, 60.0, bi/fatw3/data/sprites/merc_butescarle_sprite.spr
+model_tri			400, 0.5f, 0.5f, 0.5f
+
+type		4a_rohan_levy
+skeleton	fs_spearman
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_rohan_levy_rohan.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rohan_levy_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_rohan_levy_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rohan_levy_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_rohan_levy_dunl.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rohan_levy_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rohan_levy_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rohan_levy.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_levy_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rohan_levy_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_rohan_levy_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rohan_levy_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_rohan_levy_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rohan_levy_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rohan_levy_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rohan_axe
+skeleton	fs_axeman
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_rohan_axe_rohan.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rohan_axe_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rohan_axe_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rohan_axe.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_axe_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rohan_axe_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rohan_axe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rohan_sotm
+skeleton	fs_javelinman, fs_spearman
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_rohan_sotm.tga
+model_flexi					bi/fatw/data/models_unit/4a_rohan_sotm.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_sotm_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rohan_gotkh
+skeleton	fs_slow_spearman
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_rohan_gotkh.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_rohan_gotkh.tga
+model_flexi					bi/fatw/data/models_unit/4a_rohan_gotkh.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_gotkh_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_gotkh_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rohan_helm
+skeleton	fs_slow_swordsman
+scale		1.05
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_rohan_helm.tga
+model_flexi					bi/fatw/data/models_unit/4a_rohan_helm.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_helm_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rohan_bow
+skeleton	fs_semi_fast_archer, fs_semi_fast_axeman
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_rohan_bow_rohan.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rohan_bow_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rohan_bow.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_bow_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rohan_bow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rohan_cavspear
+skeleton	fs_thp_m_spearman
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_rohan_cavspear_rohan.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rohan_cavspear_tharb.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rohan_cavspear_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rohan_cavspear_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rohan_cavspear.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_cavspear_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rohan_cavspear_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rohan_cavspear_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rohan_cavspear_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rohan_cavrotm
+skeleton	fs_hc_spearman, fs_hc_swordsman
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_rohan_cavrotm_rohan.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rohan_cavrotm_adun.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_rohan_cavrotm_harad.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rohan_cavrotm_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_rohan_cavrotm_dunl.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_rohan_cavrotm_tharb.tga
+texture		burgundii,			bi/fatw/data/models_unit/textures/4a_rohan_cavrotm_beorn.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rohan_cavrotm_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rohan_cavrotm.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_cavrotm_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rohan_cavrotm_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_rohan_cavrotm_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rohan_cavrotm_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_rohan_cavrotm_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_rohan_cavrotm_sprite.spr
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4a_rohan_cavrotm_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rohan_cavrotm_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;type		4a_rohan_cavriddermark
+;skeleton	fs_thp_m_spearman
+;indiv_range	40
+;texture		huns,				;bi/fatw/data/models_unit/textures/4a_rohan_cavriddermark.tga
+;model_flexi					bi/fatw/data/models_unit/4a_rohan_cavriddermark.cas, max
+;model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_cavriddermark_sprite.spr
+;model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rohan_cavlight
+skeleton	fs_hc_javelinman, fs_hc_spearman
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_rohan_cavlight_rohan.tga
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_rohan_cavlight_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_rohan_cavlight_adun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_rohan_cavlight_dunl.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rohan_cavlight_levy.tga
+model_flexi					bi/fatw/data/models_unit/4a_rohan_cavlight.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_cavlight_sprite.spr
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_rohan_cavlight_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_rohan_cavlight_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_rohan_cavlight_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rohan_cavlight_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rohan_cavscout
+skeleton	fs_hc_archer, fs_hc_swordsman
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_rohan_cavscout_rohan.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_rohan_cavscout_dale.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_rohan_cavscout_rhov.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rohan_cavscout_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rohan_cavscout.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_cavscout_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_rohan_cavscout_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_rohan_cavscout_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rohan_cavscout_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rohan_cavbow
+skeleton	fs_hc_archer, fs_hc_swordsman
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_rohan_cavbow.tga
+model_flexi					bi/fatw/data/models_unit/4a_rohan_cavbow.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_rohan_cavbow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;=======================================================================================
+;
+;		@09 DALE
+;
+;=======================================================================================
+
+
+type		4a_dale_general
+skeleton	fs_swordsman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_dale_general_rohan.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dale_general_dale.tga
+texture		burgundii,			bi/fatw/data/models_unit/textures/4a_dale_general_beorn.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_dale_general_dorw.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_dale_general_rhov.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_general.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_dale_general_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_general_sprite.spr
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4a_dale_general_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_dale_general_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_dale_general_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_dale_captain
+skeleton	fs_swordsman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_dale_captain_rohan.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dale_captain_dale.tga
+texture		burgundii,			bi/fatw/data/models_unit/textures/4a_dale_captain_beorn.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_dale_captain_dorw.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_dale_captain_rhov.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dale_captain_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_captain.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_dale_captain_sprite.spr
+;model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_captain_sprite.spr
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4a_dale_captain_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_dale_captain_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_dale_captain_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dale_captain_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_dale_bearer
+skeleton	fs_standard_bearer
+skeleton_horse		fs_m_bearer
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dale_bearer_dale.tga
+texture		huns,				bi/fatw/data/models_unit/textures/4a_dale_bearer_rohan.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_dale_bearer_dorw.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_dale_bearer_rhov.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_dale_bearer_dorw.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dale_bearer_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_bearer.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_bearer_sprite.spr
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_dale_bearer_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_dale_bearer_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_dale_bearer_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dale_bearer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dale_bodyguard
+skeleton	fs_hc_spearman, fs_hc_swordsman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dale_bodyguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_bodyguard.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_bodyguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dale_militia
+skeleton	fs_spearman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dale_militia_dale.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_dale_militia_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dale_militia_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_militia.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_militia_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_dale_militia_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dale_militia_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dale_watch
+skeleton	fs_swordsman
+indiv_range	40
+texture		merc,				bi/fatw/data/models_unit/textures/4a_dale_watch_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dale_watch_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_watch.cas, max
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_dale_watch_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dale_watch_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dale_spear
+skeleton	fs_spearman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dale_spear_dwarv.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dale_spear_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_spear.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dale_spear_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dale_spear_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dale_mountwar
+skeleton	fs_slow_axeman
+indiv_range	40
+texture		huns,				bi/fatw/data/models_unit/textures/4a_dale_mountwar_rohan.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dale_mountwar_dale.tga
+texture		burgundii,			bi/fatw/data/models_unit/textures/4a_dale_mountwar_beorn.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_dale_mountwar_dorw.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_dale_mountwar_rhov.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_mountwar.cas, max
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_dale_mountwar_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_mountwar_sprite.spr
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4a_dale_mountwar_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_dale_mountwar_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_dale_mountwar_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dale_blackspear
+skeleton	fs_javelinman, fs_slow_spearman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dale_blackspear.tga
+texture		burgundii,			bi/fatw/data/models_unit/textures/4a_dale_blackspear_beorn.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_blackspear.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_blackspear_sprite.spr
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4a_dale_blackspear_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dale_hearthman
+skeleton	fs_slow_2handed
+scale		1.1
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dale_hearthman.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_hearthman.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_hearthman_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dale_framsburg
+skeleton	fs_slow_swordsman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dale_framsburg_dale.tga
+texture		huns,				bi/fatw/data/models_unit/textures/4a_dale_framsburg_dale.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_dale_framsburg_dorw.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_framsburg.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_framsburg_sprite.spr
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/goths_4a_dale_framsburg_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_dale_framsburg_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_dale_longbow
+skeleton	fs_archer, fs_swordsman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dale_longbow_dale.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_dale_longbow_dorw.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_dale_longbow_rhov.tga
+texture		huns,				bi/fatw/data/models_unit/textures/4a_dale_longbow_rohan.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_dale_longbow_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dale_longbow_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_longbow.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_longbow_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_dale_longbow_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_dale_longbow_sprite.spr
+model_sprite	huns,			60.0,	bi/fatw/data/sprites/huns_4a_dale_longbow_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_dale_longbow_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dale_longbow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dale_blackarrow
+skeleton	fs_archer, fs_slow_axeman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dale_blackarrow.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_blackarrow.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_blackarrow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dale_crossbow
+skeleton	fs_crossbow_new, fs_slow_swordsman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dale_crossbow.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_crossbow.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_crossbow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dale_mountedwatch
+skeleton	fs_hc_swordsman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_merc_gondorsword_dale.tga
+model_flexi					bi/fatw/data/models_unit/4a_merc_gondorsword.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_mountedwatch_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dale_rider
+skeleton	fs_hc_spearman, fs_hc_swordsman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dale_rider_dwarv.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dale_rider_dale.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_dale_rider_rhov.tga
+texture		huns,			bi/fatw/data/models_unit/textures/4a_dale_rider_rhov.tga
+texture		empire_east,			bi/fatw/data/models_unit/textures/4a_dale_rider_rk.tga
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_dale_rider_adun.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_dale_rider_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dale_rider_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dale_rider.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dale_rider_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dale_rider_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_dale_rider_sprite.spr
+model_sprite	huns,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_dale_rider_sprite.spr
+model_sprite	empire_east,		60.0,	bi/fatw/data/sprites/empire_east_4a_dale_rider_sprite.spr
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_dale_rider_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_dale_rider_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dale_rider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+;=======================================================================================
+;
+;		@10 BEORNINGS
+;
+;=======================================================================================
+
+
+type		4a_beorn_general
+skeleton	fs_2handed_halftrollberserker
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+scale		1.2
+indiv_range	40
+texture		burgundii,			bi/fatw/data/models_unit/textures/4a_beorn_general.tga
+model_flexi					bi/fatw/data/models_unit/4a_beorn_general.cas, max
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4a_beorn_general_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_beorn_bearer
+skeleton	fs_standard_bearer_halftrollberserker
+skeleton_horse		fs_m_bearer
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		burgundii,			bi/fatw/data/models_unit/textures/4a_beorn_bearer.tga
+model_flexi					bi/fatw/data/models_unit/4a_beorn_bearer.cas, max
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4a_beorn_bearer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_beorn_bodyguard
+skeleton	fs_2handed_halftrollberserker
+scale		1.2
+indiv_range	40
+texture		burgundii,			bi/fatw/data/models_unit/textures/4a_beorn_bodyguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_beorn_bodyguard.cas, max
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4a_beorn_bodyguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_beorn_woodmanaxe
+skeleton	fs_axeman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_beorn_woodmanaxe_dwarv.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_beorn_woodmanaxe_dale.tga
+texture		burgundii,			bi/fatw/data/models_unit/textures/4a_beorn_woodmanaxe_beorn.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_beorn_woodmanaxe_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_beorn_woodmanaxe_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_beorn_woodmanaxe.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_beorn_woodmanaxe_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_beorn_woodmanaxe_sprite.spr
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4a_beorn_woodmanaxe_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_beorn_woodmanaxe_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_beorn_woodmanaxe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_beorn_woodmanbow
+skeleton	fs_semi_fast_archer, fs_semi_fast_axeman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_beorn_woodmanbow_dale.tga
+texture		burgundii,			bi/fatw/data/models_unit/textures/4a_beorn_woodmanbow_beorn.tga
+texture		huns,			bi/fatw/data/models_unit/textures/4a_beorn_woodmanbow_beorn.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_beorn_woodmanbow_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_beorn_woodmanbow_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_beorn_woodmanbow.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_beorn_woodmanbow_sprite.spr
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4a_beorn_woodmanbow_sprite.spr
+model_sprite	huns,		60.0,	bi/fatw/data/sprites/burgundii_4a_beorn_woodmanbow_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_beorn_woodmanbow_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_beorn_woodmanbow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_beorn_woodmanspear
+skeleton	fs_spearman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_beorn_woodmanspear_dale.tga
+texture		burgundii,			bi/fatw/data/models_unit/textures/4a_beorn_woodmanspear_beorn.tga
+texture		huns,			bi/fatw/data/models_unit/textures/4a_beorn_woodmanspear_beorn.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_beorn_woodmanspear_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_beorn_woodmanspear_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_beorn_woodmanspear.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_beorn_woodmanspear_sprite.spr
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4a_beorn_woodmanspear_sprite.spr
+model_sprite	huns,		60.0,	bi/fatw/data/sprites/burgundii_4a_beorn_woodmanspear_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_beorn_woodmanspear_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_beorn_woodmanspear_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_beorn_beornaxe
+skeleton	fs_2handed
+indiv_range	40
+texture		burgundii,			bi/fatw/data/models_unit/textures/4a_beorn_beornaxe_beorn.tga
+texture		huns,			bi/fatw/data/models_unit/textures/4a_beorn_beornaxe_beorn.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_beorn_beornaxe_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_beorn_beornaxe.cas, max
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4a_beorn_beornaxe_sprite.spr
+model_sprite	huns,		60.0,	bi/fatw/data/sprites/burgundii_4a_beorn_beornaxe_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_beorn_beornaxe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_beorn_woodmanrider
+skeleton	fs_hc_swordsman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_beorn_woodmanrider_dale.tga
+texture		burgundii,			bi/fatw/data/models_unit/textures/4a_beorn_woodmanrider_beorn.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_beorn_woodmanrider_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_beorn_woodmanrider.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_beorn_woodmanrider_sprite.spr
+model_sprite	burgundii,		60.0,	bi/fatw/data/sprites/burgundii_4a_beorn_woodmanrider_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_beorn_woodmanrider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_beorn_crew
+skeleton	fs_2handed
+indiv_range	40
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_beorn_crew_beorn.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_beorn_crew_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_beorn_crew.cas, max
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/burgundii_4a_beorn_crew_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_beorn_crew_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;=======================================================================================
+;
+;		@11 RHOVANION
+;
+;=======================================================================================
+
+
+;type		4a_rhov_noble
+;skeleton	fs_hc_javelinman, fs_hc_spearman
+;indiv_range	40
+;texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_rhov_noble.tga
+;model_flexi					bi/fatw/data/models_unit/4a_rhov_noble.cas, max
+;model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_rhov_noble_sprite.spr
+;model_tri	400, 0.5f, 0.5f, 0.5
+
+type		4a_rhov_noble
+skeleton	fs_javelinman, fs_spearman
+indiv_range	40
+texture		ostrogoths,			bi/fatw3/data/models_unit/textures/ATW_Deaisbard4_celts.tga
+model_flexi					bi/fatw3/data/models_unit/VI2_Laigini.cas, max
+model_sprite	ostrogoths,		60.0,	bi/fatw3/data/sprites/celts_irish_laigini_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+type	orcadian_spearman
+skeleton	fs_thp_f_spearman
+indiv_range	40
+texture		ostrogoths, 		bi/fatw3/data/models_unit/textures/ATW_schiltron3_norse.tga
+;texture		slave, 		bi/vi2/data/models_unit/textures/ATW_schiltron3_slave.tga
+model_flexi				bi/fatw3/data/models_unit/ATW_schiltron_opt.cas, 15
+model_flexi				bi/fatw3/data/models_unit/ATW_schiltron_med.cas, 30
+model_flexi				bi/fatw3/data/models_unit/ATW_schiltron_low.cas, 40
+model_flexi				bi/fatw3/data/models_unit/ATW_schiltron_lowest.cas, max
+model_sprite	ostrogoths, 		60.0, bi/fatw3/data/sprites/vandals_orcadian_spearman_sprite.spr
+;model_sprite	slave, 		60.0, bi/vi2/data/sprites/slave_orcadian_spearman_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+type				irish_slinger
+skeleton			fs_slinger_new, fs_slinger_new
+indiv_range			40
+;texture		slave,		bi/fatw3/data/models_unit/textures/ATW_maiobhanaghta6.tga
+texture		ostrogoths,		bi/fatw3/data/models_unit/textures/ATW_maiobhanaghta3_neill.tga
+model_flexi				bi/fatw3/data/models_unit/ATW_maiobhanaghta_opt.cas, max
+;model_sprite		slave, 60.0, bi/fatw3/data/sprites/slave_irish_slinger_sprite.spr
+model_sprite		ostrogoths, 60.0, bi/fatw3/data/sprites/ostrogoths_irish_slinger_sprite.spr
+model_tri			400, 0.5f, 0.5f, 0.5f
+
+type				irish_hero
+skeleton			fs_2handed
+indiv_range			40
+texture				ostrogoths, bi/fatw3/data/models_unit/textures/MTW_unit_hueste_neill.tga
+;texture				slave, bi/fatw3/data/models_unit/textures/MTW_unit_hueste_slave.tga
+model_flexi			bi/fatw3/data/models_unit/MTW_unit_hueste.cas, max
+;model_sprite		slave, 60.0, bi/fatw3/data/sprites/slave_irish_hero_sprite.spr
+model_sprite		ostrogoths, 60.0, bi/fatw3/data/sprites/ostrogoths_irish_hero_sprite.spr
+model_tri			400, 0.5f, 0.5f, 0.5f
+
+type		4a_dorw_bodyguard
+skeleton	fs_hc_swordsman
+indiv_range	40
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_dorw_bodyguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_dorw_bodyguard.cas, max
+model_sprite	romano_british,			60.0,	bi/fatw/data/sprites/romano_british_4a_dorw_bodyguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dorw_halberdier
+skeleton	fs_thp_f_spearman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_dorw_halberdier_dale.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_dorw_halberdier_dorw.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_dorw_halberdier_merc.tga
+model_flexi					bi/fatw/data/models_unit/4a_dorw_halberdier.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_dorw_halberdier_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_dorw_halberdier_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_dorw_halberdier_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhov_spear
+skeleton	fs_spearman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_rhov_spear_dale.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_rhov_spear_dorw.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_rhov_spear_rhov.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rhov_spear_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhov_spear_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhov_spear.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_rhov_spear_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_rhov_spear_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_rhov_spear_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rhov_spear_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhov_spear_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_rhov_axe
+skeleton	fs_axeman
+indiv_range	40
+texture		goths,				bi/fatw/data/models_unit/textures/4a_rhov_axe_dale.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_rhov_axe_dorw.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_rhov_axe_rhov.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhov_axe_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhov_axe.cas, max
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_rhov_axe_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_rhov_axe_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_rhov_axe_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhov_axe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhov_watch
+skeleton	fs_slow_spearman
+indiv_range	40
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_rhov_watch.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhov_watch.cas, max
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_rhov_watch_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_rhov_ranger
+skeleton	fs_javelinman, fs_axeman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_rhov_ranger_dwarv.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_rhov_ranger.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rhov_ranger_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhov_ranger_merc.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhov_ranger.cas, max
+model_sprite	saxons,		60.0,	bi/fatw/data/sprites/saxons_4a_rhov_ranger_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/4a_rhov_ranger_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rhov_ranger_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/4a_rhov_ranger_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_rhov_forester
+skeleton	fs_javelinman, fs_spearman
+indiv_range	40
+texture		sarmatians,			bi/fatw/data/models_unit/textures/4a_rhov_forester_elves.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_rhov_forester_dale.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_rhov_forester_dorw.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_rhov_forester_rhov.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rhov_forester_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhov_forester_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhov_forester.cas, max
+model_sprite	sarmatians,		60.0,	bi/fatw/data/sprites/sarmatians_4a_rhov_forester_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_rhov_forester_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_rhov_forester_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_rhov_forester_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rhov_forester_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhov_forester_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_rhov_hunter
+skeleton	fs_archer, fs_dagger
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_rhov_hunter_dwarv.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_rhov_hunter_dale.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_rhov_hunter_dorw.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_rhov_hunter_rhov.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rhov_hunter_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhov_hunter_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhov_hunter.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_rhov_hunter_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_rhov_hunter_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_rhov_hunter_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_rhov_hunter_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rhov_hunter_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhov_hunter_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhov_rider
+skeleton	fs_hc_spearman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_rhov_rider_dwarv.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_rhov_rider_dale.tga
+texture		romano_british,			bi/fatw/data/models_unit/textures/4a_rhov_rider_dorw.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_rhov_rider_rhov.tga
+texture		huns,			bi/fatw/data/models_unit/textures/4a_rhov_rider_rhov.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rhov_rider_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhov_rider_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhov_rider.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_rhov_rider_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_rhov_rider_sprite.spr
+model_sprite	romano_british,		60.0,	bi/fatw/data/sprites/romano_british_4a_rhov_rider_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_rhov_rider_sprite.spr
+model_sprite	huns,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_rhov_rider_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rhov_rider_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhov_rider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;=======================================================================================
+;
+;		@12 RHUN
+;
+;=======================================================================================
+
+
+type		4a_rhun_general
+skeleton	fs_axeman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_general_rhun.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_rhun_general_northr.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_general.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_general_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4a_rhun_general_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_captain
+skeleton	fs_axeman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_captain_rhun.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_rhun_captain_northr.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_captain.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_captain_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4a_rhun_captain_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_bearer
+skeleton	fs_standard_bearer
+skeleton_horse		fs_m_bearer
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_bearer_rhun.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_rhun_bearer_northr.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhun_bearer_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_bearer.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_bearer_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4a_rhun_bearer_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhun_bearer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_bodyguard
+skeleton	fs_hc_javelinman, fs_hc_swordsman
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_bodyguard_rhun.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_rhun_bodyguard_northr.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_bodyguard.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_bodyguard_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4a_rhun_bodyguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_warband
+skeleton	fs_spearman
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_warband_rhun.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_rhun_warband_northr.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rhun_warband_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhun_warband_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_warband.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_warband_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4a_rhun_warband_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rhun_warband_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhun_warband_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_axe
+skeleton	fs_axeman
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_axe_rhun.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_rhun_axe_northr.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_rhun_axe_harad.tga
+texture		vandals,			bi/fatw/data/models_unit/textures/4a_rhun_axe_farh.tga
+texture		ostrogoths,			bi/fatw/data/models_unit/textures/4a_rhun_axe_rhov.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rhun_axe_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhun_axe_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_axe.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_axe_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4a_rhun_axe_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_rhun_axe_sprite.spr
+model_sprite	vandals,		60.0,	bi/fatw/data/sprites/vandals_4a_rhun_axe_sprite.spr
+model_sprite	ostrogoths,		60.0,	bi/fatw/data/sprites/ostrogoths_4a_rhun_axe_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rhun_axe_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhun_axe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_spear
+skeleton	fs_spearman
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_spear_rhun.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_rhun_spear_northr.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhun_spear_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_spear.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_spear_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4a_rhun_spear_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhun_spear_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_darkhelm
+skeleton	fs_swordsman
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_darkhelm_rhun.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhun_darkhelm_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_darkhelm.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_darkhelm_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhun_darkhelm_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_greataxe
+skeleton	fs_2handed
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_greataxe_rhun.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_rhun_greataxe_northr.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhun_greataxe_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_greataxe.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_greataxe_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4a_rhun_greataxe_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhun_greataxe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_berserker
+skeleton	fs_dual
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_berserker.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_berserker.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_berserker_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_skirmisher
+skeleton	fs_semi_fast_javelinman, fs_semi_fast_dagger
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_skirmisher_rhun.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_rhun_skirmisher_northr.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rhun_skirmisher_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhun_skirmisher_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_skirmisher.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_skirmisher_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4a_rhun_skirmisher_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rhun_skirmisher_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhun_skirmisher_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_slinger
+skeleton	fs_slinger_new, fs_slinger_new
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_rhun_slinger_dwarv.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_slinger_rhun.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_rhun_slinger_northr.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rhun_slinger_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhun_slinger_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_slinger.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_rhun_slinger_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_slinger_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4a_rhun_slinger_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rhun_slinger_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhun_slinger_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_archer
+skeleton	fs_semi_fast_archer, fs_semi_fast_dagger
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_archer_rhun.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhun_archer_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_archer.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_archer_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhun_archer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_raider
+skeleton	fs_hc_spearman
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_warband_rhun.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_rhun_warband_northr.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_rhun_warband_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhun_warband_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_warband.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_raider_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4a_rhun_raider_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_rhun_raider_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhun_raider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_rider
+skeleton	fs_hc_swordsman
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_rider_rhun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_rhun_rider_dunl.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_rider.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_rider_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_rhun_rider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rhun_warwaincrew
+skeleton	fs_chariot_javelinman
+indiv_range	40
+texture		franks,				bi/fatw/data/models_unit/textures/4a_rhun_warwaincrew_rhun.tga
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_rhun_warwaincrew_khand.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_rhun_warwaincrew_northr.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rhun_warwaincrew_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_warwaincrew.cas, max
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_rhun_warwaincrew_sprite.spr
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_rhun_warwaincrew_sprite.spr
+model_sprite	lombardi,		60.0,	bi/fatw/data/sprites/lombardi_4a_rhun_warwaincrew_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rhun_warwaincrew_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;=======================================================================================
+;
+;		@13 KHAND
+;
+;=======================================================================================
+
+
+type		4a_khand_general
+skeleton	fs_swordsman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+indiv_range	40
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_khand_general.tga
+model_flexi					bi/fatw/data/models_unit/4a_khand_general.cas, max
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_khand_general_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_khand_captain
+skeleton	fs_swordsman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+indiv_range	40
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_khand_captain.tga
+model_flexi					bi/fatw/data/models_unit/4a_khand_captain.cas, max
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_khand_captain_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_khand_bearer
+skeleton	fs_standard_bearer
+skeleton_horse		fs_m_bearer
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+indiv_range	40
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_khand_bearer.tga
+model_flexi					bi/fatw/data/models_unit/4a_khand_bearer.cas, max
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_khand_bearer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_khand_dragonguard
+skeleton	fs_hc_spearman, fs_hc_swordsman
+indiv_range	40
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_khand_dragonguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_khand_dragonguard.cas, max
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_khand_dragonguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_khand_watch
+skeleton	fs_spearman
+indiv_range	40
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_khand_watch_khand.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_khand_watch_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_khand_watch_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_khand_watch.cas, max
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_khand_watch_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_khand_watch_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_khand_watch_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_khand_axe
+skeleton	fs_axeman
+indiv_range	40
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_khand_axe_khand.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_khand_axe_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_rhun_axe.cas, max
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_khand_axe_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_khand_axe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_khand_warrior
+skeleton	fs_2handed
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_khand_warrior_dwarv.tga
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_khand_warrior.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_khand_warrior_merc.tga
+model_flexi					bi/fatw/data/models_unit/4a_khand_warrior.cas, max
+model_sprite	saxons,		60.0,	bi/fatw/data/sprites/saxons_4a_khand_warrior_sprite.spr
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_khand_warrior_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_khand_warrior_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_khand_bow
+skeleton	fs_semi_fast_archer, fs_semi_fast_dagger
+indiv_range	40
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_khand_bow_khand.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_khand_bow_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_khand_bow_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_khand_bow.cas, max
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_khand_bow_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_khand_bow_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_khand_bow_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_khand_archer
+skeleton	fs_archer, fs_swordsman
+indiv_range	40
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_khand_archer.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_khand_archer.tga
+model_flexi					bi/fatw/data/models_unit/4a_khand_archer.cas, max
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_khand_archer_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_khand_archer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_khand_rider
+skeleton	fs_hc_spearman
+indiv_range	40
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_khand_rider_khand.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_khand_rider_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_khand_rider_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_khand_rider.cas, max
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_khand_rider_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_khand_rider_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_khand_rider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_khand_outrider
+skeleton	fs_hc_archer, fs_hc_swordsman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_khand_outrider_dwarv.tga
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_khand_outrider_khand.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_khand_outrider_rhun.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_khand_outrider_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_khand_outrider_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_khand_outrider.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_khand_outrider_sprite.spr
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_khand_outrider_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_khand_outrider_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_khand_outrider_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_khand_outrider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_khand_mountedarcher
+skeleton	fs_hc_archer, fs_hc_swordsman
+indiv_range	40
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_khand_mountedarcher_khand.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_khand_mountedarcher_rhun.tga
+model_flexi					bi/fatw/data/models_unit/4a_khand_mountedarcher.cas, max
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_khand_mountedarcher_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_khand_mountedarcher_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_khand_dragonshield
+skeleton	fs_hc_archer, fs_hc_spearman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_khand_dragonshield_dwarv.tga
+texture		alemanni,			bi/fatw/data/models_unit/textures/4a_khand_dragonshield_khand.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_khand_dragonshield_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_khand_dragonshield_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_khand_dragonshield.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_khand_dragonshield_sprite.spr
+model_sprite	alemanni,		60.0,	bi/fatw/data/sprites/alemanni_4a_khand_dragonshield_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_khand_dragonshield_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_khand_dragonshield_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;=======================================================================================
+;
+;		@14 DUNLAND
+;
+;=======================================================================================
+
+
+type		4a_dunland_general
+skeleton	fs_axeman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_general.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_general.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_general_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_dunland_captain
+skeleton	fs_axeman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_captain.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_captain.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_captain_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_dunland_bearer
+skeleton	fs_standard_bearer
+skeleton_horse		fs_m_bearer
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+skeleton_scorpion_cart	fs_carriage_ballistae_crew
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_bearer.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_bearer.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_bearer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_dunland_bodyguard
+skeleton	fs_slow_axeman
+indiv_range	40
+;texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_bodyguard.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_dunland_bodyguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_bodyguard.cas, max
+;model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_bodyguard_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_bodyguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_dunland_mountedguard
+skeleton	fs_hc_swordsman
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_mountedguard.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_mountedguard.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_mountedguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_dunland_spearmen
+skeleton	fs_javelinman, fs_spearman
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_spearmen_dunl.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_dunland_spearmen_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dunland_spearmen_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_spearmen.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_spearmen_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_dunland_spearmen_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dunland_spearmen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dunland_axe
+skeleton	fs_javelinman, fs_axeman
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_axe_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_dunland_axe_dunl.tga
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_dunland_axe_dwarv.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_dunland_axe_merc.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dunland_axe_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_axe.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_axe_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_axe_sprite.spr
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_dunland_axe_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_dunland_axe_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dunland_axe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dunland_pikemen
+skeleton	fs_thp_f_spearman
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_pikemen_dunl.tga
+texture		sassanids,			bi/fatw/data/models_unit/textures/4a_dunland_pikemen_harad.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_pikemen.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_pikemen_sprite.spr
+model_sprite	sassanids,		60.0,	bi/fatw/data/sprites/sassanids_4a_dunland_pikemen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dunland_elitepikemen
+skeleton	fs_slow_spearman
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_elitepikemen_dunl.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_dunland_elitepikemen_tharb.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_pikemen.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_elitepikemen_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_dunland_elitepikemen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dunland_wolfhunter
+skeleton	fs_javelinman, fs_2handed
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_wolfhunter.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_wolfhunter.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_wolfhunter_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dunland_wolfaxe
+skeleton	fs_2handed
+scale		1.05
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_wolfaxe.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_wolfaxe.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_wolfaxe_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_dunland_hillmen
+skeleton	fs_hillmanaxeman
+scale		1.1
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_hillmen_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_dunland_hillmen_dunl.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dunland_hillmen_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_hillmen.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_hillmen_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_hillmen_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dunland_hillmen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dunland_crew
+skeleton	fs_semi_fast_axeman
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_crew_dunl.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_dunland_crew_rhun.tga
+texture		empire_west,			bi/fatw/data/models_unit/textures/4a_dunland_crew_tharb.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dunland_crew_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_crew.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_crew_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_dunland_crew_sprite.spr
+model_sprite	empire_west,		60.0,	bi/fatw/data/sprites/empire_west_4a_dunland_crew_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dunland_crew_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dunland_bowmen
+skeleton	fs_semi_fast_archer, fs_semi_fast_dagger
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_bowmen_dunl.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_dunland_bowmen_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dunland_bowmen_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_bowmen.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_bowmen_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_dunland_bowmen_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dunland_bowmen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dunland_huntsmen
+skeleton	fs_semi_fast_javelinman, fs_semi_fast_dagger
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_huntsmen_dunl.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_dunland_huntsmen_levy.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dunland_huntsmen_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_huntsmen.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_huntsmen_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_dunland_huntsmen_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dunland_huntsmen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_dunland_horsemen
+skeleton	fs_hc_javelinman, fs_hc_spearman
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_horsemen_dunl.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dunland_horsemen_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_horsemen.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_horsemen_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dunland_horsemen_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_dunland_rider
+skeleton	fs_hc_spearman, fs_hc_swordsman
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_dunland_rider_dunl.tga
+texture		franks,				bi/fatw/data/models_unit/textures/4a_dunland_rider_rhun.tga
+texture		lombardi,			bi/fatw/data/models_unit/textures/4a_dunland_rider_northr.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_dunland_rider_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_dunland_rider.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_dunland_rider_sprite.spr
+model_sprite	franks,			60.0,	bi/fatw/data/sprites/franks_4a_dunland_rider_sprite.spr
+model_sprite	lombardi,			60.0,	bi/fatw/data/sprites/lombardi_4a_dunland_rider_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_dunland_rider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+;=======================================================================================
+;
+;		@15 ORCS
+;
+;=======================================================================================
+
+
+type		4a_orc_officer
+skeleton	fs_orc_fast_dagger, fs_orc_fast_dagger
+scale		0.95
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_officer_adun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_orc_officer_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_orc_officer_dunl.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_officer_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_officer.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_officer_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_orc_officer_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_orc_officer_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_officer_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_orc_raider_invisible	; this is used for ship crews too
+skeleton	fs_orc_fast_swordsman
+scale		0.8
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_raider_invisible.tga
+texture		berbers,		bi/fatw/data/models_unit/textures/4a_orc_raider_invisible.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_orc_raider_invisible.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_raider_invisible.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_raider.cas, max
+;model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_raider_invisible_sprite.spr
+;model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_orc_raider_invisible_sprite.spr
+;model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_raider_invisible_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_orc_raider
+skeleton	fs_orc_fast_swordsman
+scale		0.8
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_raider_adun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_orc_raider_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_orc_raider_dunl.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_raider_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_raider.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_raider_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_orc_raider_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_orc_raider_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_raider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_orc_band
+skeleton	fs_orc_fast_spearman
+scale		0.8
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_band_adun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_orc_band_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_orc_band_dunl.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_band_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_band.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_band_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_orc_band_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_orc_band_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_band_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_orc_blade
+skeleton	fs_orc_dual
+scale		0.85
+indiv_range	40
+texture		celts,				bi/fatw/data/models_unit/textures/4a_orc_blade_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_orc_blade_dunl.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_blade_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_blade.cas, max
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_orc_blade_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_orc_blade_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_blade_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_orc_champion
+skeleton	fs_2handed
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_champion_adun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_orc_champion_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_orc_champion_dunl.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_champion_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_champion.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_champion_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_orc_champion_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_orc_champion_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_champion_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5
+
+
+type		4a_orc_uruksword
+skeleton	fs_slow_swordsman
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_uruksword_adun.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_uruksword_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_uruksword.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_uruksword_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_uruksword_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_orc_urukspearman
+skeleton	fs_slow_spearman
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_urukspearman_adun.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_urukspearman_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_urukspearman.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_urukspearman_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_urukspearman_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_orc_urukguard
+skeleton	fs_thp_f_spearman
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_urukguard_adun.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_urukguard_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_urukguard.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_urukguard_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_urukguard_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_orc_urukberserker
+skeleton	fs_2handed
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_urukberserker_adun.tga
+texture		berbers,		bi/fatw/data/models_unit/textures/4a_orc_urukberserker_adun.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_urukberserker_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_urukberserker.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_urukberserker_sprite.spr
+model_sprite	berbers,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_urukberserker_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_urukberserker_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_orc_snagahunter
+skeleton	fs_snaga_fast_archer, fs_snaga_fast_dagger
+scale		0.75
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_snagahunter_adun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_orc_snagahunter_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_orc_snagahunter_dunl.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_snagahunter_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_snagahunter.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_snagahunter_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_orc_snagahunter_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_orc_snagahunter_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_snagahunter_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_orc_hunter
+skeleton	fs_orc_fast_archer, fs_orc_fast_spearman
+scale		0.8
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_hunter_adun.tga
+texture		celts,				bi/fatw/data/models_unit/textures/4a_orc_hunter_dunl.tga
+texture		berbers,				bi/fatw/data/models_unit/textures/4a_orc_hunter_dunl.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_hunter_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_hunter.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_hunter_sprite.spr
+model_sprite	celts,			60.0,	bi/fatw/data/sprites/celts_4a_orc_hunter_sprite.spr
+model_sprite	berbers,			60.0,	bi/fatw/data/sprites/celts_4a_orc_hunter_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_hunter_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_orc_wargrider
+skeleton	fs_orc_hc_swordsman
+scale		0.7
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_wargrider_adun.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_wargrider_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_raider.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_wargrider_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_wargrider_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_orc_wargarcher
+skeleton	fs_orc_hc_archer, fs_orc_hc_swordsman
+scale		0.7
+indiv_range	40
+texture		empire_east_rebels,		bi/fatw/data/models_unit/textures/4a_orc_wargarcher_adun.tga
+texture		slave,				bi/fatw/data/models_unit/textures/4a_orc_wargarcher_rebel.tga
+model_flexi					bi/fatw/data/models_unit/4a_orc_wargarcher.cas, max
+model_sprite	empire_east_rebels,	60.0,	bi/fatw/data/sprites/empire_east_rebels_4a_orc_wargarcher_sprite.spr
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_orc_wargarcher_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+;=======================================================================================
+;
+;		@16 MERCENARIES AND REBELS
+;
+;=======================================================================================
+
+
+type		4a_rebel_general
+skeleton	fs_swordsman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+indiv_range	40
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rebel_general.tga
+model_flexi					bi/fatw/data/models_unit/4a_rebel_general.cas, max
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rebel_general_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_rebel_captain
+skeleton	fs_swordsman
+skeleton_horse		fs_hc_swordsman
+skeleton_elephant	fs_forest_elephant_rider
+skeleton_chariot	fs_chariot_sword
+skeleton_camel		fs_hc_swordsman
+indiv_range	40
+texture		slave,				bi/fatw/data/models_unit/textures/4a_rebel_captain.tga
+model_flexi					bi/fatw/data/models_unit/4a_rebel_captain.cas, max
+model_sprite	slave,			60.0,	bi/fatw/data/sprites/slave_4a_rebel_captain_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f
+
+
+type		4a_merc_gondorsword
+skeleton	fs_swordsman
+indiv_range	40
+texture		saxons,				bi/fatw/data/models_unit/textures/4a_merc_gondorsword_dwarv.tga
+texture		goths,				bi/fatw/data/models_unit/textures/4a_merc_gondorsword_dale.tga
+texture		merc,				bi/fatw/data/models_unit/textures/4a_merc_gondorsword_merc.tga
+model_flexi					bi/fatw/data/models_unit/4a_merc_gondorsword.cas, max
+model_sprite	saxons,			60.0,	bi/fatw/data/sprites/saxons_4a_merc_gondorsword_sprite.spr
+model_sprite	goths,			60.0,	bi/fatw/data/sprites/goths_4a_merc_gondorsword_sprite.spr
+model_sprite	merc,			60.0,	bi/fatw/data/sprites/4a_merc_gondorsword_sprite.spr
+model_tri	400, 0.5f, 0.5f, 0.5f

@@ -1,0 +1,67 @@
+sarmatians
+hold_regions Eastern_Woodland_Realm Western_Woodland_Realm East_Lorien Lothlorien Grey_Havens Forlindon Harlindon Imladris Eastern_Hollin
+take_regions 25
+
+saxons
+hold_regions Moria Lands_of_Erebor Withered_Heath Iron_Hills Ered_Rhun North_Ered_Luin South_Ered_Luin Ered_Mithrin Gundabad
+take_regions 25
+
+empire_east
+hold_regions Pelennor Belfalas East_Lebennin South_Ithilien North_Ithilien Emyn_Muil Gorgoroth Umbar
+take_regions 35
+
+empire_east_rebels
+hold_regions Umbar Tolfalas Belfalas East_Lebennin West_Lebennin Pelennor
+take_regions 25
+
+empire_west
+hold_regions Eastern_Arthedain Evendim Southern_Arthedain Weathertop_Hill Northern_Cardolan Eastern_Cardolan Bree-land Eastern_Rhudaur
+take_regions 20
+
+sassanids
+hold_regions Near_Harad_West Central_Harondor Pelennor Far_Harad_East Umbar
+take_regions 25
+
+berbers
+hold_regions Eastern_Rhudaur Angmar Eastern_Arthedain Bree-land Evendim Grey_Havens Imladris
+take_regions 25
+
+vandals
+hold_regions Far_Harad_East Far_Harad_West Far_Harad_Borderlands Near_Harad_West
+take_regions 20
+
+huns
+hold_regions Central_Anduin_Vales Upper_Anduin_Vales Greenwood_Vales
+take_regions 20
+
+goths
+hold_regions North-eaves West_Dale Dale
+take_regions 20
+
+burgundii
+hold_regions Ered_Mithrin Withered_Heath Foothills_of_Ered_Mithrin Southern_Foothills Northern_Bounds Lands_of_Erebor Iron_Hills
+take_regions 20
+
+romano_british
+hold_regions Dorwinion Upper_Dorwinion Tol_Rhun
+take_regions 20
+
+ostrogoths
+hold_regions Eryn_Vorn Western_Enedwaith Minhiriath Ethir_Gwathlo Eastern_Cardolan Andrast
+take_regions 20
+
+franks
+hold_regions Eastland_Plains Northern_Highlands Eastland_Strand Eastland_Marches West_Rhun Eastland_Reaches Central_Rhovanion Central_Khand Dorwinion South_Ithilien Pelennor
+take_regions 35
+
+alemanni
+hold_regions Central_Khand East_Khand High_Khand Low_Khand Khandian_Southlands Khandian_Drylands Lithlad
+take_regions 20
+
+celts
+hold_regions Dunland Lower_Dunland Isenmarch Westfold Folde Nan_Curunir
+take_regions 25
+
+lombardi
+hold_regions Northern_Highlands Eastern_Wildlands Northern_Borderlands Dorwinion Dale
+take_regions 20
