@@ -1,0 +1,5810 @@
+;
+;  Settlement plans.
+;
+;  A 'plan set' specifies the full plan scheme used for a settlement, whatever its size
+;  and culture.  For each culture and settlement level, there is a single 'plan level',
+;  which determines where buildings can go, what ambients will be present, and what effect the
+;  settlement has on the terrain.
+;  
+;  To achieve this, a plan level has a list of ambients, and a list of main building slots.
+;  Each slot consists of a variety of layouts, depending on size of major building being placed.
+;  A slot can be restricted to a subset of placeable buildings, eg a slot may be reserved for 
+;  amphitheatres.  The types are listed in the building database.  It's done as a mask,
+;  so can have multiple uses.
+;
+;  Walls will become part of this scheme as well, with limiting and preferred outlines for each plan level.
+;
+;  Positions are given as x, z, rotation (degrees anticlockwise), height offset (from plan or list origin)
+;
+
+; Primary: list all building_battle definitions that will be considered to be a crucial part of major buildings,
+; ie campaign-level buildings.  These will be used to determine damage to campaign buildings, and where to show key
+; effects like indicative damage smoke.
+primary
+{
+	BI_roman_governors_palace
+	roman_imperial_palace
+	eastern_governors_palace
+	eastern_imperial_palace
+	high_kings_hall
+	BI_government_lvl_5
+	web_dun_lords_hall
+	web_elf_elitebarracks
+	web_elf_hallofsongs
+	web_elf_large_library
+	web_elf_large_market
+	web_elf_lords_tower
+	web_elf_milita_barracks
+	web_elf_patronage
+	web_elf_small_library
+	web_elf_small_market
+	web_elf_songfestivals
+	militia_barracks_eastern
+	city_barracks_eastern
+	mead_hall
+	BI_barb_barracks_lvl_4
+	BI_barb_barracks_lvl_5
+	drinking_hall
+	hall_of_heroes
+	eastern_marketplace
+	eastern_large_marketplace
+	eastern_merchants_quarter
+	barbarian_marketplace
+	BI_barbarian_great_forum
+	barbarian_trader
+	barbarian_great_market
+	ludus_magnus_eastern
+	academy_eastern
+	eastern_shrine
+	eastern_temple
+	eastern_large_temple
+	tavern_barbarian
+	bardic_circle_barbarian
+	warlords_hold
+	barbarian_stables
+	warlords_stable
+	BI_barb_stables_lvl_4
+	JAR_DUN_CMD_20x30
+	JAR_DUN_CMD_B_28x28
+	JAR_DUN_MLT_26x26
+	JAR_DUN_MLT_A_60x60_pt1
+	JAR_DUN_HL_29x29
+	JAR_DUN_HL_38x40_pt1
+	JAR_DUN_MLT_22x22
+	web_cultic_temple_2
+	web_cultic_temple_4
+	BI_barb_pagan_religion_lvl_2
+	web_dwarven_palace
+	web_dwarven_barracks_small
+	web_dwarven_cc_large
+	web_dwarven_cc_mid
+	web_dwarven_cc_small
+	web_dwarven_library_small
+	web_dwarven_market_small
+	web_dwarven_waystation_small
+	web_kothb
+	web_mi_totm
+	web_mi_totm_ruined
+}
+
+climate_groups
+{
+	group 4a_tree_1
+	{
+		default 4a_vege_MediNewMediTree1
+		test_climate summer 4a_vege_MediNewMediTree1
+		test_climate winter 4a_vege_MediNewMediTree1
+		sandy_desert summer 4a_vege_Olive
+		sandy_desert winter 4a_vege_Olive
+		rocky_desert summer 4a_vege_MordorRock1
+		rocky_desert winter 4a_vege_MordorRock1
+		temperate_grassland_fertile summer 4a_vege_FertileGrassBeech1summer
+		temperate_grassland_fertile winter 4a_vege_FertileGrassBeech1winter
+		temperate_grassland_infertile summer 4a_vege_InfertileGrassBeech1summer
+		temperate_grassland_infertile winter 4a_vege_InfertileGrassBeech1winter
+		temperate_forest_open summer 4a_vege_OpenForestBirch1summer
+		temperate_forest_open winter 4a_vege_OpenForestBirch1winter
+		temperate_forest_deep summer 4a_vege_DeepForestOak1summer
+		temperate_forest_deep winter 4a_vege_DeepForestOak1winter
+		swamp summer 4a_vege_Olive
+		swamp winter 4a_vege_Olive
+		highland summer 4a_vege_FangornOak
+		highland winter 4a_vege_FangornOak
+		alpine summer 4a_vege_AlpineFir1summer
+		alpine winter 4a_vege_AlpineFir1winter
+		sub_arctic summer 4a_vege_LothlorienBeech1summer
+		sub_arctic winter 4a_vege_LothlorienBeech1winter
+		semi_arid summer 4a_vege_Olive
+		semi_arid winter 4a_vege_Olive
+	}
+	group 4a_tree_2
+	{
+		default 4a_vege_MediPinusPinae1
+		test_climate summer 4a_vege_MediPinusPinae1
+		test_climate winter 4a_vege_MediPinusPinae1
+		sandy_desert summer tree_A_palm
+		sandy_desert winter tree_A_palm
+		rocky_desert summer 4a_vege_MordorRock2
+		rocky_desert winter 4a_vege_MordorRock2
+		temperate_grassland_fertile summer 4a_vege_FertileGrassBeech2summer
+		temperate_grassland_fertile winter 4a_vege_FertileGrassBeech2winter
+		temperate_grassland_infertile summer 4a_vege_InfertileGrassBirch1summer
+		temperate_grassland_infertile winter 4a_vege_InfertileGrassBirch1winter
+		temperate_forest_open summer 4a_vege_OpenForestConifer1summer
+		temperate_forest_open winter 4a_vege_OpenForestConifer1winter
+		temperate_forest_deep summer 4a_vege_DeepForestOak2summer
+		temperate_forest_deep winter 4a_vege_DeepForestOak2winter
+		swamp summer 4a_vege_MediPinusPinae1
+		swamp winter 4a_vege_MediPinusPinae1
+		highland summer 4a_vege_FangornHornbeam1
+		highland winter 4a_vege_FangornHornbeam1
+		alpine summer 4a_vege_AlpineFir1summer
+		alpine winter 4a_vege_AlpineFir1winter
+		sub_arctic summer 4a_vege_LothlorienBeech1summer
+		sub_arctic winter 4a_vege_LothlorienBeech1winter
+		semi_arid summer 4a_vege_MediPinusPinae1
+		semi_arid winter 4a_vege_MediPinusPinae1
+	}
+	group 4a_tree_3
+	{
+		default 4a_vege_MediShrubOak1
+		test_climate summer 4a_vege_MediShrubOak1
+		test_climate winter 4a_vege_MediShrubOak1
+		sandy_desert summer tree_B_palm
+		sandy_desert winter tree_B_palm
+		rocky_desert summer 4a_vege_MordorRock1
+		rocky_desert winter 4a_vege_MordorRock1
+		temperate_grassland_fertile summer 4a_vege_FertileGrassHornbeam1summer
+		temperate_grassland_fertile winter 4a_vege_FertileGrassHornbeam1winter
+		temperate_grassland_infertile summer 4a_vege_InfertileGrassBirch2summer
+		temperate_grassland_infertile winter 4a_vege_InfertileGrassBirch2winter
+		temperate_forest_open summer 4a_vege_OpenForestPine1summer
+		temperate_forest_open winter 4a_vege_OpenForestPine1winter
+		temperate_forest_deep summer 4a_vege_DeepForestHornbeam1summer
+		temperate_forest_deep winter 4a_vege_DeepForestHornbeam1winter
+		swamp summer 4a_vege_MediShrubPine1
+		swamp winter 4a_vege_MediShrubPine1
+		highland summer 4a_vege_FangornHornbeam2
+		highland winter 4a_vege_FangornHornbeam2
+		alpine summer 4a_vege_AlpineFir2summer
+		alpine winter 4a_vege_AlpineFir2winter
+		sub_arctic summer 4a_vege_LothlorienBeech2summer
+		sub_arctic winter 4a_vege_LothlorienBeech2winter
+		semi_arid summer 4a_vege_MediShrubPine1
+		semi_arid winter 4a_vege_MediShrubPine1
+	}
+	group 4a_tree_4
+	{
+		default 4a_vege_MediShrubPine1
+		test_climate summer 4a_vege_MediShrubPine1
+		test_climate winter 4a_vege_MediShrubPine1
+		sandy_desert summer tree_C_palm
+		sandy_desert winter tree_C_palm
+		rocky_desert summer 4a_vege_MordorRock2
+		rocky_desert winter 4a_vege_MordorRock2
+		temperate_grassland_fertile summer 4a_vege_FertileGrassHornbeam1summer
+		temperate_grassland_fertile winter 4a_vege_FertileGrassHornbeam1winter
+		temperate_grassland_infertile summer 4a_vege_InfertileGrassConifer1summer
+		temperate_grassland_infertile winter 4a_vege_InfertileGrassConifer1winter
+		temperate_forest_open summer 4a_vege_OpenForestPine2summer
+		temperate_forest_open winter 4a_vege_OpenForestPine2winter
+		temperate_forest_deep summer 4a_vege_DeepForestOak1summer
+		temperate_forest_deep winter 4a_vege_DeepForestOak1winter
+		swamp summer 4a_vege_Olive
+		swamp winter 4a_vege_Olive
+		highland summer 4a_vege_FangornOak
+		highland winter 4a_vege_FangornOak
+		alpine summer 4a_vege_AlpinePine1summer
+		alpine winter 4a_vege_AlpinePine1winter
+		sub_arctic summer 4a_vege_Mallornsummer
+		sub_arctic winter 4a_vege_Mallornwinter
+		semi_arid summer 4a_vege_Olive
+		semi_arid winter 4a_vege_Olive
+	}
+	group 4a_shrub_1
+	{
+		default 4a_vege_GrasslandShrub
+		test_climate summer 4a_vege_GrasslandShrub
+		test_climate winter 4a_vege_GrasslandShrub
+		sandy_desert summer 4a_vege_GrasslandShrub
+		sandy_desert winter 4a_vege_GrasslandShrub
+		rocky_desert summer 4a_vege_MordorRock1
+		rocky_desert winter 4a_vege_MordorRock1
+		temperate_grassland_fertile summer 4a_vege_GrasslandShrub
+		temperate_grassland_fertile winter 4a_vege_GrasslandShrub
+		temperate_grassland_infertile summer 4a_vege_GrasslandShrub
+		temperate_grassland_infertile winter 4a_vege_GrasslandShrub
+		temperate_forest_open summer 4a_vege_ShrubSummer
+		temperate_forest_open winter 4a_vege_ShrubWinter
+		temperate_forest_deep summer 4a_vege_ForestShrub
+		temperate_forest_deep winter 4a_vege_ForestShrub
+		swamp summer 4a_vege_GrasslandShrub
+		swamp winter 4a_vege_GrasslandShrub
+		highland summer 4a_vege_ForestShrub
+		highland winter 4a_vege_ForestShrub
+		alpine summer 4a_vege_ShrubSummer
+		alpine winter 4a_vege_ShrubWinter
+		sub_arctic summer 4a_vege_ForestShrub
+		sub_arctic winter 4a_vege_ForestShrub
+		semi_arid summer 4a_vege_GrasslandShrub
+		semi_arid winter 4a_vege_GrasslandShrub
+	}
+	group 4a_shrub_2
+	{
+		default 4a_vege_ForestShrub
+		test_climate summer 4a_vege_ForestShrub
+		test_climate winter 4a_vege_ForestShrub
+		sandy_desert summer 4a_vege_ShrubSummer
+		sandy_desert winter 4a_vege_ShrubSummer
+		rocky_desert summer 4a_vege_MordorRock2
+		rocky_desert winter 4a_vege_MordorRock2
+		temperate_grassland_fertile summer 4a_vege_ForestShrub
+		temperate_grassland_fertile winter 4a_vege_ForestShrub
+		temperate_grassland_infertile summer 4a_vege_ForestShrub
+		temperate_grassland_infertile winter 4a_vege_ForestShrub
+		temperate_forest_open summer 4a_vege_ShrubSummer
+		temperate_forest_open winter 4a_vege_ShrubWinter
+		temperate_forest_deep summer 4a_vege_GrasslandShrub
+		temperate_forest_deep winter 4a_vege_GrasslandShrub
+		swamp summer 4a_vege_ForestShrub
+		swamp winter 4a_vege_ForestShrub
+		highland summer 4a_vege_GrasslandShrub
+		highland winter 4a_vege_GrasslandShrub
+		alpine summer 4a_vege_ShrubSummer
+		alpine winter 4a_vege_ShrubWinter
+		sub_arctic summer 4a_vege_GrasslandShrub
+		sub_arctic winter 4a_vege_GrasslandShrub
+		semi_arid summer 4a_vege_ForestShrub
+		semi_arid winter 4a_vege_ForestShrub
+	}
+}
+
+
+; Ambient groups allow a list of buildings to be used just like buildings in plans
+ambient_groups
+{
+	group dummy_48x32_warriors_hold_group
+	{
+		floor none overlay_warriors_hold.cas
+		warriors_hold,			0,	0,	0,	0
+
+	}
+
+	group ambient_group_resource_roman_farm_A
+	{
+		farmhouse_thatched_A,		-7.969,		18.269,		10,	0
+		farmhouse_thatched_A,		20,		14,		-75,	0
+		farmhouse_thatched_round,	7,		14,		-10,	0
+		pile_of_logs,			1.152,		24.87,		0,	0
+		pile_of_logs,			-17.986,	25.098,		70,	0
+		pile_of_logs,			-23.52,		-20.141,	-150,	0
+		4a_tree_2,			-25,		16,		105,	0
+		4a_tree_2,			22,		26,		0,	0
+		4a_tree_2,			25,		-25,		75,	0
+		4a_tree_1,			-3,		-18,		45,	0
+		4a_shrub_1,			10.761,		-25.486,	75,	0
+		4a_shrub_1,			16.831,		-20.331,	-45,	0
+		4a_shrub_1,			-26.368,	5.882,		50,	0
+		4a_shrub_1,			12.188,		25.682,		-45,	0
+		stove,				2,		3,		0,	0
+		cart_B,				-14.162,	12.123,		0,	0
+		village_well,			-6,		6,		25,	0
+		pumpkin_patch,			19,		-6,		0,	0
+		paddock,			-7.617,		-10.772,	130,	0
+	}
+
+	group ambient_group_resource_roman_farm_B
+	{
+		farmhouse_thatched_A,		22.264,		-22.547,	-130,	0
+		farmhouse_thatched_A,		10.254,		15.622,		-20,	0
+		farmhouse_thatched_round,	3.09,		-23.386,	165,	0
+		farmhouse_thatched_round,	-8.245,		21.136,		75,	0
+		pile_of_logs,			-25.829,	-3.835,		-50,	0
+		pile_of_logs,			-24.497,	27.152,		0,	0
+		pile_of_logs,			25.711,		18.182,		70,	0
+		4a_tree_2,			-25,		16,		105,	0
+		4a_tree_2,			-3.63,		-2.423,		75,	0
+		4a_tree_1,			18.981,		-4.839,		15,	0
+		4a_shrub_1,			12.667,		-26.118,	-45,	0
+		4a_shrub_1,			-0.029,		-12.67,		75,	0
+		4a_shrub_1,			-26.368,	5.882,		50,	0
+		4a_shrub_1,			26.065,		27.185,		-45,	0
+		stove,				-6.795,		9.624,		0,	0
+		cart_B,				1.147,		8.559,		130,	0
+		village_well,			-17.506,	2.853,		25,	0
+		pumpkin_patch,			-16.272,	-15.918,	30,	0
+		paddock,			-1.319,		15.05,		-30,	0
+	}
+
+	group baggage_train_roman
+	{
+		baggage_train_cart, -3,	18,	55,	0
+		baggage_train_cart, 5,	10,	25,	0
+		baggage_train_cart, 10,	-10,	120,	0
+		baggage_train_cart, -6,	-10,	145,	0
+		baggage_train_cart, -11,	-3,	175,	0
+		baggage_train_cart, -10,	7,	-90,	0
+	}
+	group baggage_train_carthage
+	{
+		4a_shrub_1, -3,	18,	55,	0
+		4a_shrub_1, 5,	10,	25,	0
+		4a_shrub_1, 10,	-10,	120,	0
+		4a_shrub_1, -6,	-10,	145,	0
+		4a_shrub_1, -11,	-3,	175,	0
+		4a_shrub_1, -10,	7,	-90,	0
+	}
+
+	group roman_tenamentA_group
+	{
+		floor underlay_roman_tenamentA.cas overlay_roman_tenamentA.cas
+
+		roman_tenamentA,	0,	0,	0,	0
+	}
+
+	group roman_small_plinth_group
+	{
+		floor underlay_roman_small_plinth.cas overlay_roman_small_plinth.cas
+
+		roman_small_ambient_plinth,		0,		0,		0,	0
+		roman_colonnaded_portico,		0,		16,		0,	16
+		roman_colonnaded_portico,		-6,		-12,		90,	16
+		4a_tree_2,				14,		-2,		0,	17
+		tree_box,				14,		-2,		0,	16
+		roman_triumphal_column,			14,		-16,		0,	16
+		roman_statue,				-16,		16,		-90,	16
+	}
+
+	group roman_imperial_palace_group
+	{
+		roman_imperial_palace,		0,		0,		0,	0
+		;roman_statue,			-10,		-70,		0,	25
+		;roman_statue,			10,		-70,		0,	25
+		4a_tree_1,	-85.00,	-64.00,	55.0,	 10.0
+		4a_tree_1,	 92.72,	 14.86,	325.0,	 11.01
+		4a_tree_1,	-104.94,	-21.34,	15.0,	 4.50
+		4a_tree_1,	 111.03,	-11.71,	290.0,	 3.38
+		4a_tree_1,	 26.65,	 79.16,	215.0,	 7.12
+		4a_tree_1,	 98.51,	 50.60,	215.0,	 8.87
+		4a_tree_1,	-90.34,	 55.30,	45.0,	 9.00
+		4a_tree_1,	-107.14,	 14.11,	120.0,	 4.00
+		4a_tree_1,	-44.67,	 79.16,	135.0,	 7.12
+		4a_tree_2,	 113.77,	-72.70,	360.0,	 3.24
+		4a_tree_2,	 46.34,	 83.37,	360.0,	 4.27
+		4a_tree_2,	-62.19,	 83.37,	360.0,	 4.27
+		4a_tree_2,	-95.90,	-3.92,	360.0,	 8.00
+		4a_tree_2,	-114.07,	 49.24,	205.0,	 2.0
+		4a_tree_2,	-106.98,	 58.20,	205.0,	 4.00
+		4a_tree_2,	-114.06,	-6.88,	140.0,	 2.0
+		4a_tree_2,	-84.82,	 5.51,	205.0,	 11.0
+		4a_tree_2,	-84.78,	-26.46,	360.0,	 11.0
+		4a_tree_2,	-74.08,	 74.36,	205.0,	 11.77
+		4a_tree_2,	115.2,	 55.67,	140.0,	 2.08
+		4a_tree_3,	 69.77,	 82.26,	205.0,	 4.75
+		4a_tree_3,	 110.56,	-56.90,	140.0,	 4.17
+		4a_tree_3,	 110.33,	 9.48,	140.0,	 4.14
+		4a_tree_3,	 59.26,	 74.36,	205.0,	 11.77
+		4a_tree_3,	 94.42,	-8.01,	140.0,	 10.87
+		4a_tree_3,	 86.82,	 79.64,	45.0,	 7.99
+		4a_tree_3,	 8.62,	 79.64,	125.0,	 7.99
+		4a_tree_3,	-109.35,	 37.14,	45.0,	 3.50
+		4a_tree_3,	 111.94,	 31.14,	125.0,	 3.30
+		4a_tree_3,	-83.13,	 79.64,	90.0,	 7.99
+		4a_tree_3,	-94.73,	-38.63,	2.41484e-006,	 7.00
+		4a_tree_3,	 95.42,	-60.74,	125.0,	 10.06
+		4a_tree_4,	-92.41,	 32.69,	30.0,	 8.00
+		4a_tree_4,	-103.91,	-57.59,	115.0,	 4.00
+		4a_tree_4,	 103.23,	-31.96,	210.0,	 6.16
+		4a_tree_4,	 103.23,	 75.13,	110.0,	 6.16
+		4a_tree_4,	-104.83,	 75.13,	30.0,	 4.00
+		4a_tree_4,	-15.78,	 81.24,	50.0,	 5.52
+	}
+
+
+	; ******************** parkland-style  slot filler  groups  ***************
+
+	; eventually, these will only contain the non-culture-specific models, e.g. trees,
+	; culture-specific models will be defined in the appropriate slot definitions
+
+
+
+
+; ** DOM AMBIENT INDUSTRY GROUPS
+
+	group	slot_48x32_forge_group_elf
+	{
+		;floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_forge_overlay.cas
+		web_elf_forge,			0,	0,	180.0,	0
+		4a_shrub_2, 	10.7759,	8.39297,	0.0,	0.0
+		pile_of_logs, 	-13.8945,	-10.4895,	90.0,	0.0
+		pile_of_logs, 	-13.4609,	-7.85072,	90.0,	0.0
+		4a_shrub_1, 	-18.5742,	-8.0542,	0.0,	0.045166
+		4a_shrub_1, 	3.09216,	-6.87568,	0.0,	0.0
+		4a_tree_3, 	18.0118,	-9.30338,	180.0,	0.0
+		4a_tree_1, 	-17.1375,	7.54375,	180.0,	0.0
+	}
+
+	group	slot_48x32_forge_group_dwarf
+	{
+		web_dwarven_forges,			0,	0,	0,	0
+	}
+
+	group	slot_48x32_forge_group_dunedain
+	{
+		web_forges,			0,	0,	0,	0
+	}
+
+	group	slot_48x32_forge_group_southron
+	{
+		floor none overlay_eastern_armourer.cas
+		eastern_armourer, 		0, 	0, 	0, 	0
+	}
+
+	group	slot_48x32_forge_group_northman
+	{
+		floor none overlay_barbarian_armourer.cas
+		barbarian_armourer, 		0, 	0, 	0, 	0
+	}
+
+	group	slot_48x32_forge_group_barbarian
+	{
+		floor none overlay_barbarian_blacksmith.cas
+		barbarian_blacksmith, 		0, 	0, 	0, 	0
+		4a_tree_1,					15,	7,	25,	0
+		4a_tree_4,					17,	-8,	145,	0
+	}
+
+; ** these are the groups of trees and buildings that go into each empty slot and slot filler
+
+	group	slot_48x32_empty_group
+	{
+		4a_tree_1,			-12,	4,	0,	0
+		4a_tree_2,			4,	8,	10,	0
+		4a_tree_2,			15,	-8,	-15,	0
+		4a_shrub_1,		-17,	-10,	-55,	0
+		4a_shrub_1,		-9,	-8,	100,	0
+		4a_shrub_1,		8.3,	-5.4,	165,	0
+		4a_shrub_1,		17,	9,	20,	0
+		4a_tree_3,			12,	5,	180,	0
+		4a_tree_3,			5,	-10,	0,	0
+	}
+	
+	group	slot_48x32_empty_group_elf
+	{
+		web_elf_lodge2, 	8.55318,	-3.20606,	75.0,	0.0
+		pile_of_logs, 	13.686,	4.12895,	75.0,	0.0
+		4a_vege_LargeDeepForestOak, 	-17.1703,	-1.77488,	360.0,	0.0
+		web_elf_flet1, 	-16.3157,	-2.02907,	95.0,	17.8701
+		4a_shrub_2, 	18.2492,	2.76895,	360.0,	0.0
+		4a_shrub_1, 	-18.3248,	-3.84556,	360.0,	0.0
+		4a_shrub_1, 	4.07144,	-9.50631,	360.0,	0.0
+		4a_tree_1, 	-20.4769,	11.5803,	180.0,	0.0
+		4a_tree_2, 	16.554,	-8.90439,	180.0,	0.0
+		4a_tree_3, 	-1.93587,	7.63296,	180.0,	0.0
+		4a_tree_4, 	13.0987,	12.3541,	180.0,	0.0
+		4a_tree_4, 	-12.6422,	-8.12119,	180.0,	0.0
+	}
+
+	group	slot_112x64_empty_group_elf
+	{
+		4a_vege_LargeDeepForestOak, 	38.0927,	5.4474,	180.0,	0.0
+		web_elf_flet1, 	37.2381,	5.70159,	275.0,	17.8701
+		4a_shrub_1, 	39.2473,	7.51809,	180.0,	0.0
+		4a_tree_1, 	23.1531,	-13.8382,	360.0,	0.0
+		4a_tree_2, 	-43.953,	-0.614184,	155.0,	0.0
+		4a_tree_3, 	8.05244,	-6.7438,	45.0,	0.0
+		4a_tree_4, 	-23.1332,	-6.74197,	35.0,	0.0
+		4a_shrub_2, 	4.92015,	-21.4612,	180.0,	0.0
+		4a_vege_LargeDeepForestOak, 	-36.3992,	-14.8852,	280.0,	0.0
+		pile_of_logs, 	-38.8821,	7.87662,	235.0,	0.0
+		4a_shrub_2, 	-42.705,	10.7153,	160.0,	0.0
+		4a_shrub_1, 	-25.1839,	17.4012,	160.0,	0.0
+		web_elf_lodge2, 	-31.5501,	13.0138,	235.0,	0.0
+		web_elf_flet2, 	-36.5874,	-15.0809,	345.0,	17.3274
+		web_elf_hut, 	16.4329,	9.70807,	210.0,	0.0
+		web_elf_pool, 	-9.34269,	19.6545,	95.0,	0.0
+		4a_tree_3, 	30.0367,	17.4835,	320.0,	0.0
+		4a_tree_4, 	5.74384,	24.7979,	40.0,	0.0
+		4a_shrub_1, 	50.3227,	-15.1845,	180.0,	0.0
+		4a_shrub_2, 	25.6925,	-0.698713,	180.0,	0.0
+		4a_tree_3, 	10.5236,	-24.2454,	360.0,	0.0
+		4a_tree_2, 	40.4561,	-10.1373,	45.0,	0.0
+		4a_tree_1, 	48.8609,	18.4171,	90.0,	0.0
+		4a_tree_4, 	34.8138,	-25.8643,	290.0,	0.0
+		4a_shrub_2, 	12.1234,	13.2566,	180.0,	0.0
+		4a_shrub_1, 	25.7856,	-10.7825,	180.0,	0.0
+		4a_shrub_2, 	-33.1111,	-12.7114,	180.0,	0.0
+		4a_shrub_1, 	-30.1474,	-28.6253,	180.0,	0.0
+		4a_shrub_2, 	-14.6739,	26.7594,	180.0,	0.0
+		4a_shrub_1, 	42.9693,	18.6653,	180.0,	0.0
+		4a_tree_2, 	-22.5327,	-26.365,	330.0,	0.0
+		4a_tree_4, 	-44.9938,	21.8256,	315.0,	0.0
+		4a_tree_1, 	-46.1579,	-17.236,	330.0,	0.0
+	}
+
+	group	slot_48x32_empty_group_dwarven
+	{
+		web_dwarven_well, 	0.444519,	-9.45747,	247.5,	0.0
+		web_dwarven_house_2, 	12.9388,	4.35889,	180.0,	0.0
+		web_dwarven_house_2, 	-12.8772,	4.35889,	180.0,	0.0
+	}
+
+	group	slot_112x64_empty_group_dwarven
+	{
+		web_dwarven_house_2, 	-24.8693,	17.1021,	180.0,	4.68384
+		web_dwarven_platform_2, 	-19.1157,	15.2059,	180.0,	4.82947
+		web_dwarven_well, 	-9.29622,	15.7428,	247.5,	4.73022
+		web_dwarven_house_2, 	33.4072,	-17.3205,	90.0,	0.0
+		web_dwarven_house_1, 	-34.2248,	-16.2921,	270.0,	0.0
+		web_dwarven_well, 	0.967789,	-17.736,	247.5,	0.0
+		web_dwarven_house_1, 	32.7272,	12.6242,	90.0,	0.0
+	}
+
+	group	slot_48x32_empty_group_northman
+	{
+		4a_tree_1, 	-12.4023,	6.95908,	180.0,	0.0
+		village_well, 	2.60426,	3.78529,	180.0,	0.0
+		BI_houseA, 	17.6938,	-1.20923,	180.0,	0.0
+		pumpkin_patch, 	-13.602,	-3.86314,	180.0,	0.0
+		BI_houseC, 	-19.1584,	8.96962,	360.0,	0.0
+		pile_of_logs, 	17.4399,	12.667,	270.0,	0.0
+		cart_B, 	0.860232,	-3.88995,	265.0,	0.0
+		BI_houseD, 	-1.0956,	-10.6486,	90.0,	0.0
+		4a_shrub_1, 	12.5492,	-5.47844,	360.0,	0.0
+		BI_fence_straight_wood, 	6.64408,	-12.7031,	90.0,	0.0
+		BI_fence_L_shape_wood, 	-14.9919,	-7.30343,	90.0,	0.0
+	}
+
+	group	slot_112x64_empty_group_northman
+	{
+		BI_barn, 	-45.1332,	7.71554,	360.0,	0.0
+		BI_houseD, 	-42.2869,	-23.812,	0.0,	0.0
+		BI_house_half_wood, 	12.256,	1.97237,	90.0,	0.0
+		BI_houseA, 	47.444,	-13.9128,	180.0,	0.0
+		BI_houseA, 	-14.9346,	-25.995,	90.0,	0.0
+		BI_cider_house, 	45.6033,	11.815,	270.0,	0.0
+		BI_houseB, 	18.1902,	-22.9849,	90.0,	0.0
+		village_well, 	-20.1247,	-0.164246,	180.0,	0.0
+		BI_fence_L_shape_wood, 	44.117,	22.2454,	270.0,	0.0
+		BI_fence_straight_wood, 	50.6502,	0.0872078,	180.0,	0.0
+		BI_houseC, 	28.4175,	26.1763,	180.0,	0.0
+		BI_fence_straight_wood, 	31.546,	-25.5832,	270.0,	0.0
+		BI_fence_straight_wood, 	-1.38976,	-27.6457,	270.0,	0.0
+		BI_fence_straight_wood, 	-31.7751,	-27.511,	270.0,	0.0
+		BI_fence_straight_wood, 	-45.5685,	-14.8397,	180.0,	0.0
+		cart_B, 	-18.9101,	-19.356,	75.0,	0.0
+		cart_B, 	38.9536,	20.6138,	315.0,	0.0
+		stove, 	34.471,	-10.8665,	180.0,	0.0
+		BI_houseB, 	-15.7437,	25.1566,	270.0,	0.0
+		BI_fence_L_shape_wood, 	-40.9411,	15.8501,	0.0,	0.0
+		BI_fence_gate, 	9.74918,	29.1337,	90.0,	0.0
+		BI_fence_straight_wood, 	21.7678,	28.9384,	270.0,	0.0
+		BI_fence_straight_wood, 	-2.73759,	28.9384,	270.0,	0.0
+		pile_of_logs, 	-42.1385,	-14.1075,	180.0,	0.0
+		pile_of_logs, 	-39.5817,	-12.8841,	180.0,	0.0
+		4a_tree_1, 	-34.002,	19.4644,	360.0,	0.0
+		4a_tree_2, 	-6.81097,	-3.8871,	360.0,	0.0
+		4a_tree_3, 	45.5891,	24.0327,	360.0,	0.0
+		4a_shrub_1, 	-37.5751,	-25.8198,	180.0,	0.0
+		4a_shrub_2, 	26.3644,	-16.8811,	180.0,	0.0
+		4a_shrub_1, 	-47.1971,	-18.5855,	180.0,	0.0
+	}
+
+	group	slot_48x32_empty_group_roman_bits
+	{
+		JAR_DUN_HSR_18x23, 	-8.73426,	-4.78636,	180.0,	0.0
+		4a_tree_3, 	9.66417,	-10.8316,	345.0,	0.0
+		4a_tree_4, 	-18.5914,	10.7216,	270.0,	0.0
+		JAR_DUN_HS_10x11, 	15.1525,	6.69692,	0.0,	0.0
+		JAR_DUN_HS_10x11, 	15.1525,	-3.01669,	180.0,	0.0
+		JAR_DUN_HS_14x20, 	-0.385401,	6.45473,	360.0,	0.0
+	}
+		
+	group	slot_48x32_empty_group_eastern_bits
+	{
+		east_tenamentB,	-9,	1,	0,	0
+		east_tenamentB,	9,	-1,	180,	0
+		4a_tree_3,			11,	13,	0,	0
+		4a_tree_3,			-11,	-13,	0,	0
+	}
+
+	group	slot_112x64_empty_group
+	{
+		slot_empty_112x64_flowers,	0,	0,	0,	0
+		4a_tree_2,			15,	17,	85,	0
+		4a_tree_2,			15,	-7,	0,	0
+		4a_tree_2,			-8,	-15,	0,	0
+		4a_tree_2,			44,	-18,	30,	0
+		4a_tree_1,			44,	20,	0,	0
+		4a_tree_1,			12,	-20,	0,	0
+		4a_tree_4,			-10,	12,	0,	0
+		4a_tree_4,			5,	8,	10,	0
+		4a_tree_4,			48,	-7,	-5,	0		
+		4a_tree_3,			49,	8,	90,	0
+		4a_tree_3,			50,	-23,	-60,	0
+		4a_tree_3,			45,	-26,	90,	0
+		4a_tree_3,			24,	-5,	180,	0
+		4a_tree_3,			24,	19,	90,	0
+		4a_tree_3,			-21,	-6,	90,	0
+		4a_tree_3,			-39,	-6,	90,	0
+		4a_tree_3,			-23,	-16,	0,	0
+		4a_tree_3,			-25,	-11,	0,	0
+		4a_tree_3,			-19,	-1,	90,	0
+		4a_tree_3,			-21,	4,	-90,	0
+		4a_tree_3,			-17,	9,	180,	0
+		4a_tree_3,			-21,	14,	90,	0
+		4a_tree_3,			-38,	-16,	90,	0
+		4a_tree_3,			-37,	-11,	-90,	0
+		4a_tree_3,			-41,	-1,	180,	0
+		4a_tree_3,			-39,	4,	90,	0
+		4a_tree_3,			-42,	9,	0,	0
+		4a_tree_3,			-41,	14,	180,	0
+	}
+
+	group	slot_112x64_empty_group_roman_bits
+	{
+		JAR_DUN_BENCH, 	-34.0188,	-11.2662,	90.0,	0.0
+		JAR_DUN_CMD_20x30, 	36.6163,	-17.0407,	90.0,	0.0
+		JAR_DUN_CMD_20x35, 	-36.6989,	10.165,	180.0,	0.0
+		JAR_DUN_HH_8x5, 	-9.47414,	20.1518,	270.0,	-3.04297
+		JAR_DUN_HS_14x20, 	39.816,	2.92722,	270.0,	0.0
+		JAR_DUN_HSR_18x23, 	-13.2451,	-12.9476,	180.0,	0.0
+		JAR_DUN_HSR_A_14x20_pt1, 	24.3769,	13.6832,	360.0,	0.0
+		JAR_DUN_HSR_A_14x20_pt2, 	24.3769,	13.6832,	360.0,	0.0
+		JAR_DUN_MA_FOUNTAIN, 	9.09294,	-4.0702,	180.0,	0.0
+		4a_tree_1, 	40.2827,	19.4368,	180.0,	0.0
+		4a_tree_2, 	3.85683,	-20.5612,	90.0,	0.0
+		4a_tree_3, 	23.0074,	-2.27919,	360.0,	0.0
+		4a_tree_4, 	-45.5414,	-16.6314,	270.0,	0.0
+		JAR_DUN_HS_10x11, 	-8.4884,	1.55813,	270.0,	0.0
+		JAR_DUN_HS_10x11, 	-18.202,	1.55813,	90.0,	0.0
+		JAR_DUN_HS_10x11, 	-18.202,	12.3229,	90.0,	0.0
+		JAR_DUN_HS_10x11, 	-8.4884,	12.3229,	270.0,	0.0
+		JAR_DUN_BENCH, 	-39.0157,	-11.2662,	90.0,	0.0
+		JAR_DUN_BENCH, 	44.2427,	13.8773,	90.0,	0.0
+		JAR_DUN_BENCH, 	37.7208,	13.8773,	90.0,	0.0
+		JAR_DUN_HH_8x5, 	-16.9927,	20.1518,	270.0,	-3.04297
+	}
+
+	group	slot_112x64_empty_group_eastern_bits
+	{
+		east_tenamentA,	-16,	0,	0,	0
+		east_tenamentC,	50,	-2,	-90,	0
+	}		
+
+	group	slot_filler_48x32_112x64_group
+	{
+		;floor none overlay_slot_filler_48x32_112x64.cas
+		
+		4a_tree_2,			-18,	-22,	0,	0
+		4a_tree_2,			-38,	-2,	0,	0
+		4a_tree_2,			8,	22,	10,	0
+		4a_tree_2,			45,	18,	-25,	0
+		4a_tree_2,			34,	12,	35,	0
+		4a_tree_1,			43,	-12,	0,	0
+		4a_tree_1,			-37,	16,	0,	0
+		4a_shrub_1,		-31,	-20,	-35,	0
+		4a_shrub_1,		-45,	-13,	140,	0
+		4a_shrub_1,		-29,	2,	115,	0
+		4a_shrub_1,		-9,	22,	25,	0
+		4a_shrub_1,		30,	23,	-140,	0
+		4a_shrub_1,		45,	7,	80,	0
+		4a_shrub_1,		26,	-21,	20,	0
+		4a_shrub_1,		9,	-23,	-55,	0
+	}
+
+	group	slot_filler_48x32_112x64_group_elf
+	{
+		4a_vege_LargeDeepForestOak, 	43.1642,	5.71224,	180.0,	0.0
+		web_elf_flet1, 	42.3096,	5.96643,	275.0,	17.8701
+		4a_shrub_1, 	44.3188,	7.78293,	180.0,	0.0
+		4a_tree_1, 	28.3688,	-20.7886,	360.0,	0.0
+		4a_tree_4, 	12.982,	24.7714,	40.0,	0.0
+		4a_tree_3, 	-16.2123,	22.8923,	45.0,	0.0
+		4a_tree_4, 	-28.2081,	13.2427,	35.0,	0.0
+		4a_shrub_2, 	4.92015,	-21.4612,	180.0,	0.0
+		4a_vege_LargeDeepForestOak, 	-36.5267,	-17.0148,	280.0,	0.0
+		4a_shrub_2, 	-42.705,	10.7153,	160.0,	0.0
+		4a_shrub_1, 	-25.1839,	17.4012,	160.0,	0.0
+		4a_tree_3, 	30.0367,	17.4835,	320.0,	0.0
+		4a_shrub_1, 	50.3227,	-15.1845,	180.0,	0.0
+		4a_shrub_1, 	42.9693,	18.6653,	180.0,	0.0
+		4a_shrub_2, 	25.6925,	-0.698713,	180.0,	0.0
+		4a_tree_3, 	10.5236,	-24.2454,	360.0,	0.0
+		4a_tree_2, 	40.4561,	-10.1373,	45.0,	0.0
+		4a_tree_1, 	48.8609,	18.4171,	90.0,	0.0
+		4a_tree_4, 	44.4453,	-24.4893,	290.0,	0.0
+		4a_shrub_2, 	17.3465,	27.5871,	180.0,	0.0
+		4a_shrub_1, 	34.3508,	16.4457,	180.0,	0.0
+		4a_shrub_2, 	-33.1111,	-12.7114,	180.0,	0.0
+		4a_shrub_1, 	-30.1474,	-28.6253,	180.0,	0.0
+		4a_shrub_2, 	-14.6739,	26.7594,	180.0,	0.0
+		4a_tree_2, 	-22.5327,	-26.365,	330.0,	0.0
+		4a_tree_2, 	-43.953,	-0.614184,	155.0,	0.0
+		4a_tree_4, 	-44.9938,	21.8256,	315.0,	0.0
+		4a_tree_1, 	-46.1579,	-17.236,	330.0,	0.0
+	}
+
+	group	slot_filler_48x32_112x64_group_dwarven
+	{
+		web_dwarven_house_2, 	-42.0465,	6.5572,	180.0,	4.68384
+		web_dwarven_platform_2, 	-41.7673,	-0.126915,	270.0,	4.82947
+		web_dwarven_well, 	-41.6891,	-10.1971,	247.5,	4.73022
+		web_dwarven_house_2, 	40.1577,	-16.3703,	180.0,	0.0
+		web_dwarven_house_1, 	39.8367,	16.0985,	270.0,	0.0
+	}
+
+	group	slot_filler_48x32_112x64_group_northman
+	{
+		BI_barn, 	45.1833,	-7.7468,	180.0,	0.0
+		BI_houseD, 	42.337,	23.7808,	180.0,	0.0
+		BI_houseA, 	-47.3938,	15.8641,	360.0,	0.0
+		BI_houseA, 	14.9847,	25.9638,	270.0,	0.0
+		BI_cider_house, 	-45.5532,	-11.8462,	90.0,	0.0
+		BI_fence_L_shape_wood, 	-42.1283,	-22.2766,	90.0,	0.0
+		BI_fence_straight_wood, 	-50.6001,	-0.118456,	360.0,	0.0
+		BI_houseC, 	-25.564,	-26.2075,	360.0,	0.0
+		BI_fence_straight_wood, 	-31.4959,	27.5345,	90.0,	0.0
+		BI_fence_straight_wood, 	1.43987,	28.5251,	90.0,	0.0
+		BI_fence_straight_wood, 	31.8252,	27.4797,	90.0,	0.0
+		BI_fence_straight_wood, 	45.6186,	14.8084,	360.0,	0.0
+		cart_B, 	18.9602,	19.3247,	255.0,	0.0
+		cart_B, 	-38.9035,	-20.645,	135.0,	0.0
+		stove, 	33.205,	14.9391,	360.0,	0.0
+		pile_of_logs, 	42.1887,	14.0762,	360.0,	0.0
+		pile_of_logs, 	39.6318,	12.8528,	360.0,	0.0
+		4a_tree_1, 	34.0521,	-19.4957,	180.0,	0.0
+		village_well, 	-32.3838,	11.1437,	360.0,	0.0
+		4a_shrub_1, 	37.6252,	25.7885,	360.0,	0.0
+		4a_shrub_2, 	-41.125,	17.447,	360.0,	0.0
+		4a_shrub_1, 	47.2472,	18.5542,	360.0,	0.0
+		BI_fence_gate, 	-0.183994,	-29.165,	270.0,	0.0
+		BI_fence_straight_wood, 	12.3028,	-28.9696,	90.0,	0.0
+		BI_fence_straight_wood, 	-12.2026,	-28.9696,	90.0,	0.0
+		BI_house_half_wood, 	-18.8265,	24.5257,	90.0,	0.0
+		BI_houseC, 	24.4761,	-26.1395,	180.0,	0.0
+		BI_fence_L_shape_wood, 	35.3028,	-21.9021,	180.0,	0.0
+		4a_tree_4, 	51.5258,	26.7684,	90.0,	0.0
+		4a_tree_3, 	-45.539,	-24.0639,	180.0,	0.0
+	}
+	
+	group	slot_filler_48x32_112x64_group_roman_bits
+	{
+		floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/overlay_slot_filler_48x32_112x64_roman.cas
+
+		JAR_DUN_BENCH, 	50.2552,	3.06655,	90.0,	0.0
+		cart_B, 	-25.8846,	26.825,	340.0,	0.0
+		4a_tree_1, 	49.7808,	-7.20284,	360.0,	0.0
+		4a_tree_2, 	25.479,	-23.5557,	360.0,	0.0
+		4a_tree_3, 	25.297,	23.9015,	360.0,	0.0
+		JAR_DUN_BR_36x10, 	-1.2641,	-26.5523,	180.0,	0.0
+		JAR_DUN_HL_B_18x18, 	39.8834,	-16.3005,	180.0,	0.0
+		JAR_DUN_MA_FOUNTAIN, 	-40.1599,	-0.537764,	180.0,	0.0
+		JAR_DUN_HS_14x20, 	46.1593,	14.285,	270.0,	0.0
+		JAR_DUN_HS_10x11, 	-33.2878,	14.3104,	180.0,	0.0
+		JAR_DUN_HS_10x11, 	34.4543,	8.99136,	90.0,	0.0
+		JAR_DUN_HS_10x11, 	34.4543,	19.7561,	90.0,	0.0
+		JAR_DUN_HS_10x11, 	-33.2775,	24.0084,	360.0,	0.0
+		JAR_DUN_HS_10x11, 	-47.7676,	24.0084,	360.0,	0.0
+		JAR_DUN_HS_10x11, 	-47.7778,	14.3104,	180.0,	0.0
+		JAR_DUN_BENCH, 	46.297,	3.06655,	90.0,	0.0
+		JAR_DUN_BENCH, 	42.3652,	3.06655,	90.0,	0.0
+		JAR_DUN_BENCH, 	32.5763,	2.30616,	90.0,	0.0
+		JAR_DUN_BENCH, 	36.5081,	2.30616,	90.0,	0.0
+		JAR_DUN_HL_C_18x18, 	-40.2257,	-20.2384,	180.0,	0.0
+	}
+
+	group	slot_filler_48x32_112x64_group_eastern_bits
+	{
+		floor	none	overlay_slot_filler_48x32_112x64_eastern.cas
+
+		eastern_park_building,	-16.56,	 23.37,	0.0,	0.0
+		eastern_park_building,	 16.17,	-24.58,	180.0,	0.0
+		egyptian_grain_threshing_pit,	 30.05,	 8.90,	0.0,	0.0
+		egyptian_storage_building,	-16.81,	-25.30,	90.0,	0.0
+		egyptian_storage_building,	 15.14,	 25.76,	90.0,	0.0
+		4a_tree_2,	 31.09,	-5.11,	0.0,	0.0
+		4a_tree_3,	 3.88,	-28.62,	90.0,	0.0
+		4a_tree_3,	-4.41,	 28.97,	90.0,	0.0
+		east_tenamentB,	 40.70,	-16.44,	180.0,	0.0
+		east_tenamentB,	 41.06,	 16.32,	90.0,	0.0
+		east_tenamentC,	-51.00,	 1.44,	90.0,	0.0
+	}
+
+	group	slot_filler_112x64_160x128_group
+	{
+		floor none overlay_slot_filler_112x64_160x128.cas
+		
+		slot_filler_112x64_160x128_flowers,	0,	0,	0,	0
+		4a_tree_3,				-24,	55,	90,	0
+		4a_tree_3,				-58,	40,	180,	0
+		4a_tree_3,				-61,	-5,	90,	0
+		4a_tree_3,				-68,	-30,	0,	0
+		4a_tree_3,				-14,	-36,	180,	0
+		4a_tree_3,				-38,	-36,	-90,	0
+		4a_tree_3,				-26,	-36,	90,	0
+		4a_tree_3,				23,	47,	90,	0
+		4a_tree_3,				71,	19,	-180,	0
+		4a_tree_3,				70,	-41,	-60,	0
+		4a_tree_3,				40,	-36,	90,	0
+		4a_tree_3,				-69,	21,	90,	0
+		4a_tree_3,				-50,	-36,	90,	0
+		4a_tree_3,				-14,	-56,	180,	0
+		4a_tree_3,				-50,	-56,	90,	0
+		4a_tree_3,				-38,	-56,	-90,	0
+		4a_tree_3,				-26,	-56,	90,	0
+		4a_tree_1,				65,	49,	0,	0
+		4a_tree_1,				-39,	48,	0,	0
+		4a_tree_1,				52,	-47,	0,	0
+		4a_tree_2,				-60,	53,	10,	0
+		4a_tree_2,				69,	32,	0,	0
+		4a_tree_2,				30,	-46,	-15,	0
+		4a_tree_2,				-70,	31,	5,	0
+		4a_tree_2,				69,	-51,	-5,	0
+		4a_tree_2,				32,	52,	85,	0
+		4a_tree_2,				69,	-10,	30,	0
+		4a_tree_4,				-59,	-46,	-160,	0
+		4a_tree_4,				-69,	3,	-90,	0
+		4a_tree_4,				48,	51,	90,	0
+	}
+
+	group	slot_filler_112x64_160x128_group_roman_bits
+	{
+		floor none overlay_slot_filler_112x64_160x128_roman.cas
+
+		roman_colonnaded_portico,	-42.04,	 46.75,	45.0,	0.0
+		roman_colonnaded_portico,	-14.54,	-46.29,	95.0,	0.0
+		roman_colonnaded_portico,	 50.65,	 47.36,	75.0,	0.0
+		roman_tenamentD,	-58.79,	-38.54,	105.0,	0.0
+		roman_tenamentD,	 3.69,	 52.03,	85.0,	0.0
+		roman_tenamentD,	-61.60,	 5.85,	0.0,	0.0
+		roman_tenamentD,	-69.13,	 34.49,	5.0,	0.0
+		roman_tenamentD,	-6.28,	 40.35,	95.0,	0.0
+		roman_tenamentD,	 19.97,	-53.37,	85.0,	0.0
+		roman_tenamentD,	 67.25,	-31.58,	15.0,	0.0
+		roman_tenamentD,	 70.56,	 18.60,	0.0,	0.0
+		roman_tenamentE,	 69.83,	 51.80,	101.692,	0.0
+		roman_tenamentE,	 65.52,	-9.54,	168.308,	0.0
+		roman_tenamentE,	-22.43,	 52.63,	16.6922,	0.0
+		roman_tenamentE,	 65.48,	-53.90,	6.69222,	0.0
+		roman_tenamentE,	-69.82,	-50.51,	81.6922,	0.0
+		roman_tenamentE,	 16.37,	 39.90,	101.692,	0.0
+		roman_tenamentE,	-57.75,	 38.21,	163.308,	0.0
+		roman_tenamentE,	-47.38,	-53.59,	21.6922,	0.0
+		roman_tenamentE,	-71.31,	-1.10,	101.692,	0.0
+		roman_tenamentE,	 11.73,	-39.70,	193.308,	0.0
+		roman_tenamentE,	 26.44,	-39.66,	81.6922,	0.0
+		4a_tree_1,	 54.38,	-42.19,	105.0,	0.0
+		4a_tree_1,	-33.86,	-43.31,	170.0,	0.0
+		4a_tree_1,	-66.44,	-19.91,	170.0,	0.0
+		4a_tree_1,	 31.39,	 48.89,	0.0,	0.0
+		4a_tree_2,	 70.94,	 40.53,	175.0,	0.0
+		4a_tree_2,	 61.70,	 21.26,	0.0,	0.0
+		4a_tree_2,	-59.54,	-52.25,	340.0,	0.0
+		4a_tree_2,	-58.05,	 54.03,	185.0,	0.0
+		4a_tree_2,	-28.09,	 38.93,	185.0,	0.0
+		4a_tree_2,	-71.15,	 11.10,	355.0,	0.0
+		4a_tree_3,	 36.68,	-38.03,	90.0,	0.0
+		4a_tree_3,	-61.28,	 26.17,	90.0,	0.0
+		4a_tree_3,	 60.98,	 35.06,	90.0,	0.0
+		4a_tree_3,	 43.16,	-54.23,	260.0,	0.0
+		4a_tree_3,	 61.77,	 8.96,	90.0,	0.0
+		4a_tree_3,	-70.19,	 56.44,	90.0,	0.0
+	}
+	
+	group	slot_filler_112x64_160x128_group_eastern_bits
+	{
+		;;floor none overlay_slot_filler_112x64_160x128_roman.cas
+
+		eastern_park_building,	 67.23,	 25.89,	0.0,	0.0
+		eastern_park_building,	-68.53,	-26.14,	180.0,	0.0
+		egyptian_storage_building,	-63.57,	-9.34,	180.0,	0.0
+		egyptian_storage_building,	-74.63,	-9.34,	180.0,	0.0
+		egyptian_storage_building,	-61.54,	 24.45,	0.0,	0.0
+		egyptian_storage_building,	 72.67,	-24.27,	180.0,	0.0
+		egyptian_storage_building,	 74.81,	 9.32,	0.0,	0.0
+		egyptian_storage_building,	-72.60,	 24.45,	0.0,	0.0
+		4a_tree_2,	 62.77,	 12.48,	195.0,	0.0
+		4a_tree_2,	-16.68,	-57.90,	0.0,	0.0
+		4a_tree_2,	-12.32,	 41.02,	150.0,	0.0
+		4a_tree_2,	-17.44,	 58.46,	0.0,	0.0
+		4a_tree_3,	 60.88,	-5.08,	90.0,	0.0
+		4a_tree_3,	 51.80,	-38.76,	90.0,	0.0
+		4a_tree_3,	-14.06,	-41.23,	90.0,	0.0
+		east_tenamentB,	 1.99,	 48.27,	90.0,	0.0
+		east_tenamentB,	 63.71,	-48.34,	180.0,	0.0
+		east_tenamentC,	 49.82,	 58.30,	0.0,	0.0
+		east_tenamentC,	-50.23,	 38.98,	180.0,	0.0
+		east_tenamentC,	-48.14,	-38.58,	0.0,	0.0
+		east_tenamentC,	 17.13,	-57.40,	180.0,	0.0
+	}
+
+	group	slot_filler_160x128_256x192_group
+	{
+		floor none overlay_slot_filler_160x128_256x192.cas
+	
+		slot_filler_160x128_256x192_flowers,	0,	0,	0,	0	
+		4a_tree_3,	-14,	75,	90,	0
+		4a_tree_3,	-88,	80,	180,	0
+		4a_tree_3,	-109,	13,	-90,	0
+		4a_tree_3,	-101,	5,	90,	0
+		4a_tree_3,	-118,	-30,	0,	0
+		4a_tree_3,	-119,	-76,	180,	0
+		4a_tree_3,	96,	24,	180,	0
+		4a_tree_3,	-18,	-76,	-90,	0
+		4a_tree_3,	94,	-56,	90,	0
+		4a_tree_3,	73,	77,	90,	0
+		4a_tree_3,	111,	-41,	-180,	0
+		4a_tree_3,	90,	-81,	-60,	0
+		4a_tree_3,	50,	-76,	90,	0
+		4a_tree_3,	108,	81,	90,	0
+		4a_tree_3,	-109,	51,	90,	0
+		4a_tree_3,	-90,	-56,	90,	0
+		4a_tree_3,	-104,	54,	180,	0
+		4a_tree_3,	-40,	-86,	90,	0
+		4a_tree_3,	92,	-6,	-90,	0
+		4a_tree_3,	54,	74,	90,	0
+		4a_tree_1,	95,	69,	0,	0
+		4a_tree_1,	-59,	78,	0,	0
+		4a_tree_1,	72,	-77,	0,	0
+		4a_tree_1,	112,	-57,	0,	0
+		4a_tree_1,	-108,	-47,	0,	0
+		4a_tree_1,	-98,	33,	0,	0
+		4a_tree_1,	112,	23,	0,	0
+		4a_tree_2,	-30,	83,	10,	0
+		4a_tree_2,	109,	42,	0,	0
+		4a_tree_2,	100,	-26,	-15,	0
+		4a_tree_2,	-110,	71,	5,	0
+		4a_tree_2,	109,	-81,	-5,	0
+		4a_tree_2,	62,	82,	85,	0
+		4a_tree_2,	109,	-10,	30,	0
+	}
+
+	group	slot_filler_160x128_256x192_group_roman_bits
+	{
+		floor none overlay_slot_filler_160x128_256x192_roman.cas
+		roman_colonnaded_portico,	 50.79,	-77.41,	195.0,	0.0
+		roman_colonnaded_portico,	-21.75,	 78.57,	280.0,	0.0
+		roman_colonnaded_portico,	 91.57,	-14.31,	90.0,	0.0
+		roman_colonnaded_portico,	-44.31,	-78.34,	90.0,	0.0
+		roman_tenamentB,	-107.02,	 71.78,	95.0,	0.0
+		roman_tenamentB,	-104.09,	-73.54,	0.0,	0.0
+		roman_tenamentC,	-102.42,	-7.19,	80.0,	0.0
+		roman_tenamentC,	 102.32,	 59.98,	100.0,	0.0
+		roman_tenamentC,	 101.96,	-59.40,	85.0,	0.0
+		roman_tenamentD,	-71.73,	-71.53,	85.0,	0.0
+		roman_tenamentD,	 20.65,	-72.27,	85.0,	0.0
+		roman_tenamentD,	 7.12,	 73.40,	90.0,	0.0
+		roman_tenamentD,	 62.27,	 74.13,	105.0,	0.0
+		roman_tenamentD,	 107.04,	 9.31,	85.0,	0.0
+		roman_tenamentD,	-68.35,	 86.44,	85.0,	0.0
+		roman_tenamentD,	-104.76,	 48.45,	80.0,	0.0
+		roman_tenamentD,	 86.75,	 20.07,	0.0,	0.0
+		roman_tenamentE,	-7.60,	-72.30,	101.692,	0.0
+		roman_tenamentE,	-7.55,	 84.33,	83.3078,	0.0
+		roman_tenamentE,	 20.28,	-84.33,	163.308,	0.0
+		roman_tenamentE,	 71.53,	 84.81,	78.3078,	0.0
+		roman_tenamentE,	 9.17,	-84.78,	93.3078,	0.0
+		roman_tenamentE,	-78.51,	-84.40,	78.3078,	0.0
+		roman_tenamentE,	 33.16,	-82.91,	78.3078,	0.0
+		roman_tenamentE,	 21.93,	 84.79,	83.3078,	0.0
+		roman_tenamentE,	 116.41,	 22.03,	101.692,	0.0
+		roman_tenamentE,	 7.22,	 84.51,	1.69221,	0.0
+		roman_tenamentE,	-77.96,	 72.76,	108.308,	0.0
+		roman_tenamentE,	-58.59,	 73.60,	78.3078,	0.0
+		roman_tenamentE,	-61.49,	-82.20,	108.308,	0.0
+		roman_tenamentE,	 100.30,	 21.44,	168.308,	0.0
+		roman_tenamentE,	 107.56,	-24.02,	193.308,	0.0
+		4a_tree_3,	-88.00,	 80.00,	180.0,	0.0
+		4a_tree_3,	-101.0,	 5.00,	90.0,	0.0
+		4a_tree_1,	-97.99,	 32.96,	75.0,	0.0
+		4a_tree_1,	 114.93,	-12.01,	0.0,	0.0
+		4a_tree_1,	-23.85,	-75.88,	25.0,	0.0
+		4a_tree_1,	-41.57,	 75.43,	0.0,	0.0
+		4a_tree_1,	-108.0,	-47.00,	0.0,	0.0
+		4a_tree_1,	 72.04,	-77.04,	165.0,	0.0
+		4a_tree_1,	 36.49,	 75.85,	165.0,	0.0
+		4a_tree_2,	-9.02,	-86.01,	10.0,	0.0
+		4a_tree_2,	-107.41,	 70.92,	5.0,	0.0
+	}	
+
+	group	slot_filler_160x128_256x192_group_eastern_bits
+	{
+		floor none	overlay_slot_filler_160x128_256x192_eastern.cas
+
+		eastern_park_building,	 79.49,	-74.17,	0.0,	0.0
+		eastern_park_building,	-119.47,	-29.33,	90.0,	0.0
+		eastern_park_building,	-1.70,	 84.77,	90.0,	0.0
+		egyptian_storage_building,	-109.05,	-45.65,	90.0,	0.0
+		egyptian_storage_building,	-122.21,	 47.83,	180.0,	0.0
+		egyptian_storage_building,	-109.05,	-57.99,	90.0,	0.0
+		egyptian_storage_building,	-91.86,	-53.45,	180.0,	0.0
+		egyptian_storage_building,	-122.21,	 18.65,	180.0,	0.0
+		egyptian_storage_building,	 84.66,	-89.99,	90.0,	0.0
+		4a_tree_1,	-91.37,	-27.59,	90.0,	0.0
+		4a_tree_1,	-93.05,	 54.10,	0.0,	0.0
+		4a_tree_2,	-119.83,	 1.07,	0.0,	0.0
+		4a_tree_3,	 88.45,	-55.23,	90.0,	0.0
+		4a_tree_3,	 90.13,	 56.17,	90.0,	0.0
+		4a_tree_3,	-117.99,	-11.06,	90.0,	0.0
+		east_tenamentB,	-111.31,	 80.23,	0.0,	0.0
+		east_tenamentB,	 111.90,	-79.61,	180.0,	0.0
+		east_tenamentB,	-111.41,	-79.08,	90.0,	0.0
+		east_tenamentB,	 15.89,	 80.63,	180.0,	0.0
+		east_tenamentB,	 111.50,	 79.63,	90.0,	0.0
+		east_tenamentB,	-19.11,	 80.63,	90.0,	0.0
+		east_tenamentB,	-82.76,	-80.61,	90.0,	0.0
+		east_tenamentC,	 122.67,	-34.99,	90.0,	0.0
+		east_tenamentC,	 102.17,	 36.50,	90.0,	0.0
+		east_tenamentC,	-67.87,	 70.36,	180.0,	0.0
+		east_tenamentC,	 63.68,	 89.50,	0.0,	0.0
+		east_tenamentC,	-106.84,	 12.69,	90.0,	0.0
+		east_tenamentC,	-35.98,	-89.70,	180.0,	0.0
+		east_tenamentC,	 37.63,	-70.22,	0.0,	0.0
+	}
+
+	group	slot_filler_112x64_256x96_group
+	{
+		floor none overlay_slot_filler_112x64_256x96.cas
+	
+		slot_filler_112x64_256x96_flowers,	0,	0,	0,	0
+		4a_tree_3,	-38,	40,	90,	0
+		4a_tree_3,	-58,	40,	180,	0
+		4a_tree_3,	-69,	3,	-90,	0
+		4a_tree_3,	-81,	-17,	90,	0
+		4a_tree_3,	-68,	-30,	0,	0
+		4a_tree_3,	-52,	-41,	180,	0
+		4a_tree_3,	116,	34,	180,	0
+		4a_tree_3,	92,	34,	-90,	0
+		4a_tree_3,	104,	34,	90,	0
+		4a_tree_3,	16,	43,	90,	0
+		4a_tree_3,	71,	19,	-180,	0
+		4a_tree_3,	72,	-42,	-60,	0
+		4a_tree_3,	40,	-36,	90,	0
+		4a_tree_3,	68,	43,	90,	0
+		4a_tree_3,	-69,	21,	90,	0
+		4a_tree_3,	80,	34,	90,	0
+		4a_tree_3,	116,	14,	180,	0
+		4a_tree_3,	80,	14,	90,	0
+		4a_tree_3,	92,	14,	-90,	0
+		4a_tree_3,	104,	14,	90,	0
+		4a_tree_3,	-91.91,	19.91,	-180,	0
+		4a_tree_3,	-91.91,	7.91,	0,	0
+		4a_tree_3,	-111.91,	7.91,	0,	0
+		4a_tree_3,	-111.91,	19.91,	-180,	0
+		4a_tree_3,	-91.91,	31.91,	0,	0
+		4a_tree_3,	-111.91,	31.91,	0,	0
+		4a_tree_3,	-111.91,	-4.09,	90,	0
+		4a_tree_3,	-91.91,	-4.09,	90,	0
+		4a_tree_2,	86,	-30,	55,	0
+		4a_tree_2,	-80,	13,	10,	0
+		4a_tree_2,	69,	32,	0,	0
+		4a_tree_2,	13,	-40,	-15,	0
+		4a_tree_2,	-70,	31,	5,	0
+		4a_tree_2,	62,	-36,	-5,	0
+		4a_tree_2,	-78,	-38,	85,	0
+		4a_tree_2,	111,	41,	30,	0
+		4a_tree_1,	-116,	-30,	0,	0
+		4a_tree_1,	86,	-13,	0,	0
+		4a_tree_1,	105,	-35,	0,	0
+	}
+
+	group	slot_filler_112x64_256x96_group_roman_bits
+	{
+		floor none	overlay_slot_filler_112x64_256x96_roman.cas
+
+		roman_tenamentA,	-91.79,	 0.83,	0.0,	0.0
+		roman_tenamentB,	 109.03,	 21.85,	0.0,	0.0
+		roman_tenamentB,	 75.24,	 28.67,	180.0,	0.0
+		roman_tenamentC,	 89.50,	-19.00,	180.0,	0.0
+		roman_tenamentD,	-39.00,	 39.22,	90.0,	0.0
+		roman_tenamentD,	 36.11,	-39.26,	80.0,	0.0
+		roman_tenamentD,	-19.47,	-39.37,	85.0,	0.0
+		roman_tenamentD,	 78.66,	-39.09,	90.0,	0.0
+		roman_tenamentD,	 40.98,	 39.73,	95.0,	0.0
+		roman_tenamentE,	-6.51,	 39.58,	183.308,	0.0
+		roman_tenamentE,	 118.64,	-39.53,	168.308,	0.0
+		roman_tenamentE,	 10.79,	-38.81,	183.308,	0.0
+		roman_tenamentE,	-44.93,	-39.20,	83.3078,	0.0
+		roman_tenamentE,	 19.13,	 39.90,	101.692,	0.0
+		4a_tree_2,	 6.88,	 39.71,	10.0,	0.0
+		4a_tree_2,	 104.84,	-39.73,	10.0,	0.0
+		4a_tree_2,	 76.63,	 8.24,	90.0,	0.0
+		4a_tree_2,	-59.55,	-39.17,	10.0,	0.0
+		4a_tree_2,	-99.46,	 26.49,	30.0,	0.0
+		4a_tree_3,	 107.70,	 41.72,	0.0,	0.0
+		4a_tree_3,	 56.61,	-39.64,	0.0,	0.0
+		4a_tree_3,	-18.59,	 42.07,	0.0,	0.0
+		4a_tree_3,	-95.05,	-42.07,	0.0,	0.0
+	}
+
+	group	slot_filler_112x64_256x96_group_eastern_bits
+	{
+		floor	none	overlay_slot_filler_112x64_256x96_eastern.cas
+
+		east_tenamentA,	-94.59,	 6.62,	90.0,	0.0
+		east_tenamentC,	 97.68,	 41.59,	0.0,	0.0
+		east_tenamentD,	 94.71,	-7.55,	0.0,	0.0
+		eastern_park_building,	-83.51,	-40.70,	0.0,	0.0
+		eastern_park_building,	 44.84,	 40.02,	180.0,	0.0
+		eastern_park_building,	-51.58,	 40.08,	0,	0.0
+		egyptian_storage_building,	-16.45,	 41.02,	90.0,	0.0
+		egyptian_storage_building,	-109.90,	-41.57,	90.0,	0.0
+		egyptian_storage_building,	 51.74,	-41.93,	90.0,	0.0
+		egyptian_storage_building,	 24.90,	-41.93,	90.0,	0.0
+		egyptian_storage_building,	-18.28,	-41.93,	90.0,	0.0
+		egyptian_storage_building,	-45.50,	-41.93,	90.0,	0.0
+		egyptian_storage_building,	 12.52,	 41.02,	90.0,	0.0
+		4a_tree_2,	-1.96,	-42.06,	70.0,	0.0
+		4a_tree_2,	 28.57,	 42.66,	0.0,	0.0
+		4a_tree_2,	 60.63,	 41.06,	215.0,	0.0
+		4a_tree_2,	-67.72,	-42.25,	0.0,	0.0
+		4a_tree_3,	-95.95,	-44.29,	90.0,	0.0
+		4a_tree_3,	-36.74,	 44.57,	90.0,	0.0
+	}
+
+
+; ** barbarian-specific objects in parks
+
+
+	group	slot_48x32_empty_barbarian_objects
+	{
+		; no objects in here at present
+	}
+
+	group	slot_112x64_empty_barbarian_objects
+	{
+		barbarian_park_building,		29,	-18,	90,	0
+		barbarian_lith,			-30,	19,	0,	0
+		barbarian_lith,			-4,	-21,	90,	0
+		barbarian_lith,			19,	4,	0,	0
+	}
+
+	group	slot_filler_48x32_112x64_barbarian_objects
+	{
+		; no objects at present
+	}
+
+	group 	slot_filler_112x64_160x128_barbarian_objects
+	{
+		barbarian_park_building,			14,	-45,	90,	0
+		barbarian_lith,				6,	-57,	-90,	0
+		barbarian_lith,				66,	11,	0,	0
+		barbarian_lith,				-6,	-57,	90,	0		
+	}
+
+	group	slot_filler_112x64_256x96_barbarian_objects
+	{
+		barbarian_park_building,			-96,	-25,	90,	0
+		barbarian_park_building,			114,	-15,	-180,	0
+		barbarian_lith,				4,	-35,	-90,	0
+		barbarian_lith,				71,	5,	0,	0
+		barbarian_lith,				-4,	-35,	90,	0
+		
+	}
+
+	group	slot_filler_160x128_256x192_barbarian_objects
+	{
+		barbarian_park_building,			21,	-79,	90,	0
+		barbarian_park_building,			94,	45,	90,	0
+		barbarian_park_building,			-106,	-15,	160,	0
+		barbarian_lith,				6,	-77,	-90,	0
+		barbarian_lith,				96,	5,	0,	0
+		barbarian_lith,				-6,	-77,	90,	0
+	}
+
+
+
+; ** the following ones specify the style of the walls and ensure that there's only one outer wall & 1 inner wall.
+; ** if slots go right to the edges, then there's no need for paved vs non-paved versions.
+
+
+;   specific to roman and greek,  i.e. use roman buildings and roman walls
+
+
+	group   slot_upgrade_48x32_112x64_roman
+	{
+		slot_filler_48x32_112x64_group_roman_bits,	0,	0,	0,	0
+		slot_filler_outer_wall_112x64_roman,		0,	0,	0,	0
+	}
+
+	group	slot_upgrade_48x32_160x128_roman
+	{
+		slot_filler_48x32_112x64_group_roman_bits,	0,	0,	0,	0
+		slot_filler_112x64_160x128_group_roman_bits,	0,	0,	0,	0
+		slot_filler_outer_wall_160x128_roman,		0,	0,	0,	0
+	}
+	
+	group	slot_upgrade_48x32_256x96_roman
+	{
+		slot_filler_48x32_112x64_group_roman_bits,	0,	0,	0,	0
+		slot_filler_112x64_256x96_group_roman_bits,	0,	0,	0,	0
+		slot_filler_outer_wall_256x96_roman,		0,	0,	0,	0
+	}
+	
+	group 	slot_upgrade_112x64_160x128_roman
+	{
+		slot_filler_112x64_160x128_group_roman_bits,	0,	0,	0,	0
+		slot_filler_outer_wall_160x128_roman,		0,	0,	0,	0
+	}
+
+	group	slot_upgrade_112x64_256x96_roman
+	{
+		slot_filler_112x64_256x96_group_roman_bits,	0,	0,	0,	0
+		slot_filler_outer_wall_256x96_roman,		0,	0,	0,	0
+	}
+
+	group 	slot_upgrade_160x128_256x192_roman
+	{
+		slot_filler_160x128_256x192_group_roman_bits,	0,	0,	0,	0
+		slot_filler_outer_wall_256x192_roman,		0,	0,	0,	0
+	}
+
+; roman and greek empties
+
+	group	slot_48x32_empty_group_roman
+	{
+		floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/overlay_slot_48x32_empty_dun.cas
+		slot_48x32_empty_group_roman_bits,			0,	0,	0,	0
+		slot_filler_outer_wall_48x32_roman,			0,	0,	0,	0
+	}
+
+	group	slot_112x64_empty_group_roman
+	{
+		floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/overlay_slot_112x64_empty_dun.cas
+		slot_112x64_empty_group_roman_bits,			0,	0,	0,	0
+		slot_filler_outer_wall_112x64_roman,		0,	0,	0,	0
+	}
+
+	group	slot_160x128_empty_group_roman
+	{
+		floor none overlay_slot_112x64_empty_roman.cas
+		slot_112x64_empty_group_roman_bits,			0,	0,	0,	0
+		slot_filler_112x64_160x128_group_roman_bits,		0,	0,	0,	0	
+		slot_filler_outer_wall_160x128_roman,		0,	0,	0,	0
+	}
+
+	group	slot_256x96_empty_group_roman
+	{
+		floor none overlay_slot_112x64_empty_roman.cas
+		slot_112x64_empty_group_roman_bits,			0,	0,	0,	0
+		slot_filler_112x64_256x96_group_roman_bits,		0,	0,	0,	0
+		slot_filler_outer_wall_256x96_roman,		0,	0,	0,	0
+	}
+
+	group 	slot_256x192_empty_group_roman
+	{
+		floor none overlay_slot_112x64_empty_roman.cas
+		slot_112x64_empty_group_roman_bits,			0,	0,	0,	0
+		slot_filler_112x64_160x128_group_roman_bits,		0,	0,	0,	0
+		slot_filler_160x128_256x192_group_roman_bits,	0,	0,	0,	0
+		slot_filler_outer_wall_256x192_roman,		0,	0,	0,	0
+	}
+
+
+; **** eastern  fillers
+
+
+;   eastern-specific,  i.e. use eastern objects and roman walls
+
+
+	group   slot_upgrade_48x32_112x64_eastern
+	{
+		slot_filler_48x32_112x64_group_eastern_bits,			0,	0,	0,	0
+		;slot_filler_outer_wall_112x64_roman,			0,	0,	0,	0
+	}
+
+	group	slot_upgrade_48x32_160x128_eastern
+	{
+		slot_filler_48x32_112x64_group_eastern_bits,		0,	0,	0,	0
+		slot_filler_112x64_160x128_group_eastern_bits,		0,	0,	0,	0
+		;slot_filler_outer_wall_160x128_roman,			0,	0,	0,	0
+	}
+	
+	group	slot_upgrade_48x32_256x96_eastern
+	{
+		slot_filler_48x32_112x64_group_eastern_bits,		0,	0,	0,	0
+		slot_filler_112x64_256x96_group_eastern_bits,		0,	0,	0,	0
+		;slot_filler_outer_wall_256x96_roman,			0,	0,	0,	0
+	}
+
+	group 	slot_upgrade_112x64_160x128_eastern
+	{
+		slot_filler_112x64_160x128_group_eastern_bits,		0,	0,	0,	0
+		;slot_filler_outer_wall_160x128_roman,			0,	0,	0,	0
+	}
+
+	group	slot_upgrade_112x64_256x96_eastern
+	{
+		slot_filler_112x64_256x96_group_eastern_bits,		0,	0,	0,	0
+		;slot_filler_outer_wall_256x96_roman,			0,	0,	0,	0
+	}
+
+	group 	slot_upgrade_160x128_256x192_eastern
+	{
+		slot_filler_160x128_256x192_group_eastern_bits,		0,	0,	0,	0
+		;slot_filler_outer_wall_256x192_roman,		0,	0,	0,	0
+	}
+
+; eastern empties
+
+	group	slot_48x32_empty_group_eastern
+	{
+		;; has no overlay, as there are no trees.
+		;;floor none overlay_slot_48x32_empty_eastern.cas
+		slot_48x32_empty_group_eastern_bits,			0,	0,	0,	0
+		;slot_filler_outer_wall_48x32_roman,			0,	0,	0,	0
+	}
+
+	group	slot_112x64_empty_group_eastern
+	{
+		;floor none overlay_slot_112x64_empty_eastern.cas
+		slot_112x64_empty_group_eastern_bits,			0,	0,	0,	0
+		;slot_filler_outer_wall_112x64_roman,			0,	0,	0,	0
+	}
+		
+	group	slot_160x128_empty_group_eastern
+	{
+		;; has no overlay, as there are no trees.
+		;floor none overlay_slot_112x64_empty_eastern.cas
+		slot_112x64_empty_group_eastern_bits,			0,	0,	0,	0
+		slot_filler_112x64_160x128_group_eastern_bits,		0,	0,	0,	0	
+		;slot_filler_outer_wall_160x128_roman,			0,	0,	0,	0
+	}
+
+	group	slot_256x96_empty_group_eastern
+	{
+		;; has no overlay, as there are no trees.
+		;floor none overlay_slot_112x64_empty_eastern.cas
+		slot_112x64_empty_group_eastern_bits,			0,	0,	0,	0
+		slot_filler_112x64_256x96_group_eastern_bits,		0,	0,	0,	0
+		;slot_filler_outer_wall_256x96_roman,			0,	0,	0,	0
+	}
+
+	group 	slot_256x192_empty_group_eastern
+	{
+		;; has no overlay, as there are no trees.
+		;floor none overlay_slot_112x64_empty_eastern.cas
+		slot_112x64_empty_group_eastern_bits,			0,	0,	0,	0
+		slot_filler_112x64_160x128_group_eastern_bits,		0,	0,	0,	0
+		slot_filler_160x128_256x192_group_eastern_bits,		0,	0,	0,	0
+		;slot_filler_outer_wall_256x192_roman,			0,	0,	0,	0
+	}
+
+
+;   barbarian-specific,  i.e. use barbarian objects and roman walls
+
+
+	group   slot_upgrade_48x32_112x64_barbarian
+	{
+		slot_filler_48x32_112x64_group,			0,	0,	0,	0
+		slot_filler_48x32_112x64_barbarian_objects,	0,	0,	0,	0
+		slot_filler_outer_wall_112x64_barbarian,	0,	0,	0,	0
+		;slot_filler_inner_wall_48x32_roman,		0,	0,	0,	0
+	}
+
+	group	slot_upgrade_48x32_160x128_barbarian
+	{
+		slot_filler_48x32_112x64_group,			0,	0,	0,	0
+		slot_filler_112x64_160x128_group,		0,	0,	0,	0
+		slot_filler_48x32_112x64_barbarian_objects,	0,	0,	0,	0
+		slot_filler_112x64_160x128_barbarian_objects,	0,	0,	0,	0
+		slot_filler_outer_wall_160x128_barbarian,	0,	0,	0,	0
+		;slot_filler_inner_wall_48x32_roman,		0,	0,	0,	0
+	}
+	
+	group	slot_upgrade_48x32_256x96_barbarian
+	{
+		slot_filler_48x32_112x64_group,			0,	0,	0,	0
+		slot_filler_112x64_256x96_group,		0,	0,	0,	0
+		slot_filler_48x32_112x64_barbarian_objects,	0,	0,	0,	0
+		slot_filler_112x64_256x96_group,		0,	0,	0,	0
+		slot_filler_outer_wall_256x96_barbarian,	0,	0,	0,	0
+		;slot_filler_inner_wall_48x32_roman,		0,	0,	0,	0
+	}
+
+	group 	slot_upgrade_48x32_256x192_barbarian
+	{
+		slot_filler_48x32_112x64_group,			0,	0,	0,	0
+		slot_filler_112x64_160x128_group,		0,	0,	0,	0
+		slot_filler_160x128_256x192_group,		0,	0,	0,	0
+		slot_filler_48x32_112x64_barbarian_objects,	0,	0,	0,	0
+		slot_filler_112x64_160x128_barbarian_objects,	0,	0,	0,	0
+		slot_filler_160x128_256x192_barbarian_objects,	0,	0,	0,	0
+		slot_filler_outer_wall_256x192_barbarian,	0,	0,	0,	0
+		;slot_filler_inner_wall_48x32_roman,		0,	0,	0,	0
+	}
+	
+	group 	slot_upgrade_112x64_160x128_barbarian
+	{
+		slot_filler_112x64_160x128_group,		0,	0,	0,	0
+		slot_filler_112x64_160x128_barbarian_objects,	0,	0,	0,	0
+		slot_filler_outer_wall_160x128_barbarian,	0,	0,	0,	0
+		;slot_filler_inner_wall_112x64_roman,	0,	0,	0,	0
+	}
+
+	group	slot_upgrade_112x64_256x96_barbarian
+	{
+		slot_filler_112x64_256x96_group,		0,	0,	0,	0
+		slot_filler_112x64_256x96_barbarian_objects,	0,	0,	0,	0
+		slot_filler_outer_wall_256x96_barbarian,	0,	0,	0,	0
+		;slot_filler_inner_wall_112x64_roman,	0,	0,	0,	0
+	}
+
+	group 	slot_upgrade_112x64_256x192_barbarian
+	{
+		slot_filler_112x64_160x128_group,		0,	0,	0,	0
+		slot_filler_160x128_256x192_group,		0,	0,	0,	0
+		slot_filler_112x64_160x128_barbarian_objects,	0,	0,	0,	0
+		slot_filler_160x128_256x192_barbarian_objects,	0,	0,	0,	0
+		slot_filler_outer_wall_256x192_barbarian,	0,	0,	0,	0
+		;slot_filler_inner_wall_112x64_roman,	0,	0,	0,	0
+	}
+
+	group 	slot_upgrade_160x128_256x192_barbarian
+	{
+		slot_filler_160x128_256x192_group,		0,	0,	0,	0
+		slot_filler_160x128_256x192_barbarian_objects,	0,	0,	0,	0
+		slot_filler_outer_wall_256x192_barbarian,	0,	0,	0,	0
+		;slot_filler_inner_wall_160x128_roman,	0,	0,	0,	0
+	}
+
+; barbarian empties
+
+	group	slot_48x32_empty_group_barbarian
+	{
+		;floor none overlay_slot_48x32_empty.cas
+		slot_48x32_empty_barbarian_objects,		0,	0,	0,	0
+		slot_filler_outer_wall_48x32_barbarian,		0,	0,	0,	0
+	}
+
+	group	slot_112x64_empty_group_barbarian
+	{
+		floor none overlay_slot_112x64_empty.cas
+		slot_112x64_empty_group,			0,	0,	0,	0
+		slot_112x64_empty_barbarian_objects,		0,	0,	0,	0
+		slot_filler_outer_wall_112x64_barbarian,	0,	0,	0,	0
+	}
+		
+
+	group	slot_160x128_empty_group_barbarian
+	{
+		floor none overlay_slot_112x64_empty.cas
+		slot_112x64_empty_group,			0,	0,	0,	0
+		slot_112x64_empty_barbarian_objects,		0,	0,	0,	0
+		slot_filler_112x64_160x128_group,		0,	0,	0,	0
+		slot_filler_112x64_160x128_barbarian_objects,	0,	0,	0,	0	
+		slot_filler_outer_wall_160x128_barbarian,	0,	0,	0,	0
+	}
+
+	group	slot_256x96_empty_group_barbarian
+	{
+		floor none overlay_slot_112x64_empty.cas
+		slot_112x64_empty_group,			0,	0,	0,	0
+		slot_112x64_empty_barbarian_objects,		0,	0,	0,	0
+		slot_filler_112x64_256x96_group,		0,	0,	0,	0
+		slot_filler_112x64_256x96_barbarian_objects,	0,	0,	0,	0	
+		slot_filler_outer_wall_256x96_barbarian,	0,	0,	0,	0
+	}
+
+	group 	slot_256x192_empty_group_barbarian
+	{
+		floor none overlay_slot_112x64_empty.cas
+		slot_112x64_empty_group,			0,	0,	0,	0
+		slot_112x64_empty_barbarian_objects,		0,	0,	0,	0
+		slot_filler_112x64_160x128_group,		0,	0,	0,	0
+		slot_filler_160x128_256x192_group,		0,	0,	0,	0
+		slot_filler_112x64_160x128_barbarian_objects,	0,	0,	0,	0
+		slot_filler_160x128_256x192_barbarian_objects,	0,	0,	0,	0
+		slot_filler_outer_wall_256x192_barbarian,	0,	0,	0,	0
+	}
+
+; *** CONSTRUCTION SITES ***
+
+	group slot_160x128_construction_site
+	{
+		floor construction_160x128_underlay.CAS construction_160x128_overlay.CAS
+		construction_site_160x128,			0,	0,	0,	0
+	}
+	group slot_112x64_construction_site
+	{
+		floor construction_112x64_underlay.CAS construction_112x64_overlay.CAS
+		construction_site_112x64,			0,	0,	0,	0
+	}
+	group slot_48x32_construction_site
+	{
+		floor construction_48x32_underlay.CAS construction_48x32_overlay.CAS
+		construction_site_48x32,			0,	0,	0,	0
+	}
+
+}
+
+; Culture groups are single ambient ids (possibly an ambient group) associated with various culture types.
+; All cultures must be covered, although a default can be provided.  Currently the culture is the owner
+; of the settlement, so if a settlement is built by one culture and taken over, any culture group buildings
+; may change.
+
+culture_groups
+{
+;  eg... 
+;	group small_accomodation_block
+;	{
+;		roman roman_small_accomodation_block
+;		default 
+;	}
+	group baggage_train
+	{
+		default			baggage_train_roman
+		;carthaginian		baggage_train_carthage
+	}
+	group slot_112x64_empty_group_mc
+	{
+		default			slot_112x64_empty_group_barbarian
+		roman			slot_112x64_empty_group_roman
+		barbarian		slot_112x64_empty_group_barbarian
+		eastern			slot_112x64_empty_group_eastern
+		nomad			slot_112x64_empty_group_dwarven
+		hun				slot_112x64_empty_group_northman
+		orkish			slot_112x64_empty_group_barbarian
+		carthaginian	slot_112x64_empty_group_elf
+	}
+	group slot_48x32_empty_group_mc
+	{
+		default			slot_48x32_empty_group_barbarian
+		roman			slot_48x32_empty_group_roman
+		barbarian		slot_48x32_empty_group_barbarian
+		eastern			slot_48x32_empty_group_eastern
+		nomad			slot_48x32_empty_group_dwarven
+		hun				slot_48x32_empty_group_northman
+		orkish			slot_48x32_empty_group_barbarian
+		carthaginian	slot_48x32_empty_group_elf
+	}
+	group slot_48x32_ambient_industry_group
+	{
+		default			slot_48x32_forge_group_northman
+		roman			slot_48x32_forge_group_dunedain
+		barbarian		slot_48x32_forge_group_barbarian
+		eastern			slot_48x32_forge_group_southron
+		nomad			slot_48x32_forge_group_dwarf
+		hun				slot_48x32_forge_group_northman
+		orkish			slot_48x32_forge_group_barbarian
+		carthaginian	slot_48x32_forge_group_elf
+	}
+}
+
+
+
+; SLOTS  
+; A slot is a set of variations for building positioning.  Each slot has a list of layouts;  each layout has
+; a major building position, and various ambient buildings.  
+
+slots
+{
+
+; ********************
+
+;   placeholder ROAD JOINERS
+
+; *************************
+
+	slot slot_road_joiner_muddy_path_into_roman_town
+	{
+		default
+		{
+			floor underlay_road_joiner_muddy_path_into_roman_town.cas overlay_road_joiner_muddy_path_into_roman_town.cas
+			road_joiner_muddy_path_into_roman_town,	0,	0,	0,	0
+		}
+	}
+
+	slot slot_road_joiner_no_road_into_roman_town
+	{
+		default
+		{
+			floor underlay_road_joiner_no_road_into_roman_town.cas overlay_road_joiner_no_road_into_roman_town.cas
+			road_joiner_no_road_into_roman_town,	0,	0,	0,	0
+		}
+	}
+
+	slot slot_road_joiner_paved_road_into_roman_town
+	{
+		default
+		{
+			floor underlay_road_joiner_paved_road_into_roman_town.cas overlay_road_joiner_paved_road_into_roman_town.cas
+		}
+	}
+
+
+	slot slot_road_joiner_muddy_path_into_flat_town
+	{
+		default
+		{
+			floor underlay_road_joiner_muddy_path_into_flat_town.cas overlay_road_joiner_muddy_path_into_flat_town.cas
+		}
+	}
+
+	slot slot_road_joiner_no_road_into_flat_town
+	{
+		default
+		{
+			; no overlay, as its just a flat square piece
+			floor underlay_road_joiner_no_road_into_flat_town.cas
+		}
+	}
+
+	slot slot_road_joiner_paved_road_into_flat_town
+	{
+		default
+		{
+			floor underlay_road_joiner_paved_road_into_flat_town.cas overlay_road_joiner_paved_road_into_flat_town.cas
+		}
+	}
+
+
+; ****************
+
+; PLAZAs
+
+; *****************
+
+; Plazas are now slot based, as they need to be able to specify underlays and overlays, and allow these
+; to be edited without having to re-attach them to the settlement plan underlays and overlays each time.
+; They need the 'slot_' bit at the beginning, otherwise they have the same name as the actual plaza
+; pieces.
+; Plazas that haven't yet had their underlays and overlays detached have their floor definitions 
+; commented out.
+; [NickT]
+
+	slot slot_plaza_roman_128x128m
+	{
+		default
+		{
+			floor underlay_plaza_roman_128x128m.cas overlay_plaza_roman_128x128m.cas
+			plaza_roman_128x128m,	0,	0,	0,	0
+		}
+	}
+
+	slot slot_plaza_roman_192x192m
+	{
+		default
+		{
+			floor underlay_plaza_roman_192x192m.cas overlay_plaza_roman_192x192m.cas
+			plaza_roman_192x192m,	0,	0,	0,	0
+		}
+	}
+
+	slot slot_plaza_eastern_128x128m
+	{
+		default
+		{
+			floor underlay_plaza_eastern_128x128m.cas overlay_plaza_eastern_128x128m.cas
+			plaza_eastern_128x128m,	0,	0,	0,	0
+		}
+	}
+
+	slot slot_plaza_eastern_192x192m
+	{
+		default
+		{
+			floor underlay_plaza_eastern_192x192m.cas overlay_plaza_eastern_192x192m.cas
+			plaza_eastern_192x192m,	0,	0,	0,	0
+		}
+	}
+
+	slot slot_plaza_barbarian_32x32m
+	{
+		default
+		{
+			floor underlay_plaza_barbarian_32x32m.cas overlay_plaza_barbarian_32x32m.cas
+			plaza_barbarian_32x32m,	0,	0,	0,	0
+		}
+	}
+
+	slot slot_plaza_barbarian_128x128m
+	{
+		default
+		{
+			floor none overlay_plaza_barbarian_64x64m.cas
+			plaza_barbarian_64x64m,	0,	0,	0,	0
+		}
+	}
+
+
+
+
+; *************************************************************************************************
+
+;		NON-PAVED SLOTS   ( PAVED SLOTS HAVE BEEN REMOVED, AS THEY'RE OBSOLETE )
+
+; ****************************************************************************************************
+
+; ** DOM CORE BUILDINGS
+	
+	
+	slot slot_hornburg_core_building
+	{
+		default
+		{
+			web_kothb,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				none
+			}	
+			web_kothb,	0,	0,	0,	0	
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+				nomad
+				hun
+				orkish
+			}
+			buildings
+			{
+				none
+			}	
+			web_kothb,	0,	0,	0,	0	
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+				carthaginian
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			web_kothb,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			web_kothb,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+				nomad
+				hun
+				orkish
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			web_kothb,		0,	0,	0,	0
+		}
+	}
+
+	slot slot_50x48_core_building
+	{
+		default
+		{
+			web_dun_lords_hall,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				none
+			}	
+			web_dun_lords_hall,	0,	0,	0,	0	
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+				nomad
+				hun
+				orkish
+			}
+			buildings
+			{
+				none
+			}	
+			web_dun_lords_hall,	0,	0,	0,	0	
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+				carthaginian
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			web_dun_lords_hall,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			web_dun_lords_hall,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+				nomad
+				hun
+				orkish
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			web_dun_lords_hall,		0,	0,	0,	0
+		}
+	}
+
+	slot slot_112x64_core_building
+	{
+		default
+		{
+			web_dwarven_palace,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				none
+			}	
+			web_dwarven_palace,	0,	0,	0,	0	
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+				nomad
+				hun
+				orkish
+			}
+			buildings
+			{
+				none
+			}	
+			web_dwarven_palace,	0,	0,	0,	0	
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+				carthaginian
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			web_dwarven_palace,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			web_dwarven_palace,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+				nomad
+				hun
+				orkish
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			web_dwarven_palace,		0,	0,	0,	0
+		}
+	}
+
+	slot slot_64x64_core_building
+	{
+		default
+		{
+			floor ../../../bi/fatw/data/settlement_plans/slot_underlays/web_elf_lords_tower_underlay.cas ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_lords_tower_overlay.cas
+			web_elf_lords_tower,	0,	0,	0,	0
+			web_elf_lords_tower_fence,	0,	0,	0,	0
+			4a_shrub_1, 	-22.3315,	15.3646,	180.0,	2.41968
+			4a_shrub_2, 	6.75142,	26.3424,	180.0,	2.49878
+			4a_tree_1, 	-7.28151,	26.9213,	35.0,	1.93408
+			4a_tree_2, 	18.3442,	18.4262,	360.0,	3.47021
+			4a_shrub_2, 	-11.2913,	9.33031,	180.0,	8.88733
+			4a_shrub_1, 	6.48396,	-9.43386,	180.0,	9.54407
+			4a_tree_4, 	16.4609,	-22.2918,	340.0,	1.96545
+			4a_tree_2, 	0.0765839,	-23.5997,	340.0,	4.69983
+			4a_tree_1, 	-26.6068,	-14.066,	340.0,	0.395142
+			4a_tree_4, 	-18.7034,	2.74406,	340.0,	6.84412
+			4a_shrub_2, 	23.6269,	-5.99319,	180.0,	4.1958
+			4a_shrub_1, 	-10.3205,	-21.9197,	180.0,	4.23279
+			4a_tree_3, 	25.3288,	3.15739,	340.0,	3.47021
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+				nomad
+				hun
+				orkish
+				eastern
+			}
+			buildings
+			{
+				none
+			}	
+			floor ../../../bi/fatw/data/settlement_plans/slot_underlays/web_elf_lords_tower_underlay.cas ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_lords_tower_overlay.cas
+			web_elf_lords_tower,	0,	0,	0,	0
+			web_elf_lords_tower_fence,	0,	0,	0,	0
+			4a_shrub_1, 	-22.3315,	15.3646,	180.0,	2.41968
+			4a_shrub_2, 	6.75142,	26.3424,	180.0,	2.49878
+			4a_tree_1, 	-7.28151,	26.9213,	35.0,	1.93408
+			4a_tree_2, 	18.3442,	18.4262,	360.0,	3.47021
+			4a_shrub_2, 	-11.2913,	9.33031,	180.0,	8.88733
+			4a_shrub_1, 	6.48396,	-9.43386,	180.0,	9.54407
+			4a_tree_4, 	16.4609,	-22.2918,	340.0,	1.96545
+			4a_tree_2, 	0.0765839,	-23.5997,	340.0,	4.69983
+			4a_tree_1, 	-26.6068,	-14.066,	340.0,	0.395142
+			4a_tree_4, 	-18.7034,	2.74406,	340.0,	6.84412
+			4a_shrub_2, 	23.6269,	-5.99319,	180.0,	4.1958
+			4a_shrub_1, 	-10.3205,	-21.9197,	180.0,	4.23279
+			4a_tree_3, 	25.3288,	3.15739,	340.0,	3.47021	
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+				carthaginian
+				barbarian
+				nomad
+				hun
+				orkish
+				eastern
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			floor ../../../bi/fatw/data/settlement_plans/slot_underlays/web_elf_lords_tower_underlay.cas ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_lords_tower_overlay.cas
+			web_elf_lords_tower,	0,	0,	0,	0
+			web_elf_lords_tower_fence,	0,	0,	0,	0
+			4a_shrub_1, 	-22.3315,	15.3646,	180.0,	2.41968
+			4a_shrub_2, 	6.75142,	26.3424,	180.0,	2.49878
+			4a_tree_1, 	-7.28151,	26.9213,	35.0,	1.93408
+			4a_tree_2, 	18.3442,	18.4262,	360.0,	3.47021
+			4a_shrub_2, 	-11.2913,	9.33031,	180.0,	8.88733
+			4a_shrub_1, 	6.48396,	-9.43386,	180.0,	9.54407
+			4a_tree_4, 	16.4609,	-22.2918,	340.0,	1.96545
+			4a_tree_2, 	0.0765839,	-23.5997,	340.0,	4.69983
+			4a_tree_1, 	-26.6068,	-14.066,	340.0,	0.395142
+			4a_tree_4, 	-18.7034,	2.74406,	340.0,	6.84412
+			4a_shrub_2, 	23.6269,	-5.99319,	180.0,	4.1958
+			4a_shrub_1, 	-10.3205,	-21.9197,	180.0,	4.23279
+			4a_tree_3, 	25.3288,	3.15739,	340.0,	3.47021
+		}
+	}
+
+	slot slot_256x192_core_building
+	{
+		default
+		{
+			slot_256x192_empty_group_roman,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				none
+			}	
+			slot_256x192_empty_group_eastern,	0,	0,	0,	0	
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+				nomad
+				hun
+				orkish
+			}
+			buildings
+			{
+				none
+			}	
+			slot_256x192_empty_group_barbarian,	0,	0,	0,	0	
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				core_building imperial_palace
+			}
+			floor underlay_roman_imperial_palace.cas overlay_roman_imperial_palace.cas
+			roman_imperial_palace_group,		0,		0,		0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				core_building imperial_palace
+			}
+			floor underlay_eastern_imperial_palace.cas
+			eastern_imperial_palace,			0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+				nomad
+				hun
+				orkish
+			}
+			buildings
+			{
+				core_building imperial_palace
+			}
+			floor none overlay_slot_112x64_empty.cas
+			BI_government_lvl_5,			0,	0,	0,	0
+		}
+	}
+
+	
+	slot slot_160x128_core_building
+	{
+		default
+		{
+			slot_160x128_empty_group_roman,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				none
+			}	
+			slot_160x128_empty_group_eastern,	0,	0,	0,	0	
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+				nomad
+				hun
+				orkish
+			}
+			buildings
+			{
+				none
+			}	
+			slot_160x128_empty_group_barbarian,	0,	0,	0,	0	
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			BI_roman_governors_palace,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			floor ../../../bi/fatw/data/settlement_plans/slot_underlays/web_elf_lords_tower_underlay.cas ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_lords_tower_overlay.cas
+			web_elf_lords_tower,	0,	0,	0,	0
+			web_elf_lords_tower_fence,	0,	0,	0,	0
+			4a_shrub_1, 	-22.3315,	15.3646,	180.0,	2.41968
+			4a_shrub_2, 	6.75142,	26.3424,	180.0,	2.49878
+			4a_tree_1, 	-7.28151,	26.9213,	35.0,	1.93408
+			4a_tree_2, 	18.3442,	18.4262,	360.0,	3.47021
+			4a_shrub_2, 	-11.2913,	9.33031,	180.0,	8.88733
+			4a_shrub_1, 	6.48396,	-9.43386,	180.0,	9.54407
+			4a_tree_4, 	16.4609,	-22.2918,	340.0,	1.96545
+			4a_tree_2, 	0.0765839,	-23.5997,	340.0,	4.69983
+			4a_tree_1, 	-26.6068,	-14.066,	340.0,	0.395142
+			4a_tree_4, 	-18.7034,	2.74406,	340.0,	6.84412
+			4a_shrub_2, 	23.6269,	-5.99319,	180.0,	4.1958
+			4a_shrub_1, 	-10.3205,	-21.9197,	180.0,	4.23279
+			4a_tree_3, 	25.3288,	3.15739,	340.0,	3.47021
+
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			floor none overlay_eastern_governors_palace.cas
+			eastern_governors_palace,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+				nomad
+				hun
+				orkish
+			}
+			buildings
+			{
+				core_building governors_palace
+				core_building proconsuls_palace
+			}
+			floor none overlay_high_kings_hall.cas
+			high_kings_hall,		0,	0,	0,	0
+		}
+	}
+
+; ** DOM BARRACKS
+
+	slot slot_112x64_barracks
+	{
+		default
+		{
+			slot_112x64_empty_group_elf,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures any
+			status construction
+			buildings
+			{
+				barracks muster_field
+				barracks_dwarven muster_field_dwarven
+				barracks_rk muster_field_rk
+				barracks_adun muster_field_adun
+				barracks_thar muster_field_thar
+				barracks_harad muster_field_harad
+			}
+			slot_112x64_construction_site,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures any
+			status construction
+			buildings
+			{
+				barracks_haron muster_field_haron
+				barracks_farh muster_field_farh
+				barracks_rohan muster_field_rohan
+				barracks_dale muster_field_dale
+				barracks_beorn muster_field_beorn
+				barracks_dorw muster_field_dorw
+			}
+			slot_112x64_construction_site,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures any
+			status construction
+			buildings
+			{
+				barracks_rhov muster_field_rhov
+				barracks_rhun muster_field_rhun
+				barracks_khand muster_field_khand
+				barracks_dunland muster_field_dunland
+				barracks_northr muster_field_northr
+			}
+			slot_112x64_construction_site,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_eastern,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_mc,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+				orkish
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				none
+			}
+			slot_112x64_empty_group_roman,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				barracks muster_field
+				barracks militia_barracks
+			}
+			;floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_milita_barracks_overlay.cas
+			web_elf_milita_barracks,	0,	0,	0,	0
+			slot_filler_48x32_112x64_group_elf,	0,	0,	0,	0
+			4a_shrub_2, 	-9.16675,	-12.8238,	180.0,	0.0
+			4a_shrub_1, 	5.77368,	13.0029,	180.0,	0.0
+			4a_tree_4, 	-20.0914,	12.8178,	360.0,	0.0
+			web_elf_milita_weapons_prop, 	6.92331,	-2.64775,	180.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				barracks city_barracks
+				barracks army_barracks
+			}
+			;floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_elitebarracks_overlay.cas
+			web_elf_elitebarracks,	0,	0,	0,	0
+			web_elf_112x64_high_fence,	0,	0,	0,	0
+			4a_tree_1, 	34.9497,	15.5604,	360.0,	0.0
+			4a_tree_2, 	-39.6213,	21.5795,	360.0,	0.0
+			4a_shrub_1, 	-42.9984,	19.3734,	180.0,	0.0
+			4a_shrub_2, 	17.0896,	-21.9928,	180.0,	0.0
+			4a_shrub_2, 	40.2465,	21.8114,	180.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				caravans caravan
+				caravans frankincense_rd
+			}
+			web_dwarven_waystation_small,	0,	0,	0,	0
+			slot_filler_48x32_112x64_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				caravans silk_rd
+				caravans dwarf_road
+			}
+			web_dwarven_waystation_small,	0,	0,	0,	0
+			slot_filler_48x32_112x64_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				barracks_rk muster_field_rk
+				barracks_rk militia_barracks_rk
+				barracks_adun muster_field_adun
+				barracks_adun militia_barracks_adun
+				barracks_thar muster_field_thar
+				barracks_thar militia_barracks_thar
+			}
+			JAR_DUN_MLT_26x26, 	8.59262,	0.967131,	360.0,	0.0
+			JAR_DUN_MA_STATUE_LEFT, 	-11.3516,	-6.32169,	180.0,	4.72693
+			JAR_DUN_BASE_24X20, 	-9.1756,	0.966364,	90.0,	4.85376
+			JAR_DUN_TR_A_12x12, 	-11.4061,	6.07198,	180.0,	4.72693
+			slot_upgrade_48x32_112x64_roman,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				barracks_rk city_barracks_rk
+				barracks_rk army_barracks_rk
+				barracks_adun city_barracks_adun
+				barracks_adun army_barracks_adun
+				barracks_thar city_barracks_thar
+				barracks_thar army_barracks_thar
+			}
+			JAR_DUN_MLT_A_60x60_pt1, 	24.0626,	-0.847511,	90.0,	0.0
+			JAR_DUN_MLT_A_60x60_pt2, 	24.0626,	-0.847511,	90.0,	0.0
+			JAR_DUN_MLT_A_60x60_pt3, 	24.0626,	-0.847511,	90.0,	0.0
+			JAR_DUN_BR_36x10, 	-47.5481,	-0.819371,	270.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				barracks_rk royal_barracks_rk
+				barracks_adun royal_barracks_adun
+			}
+			JAR_DUN_MLT_A_60x60_pt1, 	24.1139,	-0.749258,	90.0,	0.0
+			JAR_DUN_MLT_A_60x60_pt2, 	24.1139,	-0.749258,	90.0,	0.0
+			JAR_DUN_MLT_A_60x60_pt3, 	24.1139,	-0.749258,	90.0,	0.0
+			JAR_DUN_MA_STATUE_LEFT, 	-6.82409,	-8.76778,	90.0,	0.0
+			4a_tree_1, 	-8.97303,	21.8118,	360.0,	0.0
+			4a_tree_2, 	-41.051,	22.0664,	270.0,	0.0
+			4a_tree_1, 	-30.1146,	21.8118,	360.0,	0.0
+			4a_tree_2, 	-20.3561,	22.0664,	270.0,	0.0
+			JAR_DUN_MA_STATUE_RIGHT, 	-6.99887,	7.24787,	90.0,	0.0
+			4a_tree_2, 	-41.051,	-22.9817,	270.0,	0.0
+			4a_tree_2, 	-20.3562,	-22.9817,	270.0,	0.0
+			4a_tree_1, 	-30.1146,	-23.2362,	360.0,	0.0
+			JAR_DUN_BR_36x10, 	-47.4968,	-0.721117,	270.0,	0.0
+			4a_tree_1, 	-8.97304,	-23.2362,	360.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				barracks_harad muster_field_harad
+				barracks_harad militia_barracks_harad
+				barracks_haron muster_field_haron
+				barracks_haron militia_barracks_haron
+				barracks_farh muster_field_farh
+				barracks_farh militia_barracks_farh
+			}
+			floor none overlay_militia_barracks_egyptian.cas
+			slot_upgrade_48x32_112x64_eastern,	0,	0,	0,	0
+			militia_barracks_eastern,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				barracks_harad city_barracks_harad
+				barracks_harad army_barracks_harad
+				barracks_haron city_barracks_haron
+				barracks_haron army_barracks_haron
+				barracks_farh city_barracks_farh
+				barracks_farh army_barracks_farh
+			}
+			floor none overlay_city_barracks_egyptian.cas
+			city_barracks_eastern, 		0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				barracks_harad royal_barracks_harad
+			}
+			floor none overlay_city_barracks_egyptian.cas
+			city_barracks_eastern, 		0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				barracks_rohan muster_field_rohan
+				barracks_rohan militia_barracks_rohan
+				barracks_dale muster_field_dale
+				barracks_dale militia_barracks_dale
+				barracks_beorn muster_field_beorn
+				barracks_beorn militia_barracks_beorn
+			}
+			floor none overlay_mead_hall.cas
+			slot_filler_48x32_112x64_group_northman,	0,	0,	0,	0
+			mead_hall, 		0, 	0, 	0, 	0
+			4a_tree_4,					19,	11,	0,	0
+			4a_tree_1,					16,	-7,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				barracks_dorw muster_field_dorw
+				barracks_dorw militia_barracks_dorw
+				barracks_rhov muster_field_rhov
+				barracks_rhov militia_barracks_rhov
+			}
+			floor none overlay_mead_hall.cas
+			slot_filler_48x32_112x64_group_northman,	0,	0,	0,	0
+			mead_hall, 		0, 	0, 	0, 	0
+			4a_tree_4,					19,	11,	0,	0
+			4a_tree_1,					16,	-7,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				barracks_rohan city_barracks_rohan
+				barracks_rohan army_barracks_rohan
+				barracks_dale city_barracks_dale
+				barracks_dale army_barracks_dale
+				barracks_beorn city_barracks_beorn
+				barracks_beorn army_barracks_beorn
+			}
+			floor none overlay_hall_of_heroes.cas
+			BI_barb_barracks_lvl_4, 		-4, 	0, 	0, 	0
+			practice_field_barbarian, 	35.0,	0.0,	90.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				barracks_dorw city_barracks_dorw
+				barracks_dorw army_barracks_dorw
+				barracks_rhov city_barracks_rhov
+				barracks_rhov army_barracks_rhov
+			}
+			floor none overlay_hall_of_heroes.cas
+			BI_barb_barracks_lvl_4, 		-4, 	0, 	0, 	0
+			practice_field_barbarian, 	35.0,	0.0,	90.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				;barracks_rohan royal_barracks_rohan
+				barracks_dale royal_barracks_dale
+			}
+			floor none overlay_hall_of_heroes.cas
+			BI_barb_barracks_lvl_5, 		-14, 	0, 	0, 	0
+			practice_field_barbarian, 	39.5,	0.0,	90.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				barracks_rhun muster_field_rhun
+				barracks_rhun militia_barracks_rhun
+				barracks_khand muster_field_khand
+				barracks_khand militia_barracks_khand
+				barracks_dunland muster_field_dunland
+				barracks_dunland militia_barracks_dunland
+			}
+			floor none overlay_drinking_hall.cas
+			slot_upgrade_48x32_112x64_barbarian,	0,	0,	0,	0
+			drinking_hall, 		0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				barracks_northr muster_field_northr
+				barracks_northr militia_barracks_northr
+			}
+			floor none overlay_drinking_hall.cas
+			slot_upgrade_48x32_112x64_barbarian,	0,	0,	0,	0
+			drinking_hall, 		0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				barracks_rhun city_barracks_rhun
+				barracks_rhun army_barracks_rhun
+				barracks_khand city_barracks_khand
+				barracks_khand army_barracks_khand
+				barracks_dunland city_barracks_dunland
+				barracks_dunland army_barracks_dunland
+			}
+			floor none overlay_hall_of_heroes.cas
+			hall_of_heroes, 		0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				barracks_northr city_barracks_northr
+				barracks_northr army_barracks_northr
+			}
+			floor none overlay_hall_of_heroes.cas
+			hall_of_heroes, 		0, 	0, 	0, 	0
+		}
+	}
+
+	slot slot_112x64_dwarven_barracks
+	{
+		default
+		{
+			slot_112x64_empty_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures any
+			status construction
+			buildings
+			{
+				barracks_dwarven muster_field_dwarven
+			}
+			slot_112x64_construction_site,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+				orkish
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				none
+			}
+			slot_112x64_empty_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				barracks_dwarven muster_field_dwarven
+				barracks_dwarven militia_barracks_dwarven
+			}
+			web_dwarven_barracks_small,	0,	0,	0,	0
+			slot_filler_48x32_112x64_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				barracks_dwarven city_barracks_dwarven
+				barracks_dwarven army_barracks_dwarven
+			}
+			web_dwarven_barracks_small,	0,	0,	0,	0
+			slot_filler_48x32_112x64_group_dwarven,	0,	0,	0,	0
+		}
+	}
+
+; ** DOM MARKETS
+
+	slot slot_112x64_markets
+	{
+		default
+		{
+			slot_112x64_empty_group_elf,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures any
+			status construction
+			buildings
+			{
+				market trader
+			}
+			slot_112x64_construction_site,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_eastern,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_mc,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+				orkish
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				none
+			}
+			slot_112x64_empty_group_roman,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				market trader
+				market market
+			}
+			;floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_small_market_overlay.cas
+			web_elf_small_market,	0,	0,	0,	0
+			slot_filler_48x32_112x64_group_elf,	0,	0,	0,	0
+			4a_shrub_1, 	5.18115,	11.6777,	180.0,	0.0
+			web_elf_stall, 	-11.8112,	-11.5665,	355.0,	0.0
+			web_elf_stall2, 	10.502,	-10.8269,	350.0,	0.0
+			web_elf_stall, 	-20.0368,	-0.0403715,	270.0,	0.0
+			web_elf_stall, 	-12.4141,	12.3745,	195.0,	0.0
+			4a_shrub_2, 	18.6387,	-1.22855,	180.0,	0.0
+			4a_tree_1, 	-8.86508,	0.774841,	360.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				market forum
+				market great_forum
+			}
+			;floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_large_market_overlay.cas
+			web_elf_large_market,	0,	0,	0,	0
+			web_elf_112x64_fence,	0,	0,	0,	0
+			lettuce_patch, 	20.0592,	12.3906,	180.0,	0.1
+			4a_shrub_1, 	40.5649,	6.79178,	180.0,	0.0
+			web_elf_stall, 	34.956,	12.6855,	330.0,	0.0
+			web_elf_stall2, 	-31.533,	-10.4843,	180.0,	0.0
+			web_elf_stall, 	34.0692,	4.69003,	180.0,	0.0
+			web_elf_stall, 	39.3514,	-8.41247,	30.0,	0.0
+			4a_shrub_2, 	-50.1187,	-25.4095,	180.0,	0.0
+			4a_tree_1, 	45.6544,	21.5814,	360.0,	0.0
+			4a_tree_2, 	21.2166,	-6.31464,	360.0,	0.0
+			4a_tree_3, 	-38.976,	-7.43793,	360.0,	0.0
+			pile_of_logs, 	-48.4608,	-19.2865,	180.0,	0.0
+			pile_of_logs, 	-45.822,	-19.72,	180.0,	0.0
+			stove, 	-37.7047,	-22.7261,	180.0,	0.0
+			web_elf_stall2, 	-23.2998,	-20.2363,	0,	0.0
+			4a_shrub_1, 	-19.717,	7.61612,	180.0,	0.0
+			web_elf_stall, 	20.0362,	-17.5619,	5.0,	0.0
+			4a_shrub_2, 	28.7903,	-14.2361,	180.0,	0.0
+			4a_tree_4, 	-48.8289,	22.2549,	360.0,	0.0
+			web_elf_stall, 	-41.4574,	19.8913,	215.0,	0.0
+			4a_shrub_2, 	-35.9808,	7.48367,	180.0,	0.0
+			4a_shrub_1, 	-30.525,	12.7774,	180.0,	0.0
+			web_elf_stall, 	-14.992,	16.819,	330.0,	0.0
+			4a_shrub_1, 	35.9564,	-19.7541,	180.0,	0.0
+			4a_shrub_1, 	-21.078,	-7.89914,	180.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				market trader
+				market market
+			}
+			web_dwarven_market_small,	0,	0,	0,	0
+			slot_filler_48x32_112x64_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				market forum
+				market great_forum
+			}
+			web_dwarven_market_small,	0,	0,	0,	0
+			slot_filler_48x32_112x64_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				market trader
+				market market
+			}
+			JAR_DUN_CMD_20x30, 	7.30894,	3.88762,	90.0,	0.0
+			web_market_stalls_1, 	-15.7075,	-0.418424,	180.0,	0.0
+			4a_tree_1, 	-20.3346,	11.8274,	360.0,	0.0
+			cart_B, 	-8.08652,	12.0071,	75.0,	0.0
+			4a_shrub_1, 	22.5869,	14.6996,	180.0,	0.0
+			4a_shrub_2, 	-6.50766,	-12.1068,	180.0,	0.0
+			web_market_stalls_2, 	16.5392,	-11.9406,	180.0,	0.0
+			web_market_stalls_2, 	0.112133,	-11.9406,	180.0,	0.0
+			slot_upgrade_48x32_112x64_roman,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				market forum
+				market great_forum
+			}
+			JAR_DUN_BR_36x10, 	-0.280604,	-26.246,	180.0,	0.0
+			JAR_DUN_CMD_B_28x28, 	31.3351,	-0.269786,	90.0,	0.37796
+			JAR_DUN_CMD_28x28_pt2, 	-31.7323,	-1.01884,	180.0,	0.458374
+			JAR_DUN_CMD_28x28_pt1, 	-31.7323,	-1.01884,	180.0,	0.458374
+			web_market_stalls_2, 	-27.476,	-24.7616,	180.0,	0.472382
+			web_market_stalls_1, 	51.4737,	-0.216535,	180.0,	0.467621
+			web_market_stalls_1, 	-0.103825,	11.9422,	90.0,	0.467621
+			web_market_stalls_2, 	-44.3842,	-24.7616,	180.0,	0.472382
+			web_market_stalls_1, 	36.585,	22.0153,	270.0,	0.467621
+			JAR_DUN_BENCH, 	8.04443,	-4.64968,	180.0,	0.5
+			JAR_DUN_MA_FOUNTAIN, 	0.0712986,	-4.61704,	180.0,	0.438477
+			JAR_DUN_BENCH, 	-8.18181,	-4.64968,	180.0,	0.5
+			JAR_DUN_BENCH, 	0.0984592,	-12.9786,	270.0,	0.5
+			JAR_DUN_BENCH, 	0.0984592,	3.55893,	270.0,	0.5
+			4a_tree_3, 	49.7081,	-24.4721,	360.0,	0.32019
+			4a_tree_2, 	-50.3761,	-15.5831,	90.0,	0.334961
+			web_market_stalls_1, 	31.47,	-21.3059,	270.0,	0.467621
+			JAR_DUN_HS_10x11, 	-43.9868,	23.4981,	90.0,	0.0
+			JAR_DUN_BR_36x10, 	-0.280604,	26.0811,	180.0,	0.0
+			JAR_DUN_HS_10x11, 	-34.2681,	23.4981,	270.0,	0.0
+			4a_tree_1, 	50.4974,	24.3343,	360.0,	0.32019
+			4a_tree_4, 	-51.6831,	28.7602,	360.0,	0.32019
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				market trader
+				market market
+			}
+			floor none overlay_eastern_marketplace.cas
+			slot_upgrade_48x32_112x64_eastern,	0,	0,	0,	0
+			eastern_marketplace,			0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				market forum
+				market great_forum
+			}
+			floor underlay_egyptian_large_marketplace.cas overlay_egyptian_large_marketplace.cas
+			eastern_large_marketplace,			0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				market trader
+				market market
+			}
+			floor none overlay_barbarian_marketplace.cas
+			slot_filler_48x32_112x64_group_northman,	0,	0,	0,	0
+			barbarian_marketplace,			0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				market forum
+				market great_forum
+			}
+			floor none overlay_barbarian_great_market.cas
+			barbarian_great_market,			0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				market trader
+				market market
+			}
+			floor none overlay_barbarian_trader.cas
+			slot_upgrade_48x32_112x64_barbarian,	0,	0,	0,	0
+			barbarian_trader, 			0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				market forum
+				market great_forum
+			}
+			floor none overlay_barbarian_great_market.cas
+			barbarian_great_market,			0,	0,	0,	0
+		}
+	}
+
+	slot slot_160x128_markets
+	{
+		default
+		{
+			slot_160x128_empty_group_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures any
+			status construction
+			buildings
+			{
+				market trader
+			}
+			slot_160x128_construction_site,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				none
+			}	
+			slot_160x128_empty_group_eastern,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				none
+			}	
+			slot_160x128_empty_group_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				none
+			}	
+			slot_160x128_empty_group_eastern,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+				orkish
+			}
+			buildings
+			{
+				none
+			}	
+			slot_160x128_empty_group_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				none
+			}
+			slot_160x128_empty_group_roman,	0,	0,	0,	0
+		}
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				market trader
+				market market
+			}
+			;floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_small_market_overlay.cas
+			web_elf_small_market,	0,	0,	0,	0
+			4a_shrub_1, 	5.18115,	11.6777,	180.0,	0.0
+			web_elf_stall, 	-11.8112,	-11.5665,	355.0,	0.0
+			web_elf_stall2, 	10.502,	-10.8269,	350.0,	0.0
+			web_elf_stall, 	-20.0368,	-0.0403715,	270.0,	0.0
+			web_elf_stall, 	-12.4141,	12.3745,	195.0,	0.0
+			4a_shrub_2, 	18.6387,	-1.22855,	180.0,	0.0
+			4a_tree_1, 	-8.86508,	0.774841,	360.0,	0.0
+			slot_filler_48x32_112x64_group_elf,	0,	0,	0,	0
+			slot_upgrade_112x64_160x128_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				market forum
+				market great_forum
+			}
+			;floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_large_market_overlay.cas
+			web_elf_large_market,	0,	0,	0,	0
+			web_elf_112x64_fence,	0,	0,	0,	0
+			lettuce_patch, 	20.0592,	12.3906,	180.0,	0.1
+			4a_shrub_1, 	40.5649,	6.79178,	180.0,	0.0
+			web_elf_stall, 	34.956,	12.6855,	330.0,	0.0
+			web_elf_stall2, 	-31.533,	-10.4843,	180.0,	0.0
+			web_elf_stall, 	34.0692,	4.69003,	180.0,	0.0
+			web_elf_stall, 	39.3514,	-8.41247,	30.0,	0.0
+			4a_shrub_2, 	-50.1187,	-25.4095,	180.0,	0.0
+			4a_tree_1, 	45.6544,	21.5814,	360.0,	0.0
+			4a_tree_2, 	21.2166,	-6.31464,	360.0,	0.0
+			4a_tree_3, 	-38.976,	-7.43793,	360.0,	0.0
+			pile_of_logs, 	-48.4608,	-19.2865,	180.0,	0.0
+			pile_of_logs, 	-45.822,	-19.72,	180.0,	0.0
+			stove, 	-37.7047,	-22.7261,	180.0,	0.0
+			web_elf_stall2, 	-23.2998,	-20.2363,	0,	0.0
+			4a_shrub_1, 	-19.717,	7.61612,	180.0,	0.0
+			web_elf_stall, 	20.0362,	-17.5619,	5.0,	0.0
+			4a_shrub_2, 	28.7903,	-14.2361,	180.0,	0.0
+			4a_tree_4, 	-48.8289,	22.2549,	360.0,	0.0
+			web_elf_stall, 	-41.4574,	19.8913,	215.0,	0.0
+			4a_shrub_2, 	-35.9808,	7.48367,	180.0,	0.0
+			4a_shrub_1, 	-30.525,	12.7774,	180.0,	0.0
+			web_elf_stall, 	-14.992,	16.819,	330.0,	0.0
+			4a_shrub_1, 	35.9564,	-19.7541,	180.0,	0.0
+			4a_shrub_1, 	-21.078,	-7.89914,	180.0,	0.0
+			slot_upgrade_112x64_160x128_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				market trader
+				market market
+			}
+			web_dwarven_market_small,	0,	0,	0,	0
+			slot_filler_48x32_112x64_group_dwarven,	0,	0,	0,	0
+			slot_upgrade_112x64_160x128_eastern,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				market forum
+				market great_forum
+			}
+			web_dwarven_market_small,	0,	0,	0,	0
+			slot_filler_48x32_112x64_group_dwarven,	0,	0,	0,	0
+			slot_upgrade_112x64_160x128_eastern,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				market trader
+				market market
+			}
+			JAR_DUN_CMD_20x30, 	7.30894,	3.88762,	90.0,	0.0
+			web_market_stalls_1, 	-15.7075,	-0.418424,	180.0,	0.0
+			4a_tree_1, 	-20.3346,	11.8274,	360.0,	0.0
+			cart_B, 	-8.08652,	12.0071,	75.0,	0.0
+			4a_shrub_1, 	22.5869,	14.6996,	180.0,	0.0
+			4a_shrub_2, 	-6.50766,	-12.1068,	180.0,	0.0
+			web_market_stalls_2, 	16.5392,	-11.9406,	180.0,	0.0
+			web_market_stalls_2, 	0.112133,	-11.9406,	180.0,	0.0
+			slot_upgrade_48x32_160x128_eastern,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				market forum
+				market great_forum
+			}
+			JAR_DUN_BR_36x10, 	-0.280604,	-26.246,	180.0,	0.0
+			JAR_DUN_CMD_B_28x28, 	31.3351,	-0.269786,	90.0,	0.37796
+			JAR_DUN_CMD_28x28_pt2, 	-31.7323,	-1.01884,	180.0,	0.458374
+			JAR_DUN_CMD_28x28_pt1, 	-31.7323,	-1.01884,	180.0,	0.458374
+			web_market_stalls_2, 	-27.476,	-24.7616,	180.0,	0.472382
+			web_market_stalls_1, 	51.4737,	-0.216535,	180.0,	0.467621
+			web_market_stalls_1, 	-0.103825,	11.9422,	90.0,	0.467621
+			web_market_stalls_2, 	-44.3842,	-24.7616,	180.0,	0.472382
+			web_market_stalls_1, 	36.585,	22.0153,	270.0,	0.467621
+			JAR_DUN_BENCH, 	8.04443,	-4.64968,	180.0,	0.5
+			JAR_DUN_MA_FOUNTAIN, 	0.0712986,	-4.61704,	180.0,	0.438477
+			JAR_DUN_BENCH, 	-8.18181,	-4.64968,	180.0,	0.5
+			JAR_DUN_BENCH, 	0.0984592,	-12.9786,	270.0,	0.5
+			JAR_DUN_BENCH, 	0.0984592,	3.55893,	270.0,	0.5
+			4a_tree_3, 	49.7081,	-24.4721,	360.0,	0.32019
+			4a_tree_2, 	-50.3761,	-15.5831,	90.0,	0.334961
+			web_market_stalls_1, 	31.47,	-21.3059,	270.0,	0.467621
+			JAR_DUN_HS_10x11, 	-43.9868,	23.4981,	90.0,	0.0
+			JAR_DUN_BR_36x10, 	-0.280604,	26.0811,	180.0,	0.0
+			JAR_DUN_HS_10x11, 	-34.2681,	23.4981,	270.0,	0.0
+			4a_tree_1, 	50.4974,	24.3343,	360.0,	0.32019
+			4a_tree_4, 	-51.6831,	28.7602,	360.0,	0.32019
+			slot_upgrade_112x64_160x128_eastern,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				market trader
+				market market
+			}
+			floor none overlay_barbarian_marketplace.cas
+			slot_filler_48x32_112x64_group_northman
+			slot_upgrade_112x64_160x128_barbarian,	0,	0,	0,	0
+			barbarian_marketplace,			0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				market forum
+				market great_forum
+			}
+			floor none overlay_barbarian_great_market.cas
+			slot_upgrade_112x64_160x128_barbarian,	0,	0,	0,	0
+			barbarian_great_market,			0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				market trader
+				market market
+			}
+			floor none overlay_barbarian_trader.cas
+			slot_upgrade_48x32_160x128_barbarian,	0,	0,	0,	0
+			barbarian_trader, 			0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				market forum
+				market great_forum
+			}
+			floor none overlay_barbarian_great_market.cas
+			slot_upgrade_112x64_160x128_barbarian,	0,	0,	0,	0
+			barbarian_great_market,			0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				market trader
+				market market
+			}
+			floor none overlay_eastern_marketplace.cas
+			slot_upgrade_48x32_160x128_eastern,	0,	0,	0,	0
+			eastern_marketplace,			0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				market forum
+				market great_forum
+			}
+			floor underlay_egyptian_large_marketplace.cas overlay_egyptian_large_marketplace.cas
+			slot_upgrade_112x64_160x128_eastern,		0,	0,	0,	0
+			eastern_large_marketplace,			0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				market curia
+			}
+			floor none overlay_eastern_merchants_quarter.cas
+			eastern_merchants_quarter,	0,	0,	0,	0
+		}
+	}
+
+; ** DOM LIBRARYS
+
+	slot slot_112x64_library
+	{
+		default
+		{
+			slot_112x64_empty_group,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures any
+			status construction
+			buildings
+			{
+				academic academy
+			}
+			slot_112x64_construction_site,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_eastern,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				orkish
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_mc,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_northman,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				none
+			}
+			slot_112x64_empty_group_roman,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				academic academy
+			}
+			;floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_small_library_overlay.cas
+			web_elf_small_library,	0,	0,	0,	0
+			4a_tree_1, 	16.5474,	3.68146,	360.0,	0.0
+			4a_tree_2, 	-13.3273,	-10.5344,	360.0,	0.0
+			4a_shrub_1, 	-20.3959,	3.34122,	180.0,	0.0
+			4a_tree_4, 	-17.9507,	9.78058,	360.0,	0.0
+			4a_shrub_2, 	17.652,	10.5515,	180.0,	0.0
+			4a_shrub_1, 	19.9208,	-11.5449,	180.0,	0.0
+			4a_shrub_1, 	-6.34705,	11.4578,	180.0,	0.0
+			4a_shrub_1, 	9.54443,	-4.47751,	180.0,	0.0
+			slot_filler_48x32_112x64_group_elf,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				academic scriptorium
+			}
+			;floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_large_library_overlay.cas
+			web_elf_large_library,	0,	0,	0,	0
+			web_elf_112x64_fence,	0,	0,	0,	0
+			4a_shrub_1, 	-18.9034,	-2.23959,	180.0,	0.0
+			4a_shrub_2, 	40.0111,	-20.1107,	180.0,	0.0
+			4a_tree_1, 	-29.534,	11.1022,	360.0,	0.0
+			4a_tree_2, 	46.1307,	18.1547,	360.0,	0.0
+			4a_tree_3, 	-42.1726,	18.0645,	360.0,	0.0
+			4a_shrub_1, 	-38.4385,	11.9431,	180.0,	0.0
+			4a_shrub_2, 	40.7589,	-2.51535,	180.0,	0.0
+			4a_shrub_2, 	9.91693,	8.31583,	180.0,	0.0
+			4a_shrub_1, 	-20.4352,	-21.149,	180.0,	0.0
+			4a_shrub_1, 	-15.1144,	13.9004,	180.0,	0.0
+			4a_shrub_1, 	18.9396,	-21.787,	180.0,	0.0
+			4a_tree_4, 	44.0073,	-10.523,	290.0,	0.0
+			4a_tree_1, 	12.7746,	16.0529,	290.0,	0.0
+			4a_tree_3, 	17.9596,	4.5285,	360.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				academic academy
+			}
+			web_dwarven_library_small,	0,	0,	0,	0
+			slot_filler_48x32_112x64_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				academic scriptorium
+			}
+			web_dwarven_library_small,	0,	0,	0,	0
+			slot_filler_48x32_112x64_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				academic academy
+			}
+			JAR_DUN_HL_29x29, 	0.0,	0.0,	180.0,	0.0
+			4a_tree_4, 	-19.1776,	10.8245,	270.0,	0.0
+			4a_tree_4, 	19.1797,	10.8245,	270.0,	0.0
+			4a_tree_1, 	19.1797,	-13.3105,	270.0,	0.0
+			4a_tree_1, 	-19.4323,	-13.3105,	270.0,	0.0
+			JAR_DUN_HL_12x12, 	0.0,	0.0,	180.0,	25.6729
+			slot_upgrade_48x32_112x64_roman,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				academic scriptorium
+			}
+			JAR_DUN_HL_38x40_pt1, 	0.0,	4.56434,	180.0,	0.0
+			JAR_DUN_HL_38x40_pt2, 	0.0,	4.56434,	180.0,	0.0
+			4a_tree_1, 	38.1851,	-16.2586,	270.0,	0.0
+			4a_tree_2, 	-36.5735,	19.4267,	90.0,	0.0
+			4a_tree_3, 	39.5659,	-4.65274,	360.0,	0.0
+			4a_tree_4, 	-38.4307,	7.87648,	270.0,	0.0
+			4a_tree_4, 	38.1851,	7.87648,	270.0,	0.0
+			4a_tree_2, 	40.1012,	19.4267,	90.0,	0.0
+			4a_tree_3, 	-37.914,	-4.65274,	360.0,	0.0
+			JAR_DUN_HL_12x12, 	0.0,	4.56434,	180.0,	39.8634
+			4a_tree_1, 	-38.6854,	-16.2586,	270.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				academic ludus_magnus
+			}
+			JAR_DUN_HL_38x40_pt1, 	0.0,	12.0747,	180.0,	0.0
+			JAR_DUN_HL_38x40_pt2, 	0.0,	12.0747,	180.0,	0.0
+			JAR_DUN_TR_20x20, 	0.0,	12.133,	180.0,	10.0
+			4a_tree_4, 	-38.4307,	9.70335,	270.0,	0.0
+			4a_tree_4, 	39.8669,	9.70335,	270.0,	0.0
+			4a_tree_1, 	39.4902,	-10.3041,	270.0,	0.0
+			4a_tree_1, 	-38.6854,	-10.3041,	270.0,	0.0
+			4a_tree_3, 	-37.914,	0.0180702,	360.0,	0.0
+			4a_tree_3, 	39.5659,	0.0180702,	360.0,	0.0
+			4a_tree_2, 	-40.1795,	20.2856,	90.0,	0.0
+			4a_tree_2, 	40.1012,	20.2856,	90.0,	0.0
+			JAR_DUN_MA_FOUNTAIN, 	0.0,	-21.1114,	180.0,	0.0
+			4a_tree_2, 	40.1012,	-19.5843,	90.0,	0.0
+			4a_tree_2, 	-36.5735,	-19.5843,	90.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				academic academy
+			}
+			floor underlay_scriptorium_roman.cas overlay_scriptorium_roman.cas
+			slot_upgrade_48x32_112x64_eastern,	0,	0,	0,	0
+			ludus_magnus_eastern, 			0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				academic scriptorium
+			}
+			floor none overlay_academy_eastern.cas
+			academy_eastern, 			0, 	0, 	0, 	1
+			base_academy_eastern,			0,	0,	0,	0
+			4a_tree_1,				-50, 	20,	60,	0
+			4a_tree_2,				-40, 	20,	10,	0
+			4a_tree_3,				-50, 	10,	120,	0
+			4a_tree_4,				-40, 	10,	70,	0
+			4a_tree_1,				-50, 	0,	-20,	0
+			4a_tree_2,				-40, 	0,	150,	0
+			4a_tree_3,				-50, 	-10,	50,	0
+			4a_tree_4,				-40, 	-10,	130,	0
+			4a_tree_1,				-50, 	-20,	80,	0
+			4a_tree_2,				-40, 	-20,	15,	0
+			4a_tree_3,				50, 	20,	110,	0
+			4a_tree_4,				40, 	20,	-10,	0
+			4a_tree_1,				50, 	10,	90,	0
+			4a_tree_2,				40, 	10,	180,	0
+			4a_tree_3,				50, 	0,	20,	0
+			4a_tree_4,				40, 	0,	160,	0
+			4a_tree_1,				50, 	-10,	40,	0
+			4a_tree_2,				40, 	-10,	100,	0
+			4a_tree_3,				50, 	-20,	30,	0
+			4a_tree_4,				40, 	-20,	170,	0
+		}
+	}
+
+; ** DOM CULTURAL CONVERSION BUILDINGS
+
+	slot slot_112x64_cc
+	{
+		default
+		{
+			slot_112x64_empty_group_elf,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures any
+			status construction
+			buildings
+			{
+				culture_elven culture_elven_1
+				culture_dwarven culture_dwarven_1
+				culture_dunedanic culture_dunedanic_1
+				culture_haradrian culture_haradrian_1
+				culture_northmen culture_northmen_1
+				culture_barbarian culture_barbarian_1
+			}
+			slot_112x64_construction_site,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures any
+			status construction
+			buildings
+			{
+				culture_one_god temple_of_one_god_shrine
+			}
+			slot_112x64_construction_site,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_eastern,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+				orkish
+			}
+			buildings
+			{
+				none
+			}	
+			slot_112x64_empty_group,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				none
+			}
+			slot_112x64_empty_group_roman,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				culture_elven culture_elven_1
+			}
+			;floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_patronage_overlay.cas
+			web_elf_patronage,	0,	0,	0,	0
+			4a_shrub_1, 	11.0004,	-13.3152,	180.0,	0.0
+			4a_tree_1, 	-3.88747,	10.4249,	360.0,	0.0
+			4a_tree_3, 	-18.574,	-10.6231,	360.0,	0.0
+			4a_shrub_1, 	-1.69049,	-1.2429,	180.0,	0.0
+			4a_shrub_2, 	-19.4539,	11.7632,	180.0,	0.0
+			4a_shrub_1, 	2.06454,	11.5735,	180.0,	0.0
+			4a_shrub_1, 	4.72711,	0.496597,	180.0,	0.0
+			4a_shrub_1, 	-12.7902,	-11.7468,	180.0,	0.0
+			4a_tree_1, 	1.72537,	-13.0612,	290.0,	0.0
+			4a_tree_3, 	17.8383,	11.4256,	360.0,	0.0
+			slot_filler_48x32_112x64_group_elf,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				culture_elven culture_elven_2
+			}
+			floor ../../../bi/fatw/data/settlement_plans/slot_underlays/web_elf_songfestivals_underlay.cas
+			web_elf_songfestivals,	0,	0,	0,	0
+			4a_shrub_1, 	-26.7434,	-15.0736,	180.0,	0.0
+			4a_shrub_2, 	-44.7723,	-1.93773,	180.0,	0.0
+			4a_tree_1, 	-11.6477,	22.2154,	360.0,	0.0
+			4a_tree_2, 	24.6641,	-10.0695,	360.0,	-0.135254
+			4a_tree_3, 	-20.4262,	-6.3139,	360.0,	0.0
+			4a_shrub_1, 	-23.7869,	17.9155,	180.0,	-0.432129
+			4a_shrub_2, 	20.9543,	20.1083,	180.0,	0.0
+			4a_shrub_1, 	10.3257,	-14.3265,	180.0,	0.0
+			4a_shrub_1, 	47.797,	-5.04695,	180.0,	0.0
+			4a_tree_4, 	49.3518,	19.1962,	290.0,	0.257813
+			4a_tree_1, 	-17.9465,	-25.3562,	290.0,	0.0
+			4a_tree_3, 	19.715,	6.32485,	360.0,	0.0
+			web_elf_112x64_fence,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				culture_elven culture_elven_3
+			}
+			floor ../../../bi/fatw/data/settlement_plans/slot_underlays/web_elf_hallofsongs_underlay.cas
+			web_elf_hallofsongs,	0,	0,	0,	0
+			4a_shrub_1, 	-26.3026,	-9.55122,	180.0,	0.0
+			4a_shrub_2, 	-44.7723,	-1.93773,	180.0,	-0.154907
+			4a_tree_1, 	-12.9784,	24.3316,	360.0,	0.0
+			4a_tree_2, 	28.1347,	-13.4103,	360.0,	-0.135254
+			4a_tree_3, 	-41.3221,	-14.8872,	360.0,	0.0
+			4a_shrub_1, 	-13.8359,	13.4525,	180.0,	0.045166
+			4a_shrub_2, 	19.0655,	25.9804,	180.0,	0.0
+			4a_shrub_2, 	-32.9583,	6.21769,	180.0,	0.139099
+			4a_shrub_1, 	15.0124,	-26.2413,	180.0,	0.0
+			4a_shrub_1, 	47.797,	-5.04695,	180.0,	0.0
+			4a_shrub_1, 	-0.179854,	-18.9934,	180.0,	0.0
+			4a_tree_4, 	46.7737,	8.1793,	290.0,	0.257813
+			4a_tree_1, 	-17.9465,	-25.3562,	290.0,	0.0
+			4a_tree_3, 	20.7761,	13.8221,	360.0,	0.0
+			web_elf_112x64_fence,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				culture_dwarven culture_dwarven_1
+			}
+			web_dwarven_cc_small,	0,	0,	0,	0
+			slot_filler_48x32_112x64_group_dwarven,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				culture_dwarven culture_dwarven_2
+			}
+			web_dwarven_cc_mid,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				culture_dwarven culture_dwarven_3
+			}
+			web_dwarven_cc_large,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				culture_dunedanic culture_dunedanic_1
+			}
+			JAR_DUN_MLT_22x22, 	0.0,	-0.0776987,	180.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				culture_dunedanic culture_dunedanic_2
+			}
+			JAR_DUN_HL_B_18x18, 	-36.2404,	-14.9108,	180.0,	0.0
+			JAR_DUN_HSR_14x20, 	-36.493,	16.8491,	180.0,	0.0
+			JAR_DUN_MLT_22x22, 	0.0,	-0.0776987,	180.0,	0.0
+			4a_tree_2, 	-18.2528,	12.6112,	180.0,	0.0
+			JAR_DUN_HL_B_18x18, 	36.0159,	-14.9108,	180.0,	0.0
+			JAR_DUN_HSR_14x20, 	36.5778,	16.8491,	180.0,	0.0
+			4a_tree_2, 	18.2537,	12.6112,	180.0,	0.0
+			4a_tree_1, 	18.2537,	-12.2279,	180.0,	0.0
+			4a_tree_1, 	-18.6289,	-12.2279,	180.0,	0.0
+			JAR_DUN_TR_12x16_pt1, 	3.09095,	14.8672,	180.0,	23.4783
+			JAR_DUN_TR_12x16_pt2, 	3.09095,	14.8672,	180.0,	23.4783
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				culture_dunedanic culture_dunedanic_3
+			}
+			JAR_DUN_BR_57x21_pt1, 	0.38266,	17.5735,	180.0,	0.0
+			JAR_DUN_BR_57x21_pt2, 	0.38266,	17.5735,	180.0,	0.0
+			JAR_DUN_HL_B_18x18, 	-41.4405,	-14.9108,	180.0,	0.0
+			JAR_DUN_HSR_14x20, 	-41.6931,	16.8491,	180.0,	0.0
+			JAR_DUN_MA_FOUNTAIN, 	0.0,	-24.1726,	180.0,	0.0
+			JAR_DUN_MLT_22x22, 	0.0,	-0.0776987,	180.0,	0.0
+			4a_tree_2, 	-18.2528,	1.00872,	180.0,	0.0
+			JAR_DUN_HL_B_18x18, 	41.2228,	-14.9108,	180.0,	0.0
+			JAR_DUN_HSR_14x20, 	41.7848,	16.8491,	180.0,	0.0
+			4a_tree_2, 	18.2537,	1.00872,	180.0,	0.0
+			4a_tree_1, 	18.2537,	-8.38617,	180.0,	0.0
+			4a_tree_1, 	-18.6289,	-8.38617,	180.0,	0.0
+			4a_tree_3, 	18.2537,	-18.0827,	180.0,	0.0
+			4a_tree_3, 	-18.6289,	-18.0827,	180.0,	0.0
+			4a_tree_4, 	18.2537,	-28.295,	180.0,	0.0
+			4a_tree_4, 	-18.6289,	-28.295,	180.0,	0.0
+			JAR_DUN_TR_12x16_pt1, 	3.09095,	23.2656,	180.0,	45.93945
+			JAR_DUN_TR_12x16_pt2, 	3.09095,	23.2656,	180.0,	45.93945
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				culture_haradrian culture_haradrian_1
+			}
+			floor none overlay_eastern_shrine.cas
+			slot_upgrade_48x32_112x64_eastern,	0,	0,	0,	0
+			eastern_shrine,				0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				culture_haradrian culture_haradrian_2
+			}
+			floor none overlay_eastern_temple.cas
+			slot_upgrade_48x32_112x64_eastern,	0,	0,	0,	0
+			eastern_temple, 			0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				culture_haradrian culture_haradrian_3
+			}
+			floor none overlay_eastern_large_temple.cas
+			eastern_large_temple, 			0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				culture_northmen culture_northmen_1
+			}
+			floor none tavern_barbarian_overlay.cas
+			slot_filler_48x32_112x64_group_northman, 	0, 	0, 	0, 	0
+			tavern_barbarian, 		0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				culture_northmen culture_northmen_2
+			}
+			floor none overlay_warlords_hold.cas
+			warlords_hold,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				culture_northmen culture_northmen_3
+			}
+			floor none bardic_circle_barbarian_overlay.cas
+			bardic_circle_barbarian, 		0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				culture_barbarian culture_barbarian_1
+			}
+			floor none overlay_barbarian_stables.cas
+			slot_upgrade_48x32_112x64_barbarian,	0,	0,	0,	0
+			barbarian_stables, 				0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				culture_barbarian culture_barbarian_2
+			}
+			floor none overlay_warlords_stable.cas
+			slot_upgrade_48x32_112x64_barbarian,	0,	0,	0,	0
+			warlords_stable, 			0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				culture_barbarian culture_barbarian_3
+			}
+			floor none overlay_warlords_stable.cas
+			slot_upgrade_48x32_112x64_barbarian,	0,	0,	0,	0
+			BI_barb_stables_lvl_4, 			0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				culture_one_god temple_of_one_god_shrine
+			}
+			BI_barb_pagan_religion_lvl_2,				0,	0,	0,	0
+			4a_tree_4,				-2.45,	11.85,	90,	0
+			4a_tree_1,				6.83,	7.07,	90,	0
+			4a_tree_2,				13.91,	8.46,	147.5,	0
+			4a_tree_3,				14.18,	3.05,	147.5,	0
+			4a_tree_2,				17.42,	-0.92,	47,	0
+			4a_tree_4,				17.02,	-7.26,	147.5,	0
+			4a_tree_3,				7.531,	-6.52,	90,	0
+			4a_tree_2,				0.07,	-8.6,	147.5,	0
+			slot_upgrade_48x32_112x64_roman,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				culture_one_god temple_of_one_god_shrine
+			}
+			BI_barb_pagan_religion_lvl_2,				0,	0,	0,	0
+			4a_tree_4,				-2.45,	11.85,	90,	0
+			4a_tree_1,				6.83,	7.07,	90,	0
+			4a_tree_2,				13.91,	8.46,	147.5,	0
+			4a_tree_3,				14.18,	3.05,	147.5,	0
+			4a_tree_2,				17.42,	-0.92,	47,	0
+			4a_tree_4,				17.02,	-7.26,	147.5,	0
+			4a_tree_3,				7.531,	-6.52,	90,	0
+			4a_tree_2,				0.07,	-8.6,	147.5,	0
+			slot_upgrade_48x32_112x64_eastern,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				culture_one_god temple_of_one_god_shrine
+			}
+			BI_barb_pagan_religion_lvl_2,				0,	0,	0,	0
+			4a_tree_4,				-2.45,	11.85,	90,	0
+			4a_tree_1,				6.83,	7.07,	90,	0
+			4a_tree_2,				13.91,	8.46,	147.5,	0
+			4a_tree_3,				14.18,	3.05,	147.5,	0
+			4a_tree_2,				17.42,	-0.92,	47,	0
+			4a_tree_4,				17.02,	-7.26,	147.5,	0
+			4a_tree_3,				7.531,	-6.52,	90,	0
+			4a_tree_2,				0.07,	-8.6,	147.5,	0
+			slot_upgrade_48x32_112x64_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				culture_one_god temple_of_one_god_temple
+			}
+			web_cultic_temple_2, 	0.244431,	5.04044,	0.0,	0.0
+			4a_tree_1, 	-19.0845,	10.3309,	180.0,	0.0
+			4a_tree_2, 	18.8415,	-10.7998,	180.0,	0.0
+			4a_tree_1, 	14.3725,	11.2228,	180.0,	0.0
+			4a_tree_3, 	-15.7806,	-9.90889,	180.0,	0.0
+			4a_tree_2, 	-13.6861,	0.738299,	180.0,	0.0
+			4a_tree_2, 	12.1983,	-3.50881,	180.0,	0.0
+			4a_tree_4, 	20.5299,	3.71835,	180.0,	0.0
+			4a_tree_4, 	-22.4235,	-1.48021,	180.0,	0.0
+			slot_upgrade_48x32_112x64_roman,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				culture_one_god temple_of_one_god_temple
+			}
+			web_cultic_temple_2, 	0.244431,	5.04044,	0.0,	0.0
+			4a_tree_1, 	-19.0845,	10.3309,	180.0,	0.0
+			4a_tree_2, 	18.8415,	-10.7998,	180.0,	0.0
+			4a_tree_1, 	14.3725,	11.2228,	180.0,	0.0
+			4a_tree_3, 	-15.7806,	-9.90889,	180.0,	0.0
+			4a_tree_2, 	-13.6861,	0.738299,	180.0,	0.0
+			4a_tree_2, 	12.1983,	-3.50881,	180.0,	0.0
+			4a_tree_4, 	20.5299,	3.71835,	180.0,	0.0
+			4a_tree_4, 	-22.4235,	-1.48021,	180.0,	0.0
+			slot_upgrade_48x32_112x64_eastern,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				culture_one_god temple_of_one_god_temple
+			}
+			web_cultic_temple_2, 	0.244431,	5.04044,	0.0,	0.0
+			4a_tree_1, 	-19.0845,	10.3309,	180.0,	0.0
+			4a_tree_2, 	18.8415,	-10.7998,	180.0,	0.0
+			4a_tree_1, 	14.3725,	11.2228,	180.0,	0.0
+			4a_tree_3, 	-15.7806,	-9.90889,	180.0,	0.0
+			4a_tree_2, 	-13.6861,	0.738299,	180.0,	0.0
+			4a_tree_2, 	12.1983,	-3.50881,	180.0,	0.0
+			4a_tree_4, 	20.5299,	3.71835,	180.0,	0.0
+			4a_tree_4, 	-22.4235,	-1.48021,	180.0,	0.0
+			slot_upgrade_48x32_112x64_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+				eastern
+				barbarian
+			}
+			buildings
+			{
+				culture_one_god temple_of_one_god_large_temple
+			}
+			web_cultic_temple_4, 	-9.49704,	-0.0830009,	90.0,	0.0
+			4a_tree_1, 	16.0947,	-23.0085,	270.0,	0.0
+			4a_tree_2, 	-47.0237,	19.5787,	270.0,	0.0
+			4a_tree_1, 	15.2027,	20.7411,	270.0,	0.0
+			4a_tree_3, 	-47.6608,	-18.6235,	270.0,	0.0
+			4a_tree_2, 	-33.696,	-22.2516,	270.0,	0.0
+			4a_tree_2, 	29.9344,	18.5669,	270.0,	0.0
+			4a_tree_4, 	-31.92,	21.7722,	270.0,	0.0
+			4a_tree_4, 	27.9058,	-26.3475,	270.0,	0.0
+			4a_tree_2, 	-49.1132,	-4.20105,	270.0,	0.0
+			4a_tree_1, 	-45.9934,	7.72342,	270.0,	0.0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+				eastern
+				barbarian
+			}
+			buildings
+			{
+				culture_one_god temple_of_one_god_awesome_temple
+				culture_one_god temple_of_one_god_pantheon
+			}
+			web_cultic_temple_3, 	44.9401,	0.0834017,	270.0,	0.0
+			web_cultic_temple_4, 	-24.241,	-0.0830009,	90.0,	0.0
+			4a_tree_1, 	-0.925632,	-26.5967,	270.0,	0.0
+			4a_tree_2, 	-42.5795,	16.8573,	270.0,	0.0
+			4a_tree_1, 	-2.49285,	20.7411,	270.0,	0.0
+			4a_tree_3, 	-8.80714,	-17.3615,	270.0,	0.0
+			4a_tree_2, 	-49.0769,	-23.4317,	270.0,	0.0
+			4a_tree_2, 	12.2388,	18.5669,	270.0,	0.0
+			4a_tree_4, 	-49.4071,	26.814,	270.0,	0.0
+			4a_tree_4, 	9.13488,	-21.3526,	270.0,	0.0
+			4a_tree_2, 	7.02919,	26.6134,	270.0,	0.0
+			4a_tree_1, 	-42.0831,	-17.8595,	270.0,	0.0
+			4a_tree_2, 	36.217,	-16.5227,	270.0,	0.0
+			4a_tree_4, 	35.6995,	13.7276,	270.0,	0.0
+			4a_tree_1, 	49.4878,	-17.9973,	270.0,	0.0
+			4a_tree_4, 	42.5101,	-26.6855,	270.0,	0.0
+			4a_tree_3, 	43.4538,	24.3042,	270.0,	0.0
+			4a_tree_2, 	48.6559,	15.8332,	270.0,	0.0
+		}
+	}
+
+	slot slot_160x128_cc
+	{
+		default
+		{
+			slot_160x128_empty_group_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures any
+			status construction
+			buildings
+			{
+				culture_one_god temple_of_one_god_shrine
+			}
+			slot_160x128_construction_site,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures any
+			status construction
+			buildings
+			{
+				culture_elven culture_elven_1
+				culture_dwarven culture_dwarven_1
+				culture_dunedanic culture_dunedanic_1
+				culture_haradrian culture_haradrian_1
+				culture_northmen culture_northmen_1
+				culture_barbarian culture_barbarian_1
+			}
+			slot_160x128_construction_site,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				none
+			}	
+			slot_160x128_empty_group_eastern,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				none
+			}	
+			slot_160x128_empty_group_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				none
+			}	
+			slot_160x128_empty_group_eastern,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+				orkish
+			}
+			buildings
+			{
+				none
+			}	
+			slot_160x128_empty_group_barbarian,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				none
+			}
+			slot_160x128_empty_group_eastern,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				culture_elven culture_elven_1
+			}
+			;floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_patronage_overlay.cas
+			web_elf_patronage,	0,	0,	0,	0
+			4a_shrub_1, 	11.0004,	-13.3152,	180.0,	0.0
+			4a_tree_1, 	-3.88747,	10.4249,	360.0,	0.0
+			4a_tree_3, 	-18.574,	-10.6231,	360.0,	0.0
+			4a_shrub_1, 	-1.69049,	-1.2429,	180.0,	0.0
+			4a_shrub_2, 	-19.4539,	11.7632,	180.0,	0.0
+			4a_shrub_1, 	2.06454,	11.5735,	180.0,	0.0
+			4a_shrub_1, 	4.72711,	0.496597,	180.0,	0.0
+			4a_shrub_1, 	-12.7902,	-11.7468,	180.0,	0.0
+			4a_tree_1, 	1.72537,	-13.0612,	290.0,	0.0
+			4a_tree_3, 	17.8383,	11.4256,	360.0,	0.0
+			slot_filler_48x32_112x64_group_elf,	0,	0,	0,	0
+			slot_upgrade_112x64_160x128_barbarian,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				culture_elven culture_elven_2
+			}
+			floor ../../../bi/fatw/data/settlement_plans/slot_underlays/web_elf_songfestivals_underlay.cas
+			web_elf_songfestivals,	0,	0,	0,	0
+			web_elf_112x64_fence,	0,	0,	0,	0
+			4a_shrub_1, 	-26.7434,	-15.0736,	180.0,	0.0
+			4a_shrub_2, 	-44.7723,	-1.93773,	180.0,	0.0
+			4a_tree_1, 	-11.6477,	22.2154,	360.0,	0.0
+			4a_tree_2, 	24.6641,	-10.0695,	360.0,	-0.135254
+			4a_tree_3, 	-20.4262,	-6.3139,	360.0,	0.0
+			4a_shrub_1, 	-23.7869,	17.9155,	180.0,	-0.432129
+			4a_shrub_2, 	20.9543,	20.1083,	180.0,	0.0
+			4a_shrub_1, 	10.3257,	-14.3265,	180.0,	0.0
+			4a_shrub_1, 	47.797,	-5.04695,	180.0,	0.0
+			4a_tree_4, 	49.3518,	19.1962,	290.0,	0.257813
+			4a_tree_1, 	-17.9465,	-25.3562,	290.0,	0.0
+			4a_tree_3, 	19.715,	6.32485,	360.0,	0.0
+			slot_upgrade_112x64_160x128_barbarian,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				carthaginian
+			}
+			buildings
+			{
+				culture_elven culture_elven_3
+			}
+			floor ../../../bi/fatw/data/settlement_plans/slot_underlays/web_elf_hallofsongs_underlay.cas
+			web_elf_hallofsongs,	0,	0,	0,	0
+			web_elf_112x64_fence,	0,	0,	0,	0
+			4a_shrub_1, 	-26.3026,	-9.55122,	180.0,	0.0
+			4a_shrub_2, 	-44.7723,	-1.93773,	180.0,	-0.154907
+			4a_tree_1, 	-12.9784,	24.3316,	360.0,	0.0
+			4a_tree_2, 	28.1347,	-13.4103,	360.0,	-0.135254
+			4a_tree_3, 	-41.3221,	-14.8872,	360.0,	0.0
+			4a_shrub_1, 	-13.8359,	13.4525,	180.0,	0.045166
+			4a_shrub_2, 	19.0655,	25.9804,	180.0,	0.0
+			4a_shrub_2, 	-32.9583,	6.21769,	180.0,	0.139099
+			4a_shrub_1, 	15.0124,	-26.2413,	180.0,	0.0
+			4a_shrub_1, 	47.797,	-5.04695,	180.0,	0.0
+			4a_shrub_1, 	-0.179854,	-18.9934,	180.0,	0.0
+			4a_tree_4, 	46.7737,	8.1793,	290.0,	0.257813
+			4a_tree_1, 	-17.9465,	-25.3562,	290.0,	0.0
+			4a_tree_3, 	20.7761,	13.8221,	360.0,	0.0
+			slot_upgrade_112x64_160x128_barbarian,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				culture_dwarven culture_dwarven_1
+			}
+			web_dwarven_cc_small,	0,	0,	0,	0
+			slot_upgrade_48x32_160x128_eastern,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				culture_dwarven culture_dwarven_2
+			}
+			web_dwarven_cc_mid,	0,	0,	0,	0
+			slot_upgrade_112x64_160x128_eastern,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				nomad
+			}
+			buildings
+			{
+				culture_dwarven culture_dwarven_3
+			}
+			web_dwarven_cc_large,	0,	0,	0,	0
+			slot_upgrade_112x64_160x128_eastern,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				culture_dunedanic culture_dunedanic_1
+			}
+			floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_patronage_overlay.cas
+			web_elf_patronage,	0,	0,	0,	0
+			slot_upgrade_48x32_160x128_roman,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				culture_dunedanic culture_dunedanic_2
+			}
+			floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_songfestivals_overlay.cas
+			web_elf_songfestivals,	0,	0,	0,	0
+			web_elf_112x64_fence,	0,	0,	0,	0
+			slot_upgrade_112x64_160x128_roman,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+			}
+			buildings
+			{
+				culture_dunedanic culture_dunedanic_3
+			}
+			floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/web_elf_hallofsongs_overlay.cas
+			web_elf_hallofsongs,	0,	0,	0,	0
+			web_elf_112x64_fence,	0,	0,	0,	0
+			slot_upgrade_112x64_160x128_roman,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				culture_haradrian culture_haradrian_1
+			}
+			floor none overlay_eastern_shrine.cas
+			slot_upgrade_48x32_160x128_eastern,	0,	0,	0,	0
+			eastern_shrine,				0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				culture_haradrian culture_haradrian_2
+			}
+			floor none overlay_eastern_temple.cas
+			slot_upgrade_48x32_160x128_eastern,	0,	0,	0,	0
+			eastern_temple, 			0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				eastern
+			}
+			buildings
+			{
+				culture_haradrian culture_haradrian_3
+			}
+			floor none overlay_eastern_large_temple.cas
+			eastern_large_temple, 			0, 	0, 	0, 	0
+			slot_upgrade_112x64_160x128_eastern,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				culture_northmen culture_northmen_1
+			}
+			floor 		none		tavern_barbarian_overlay.cas
+			slot_filler_48x32_112x64_group_northman,	0,	0,	0,	0
+			slot_upgrade_112x64_160x128_barbarian,	0,	0,	0,	0
+			tavern_barbarian, 		0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				culture_northmen culture_northmen_2
+			}
+			floor none overlay_warlords_hold.cas
+			warlords_hold,		0,	0,	0,	0
+			slot_upgrade_112x64_160x128_barbarian,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				hun
+			}
+			buildings
+			{
+				culture_northmen culture_northmen_3
+			}
+			floor 		none		bardic_circle_barbarian_overlay.cas
+			bardic_circle_barbarian, 		0, 	0, 	0, 	0
+			slot_upgrade_112x64_160x128_barbarian,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				culture_barbarian culture_barbarian_1
+			}
+			floor none overlay_barbarian_stables.cas
+			slot_upgrade_48x32_160x128_barbarian,	0,	0,	0,	0
+			barbarian_stables, 				0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				culture_barbarian culture_barbarian_2
+			}
+			floor none overlay_warlords_stable.cas
+			slot_upgrade_48x32_160x128_barbarian,	0,	0,	0,	0
+			warlords_stable, 			0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				barbarian
+			}
+			buildings
+			{
+				culture_barbarian culture_barbarian_3
+			}
+			floor none overlay_warlords_stable.cas
+			slot_upgrade_48x32_160x128_barbarian,	0,	0,	0,	0
+			BI_barb_stables_lvl_4, 			0, 	0, 	0, 	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+				eastern
+				barbarian
+			}
+			buildings
+			{
+				culture_one_god temple_of_one_god_shrine
+			}
+			BI_barb_pagan_religion_lvl_2,				0,	0,	0,	0
+			4a_tree_4,				-2.45,	11.85,	90,	0
+			4a_tree_1,				6.83,	7.07,	90,	0
+			4a_tree_2,				13.91,	8.46,	147.5,	0
+			4a_tree_3,				14.18,	3.05,	147.5,	0
+			4a_tree_2,				17.42,	-0.92,	47,	0
+			4a_tree_4,				17.02,	-7.26,	147.5,	0
+			4a_tree_3,				7.531,	-6.52,	90,	0
+			4a_tree_2,				0.07,	-8.6,	147.5,	0
+			slot_upgrade_48x32_112x64_eastern,	0,	0,	0,	0
+			slot_upgrade_112x64_160x128_eastern,	0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+				eastern
+				barbarian
+			}
+			buildings
+			{
+				culture_one_god temple_of_one_god_temple
+			}
+			web_cultic_temple_2, 	0.244431,	5.04044,	0.0,	0.0
+			4a_tree_1, 	-19.0845,	10.3309,	180.0,	0.0
+			4a_tree_2, 	18.8415,	-10.7998,	180.0,	0.0
+			4a_tree_1, 	14.3725,	11.2228,	180.0,	0.0
+			4a_tree_3, 	-15.7806,	-9.90889,	180.0,	0.0
+			4a_tree_2, 	-13.6861,	0.738299,	180.0,	0.0
+			4a_tree_2, 	12.1983,	-3.50881,	180.0,	0.0
+			4a_tree_4, 	20.5299,	3.71835,	180.0,	0.0
+			4a_tree_4, 	-22.4235,	-1.48021,	180.0,	0.0
+			slot_upgrade_48x32_112x64_eastern,	0,	0,	0,	0
+			slot_upgrade_112x64_160x128_eastern,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+				eastern
+				barbarian
+			}
+			buildings
+			{
+				culture_one_god temple_of_one_god_large_temple
+			}
+			web_cultic_temple_4, 	-9.49704,	-0.0830009,	90.0,	0.0
+			4a_tree_1, 	16.0947,	-23.0085,	270.0,	0.0
+			4a_tree_2, 	-47.0237,	19.5787,	270.0,	0.0
+			4a_tree_1, 	15.2027,	20.7411,	270.0,	0.0
+			4a_tree_3, 	-47.6608,	-18.6235,	270.0,	0.0
+			4a_tree_2, 	-33.696,	-22.2516,	270.0,	0.0
+			4a_tree_2, 	29.9344,	18.5669,	270.0,	0.0
+			4a_tree_4, 	-31.92,	21.7722,	270.0,	0.0
+			4a_tree_4, 	27.9058,	-26.3475,	270.0,	0.0
+			4a_tree_2, 	-49.1132,	-4.20105,	270.0,	0.0
+			4a_tree_1, 	-45.9934,	7.72342,	270.0,	0.0
+			slot_upgrade_112x64_160x128_eastern,		0,	0,	0,	0
+		}
+
+		variant
+		{
+			cultures
+			{
+				roman
+				eastern
+				barbarian
+			}
+			buildings
+			{
+				culture_one_god temple_of_one_god_awesome_temple
+			}
+			web_cultic_temple_3, 	44.9401,	0.0834017,	270.0,	0.0
+			web_cultic_temple_4, 	-24.241,	-0.0830009,	90.0,	0.0
+			4a_tree_1, 	-0.925632,	-26.5967,	270.0,	0.0
+			4a_tree_2, 	-42.5795,	16.8573,	270.0,	0.0
+			4a_tree_1, 	-2.49285,	20.7411,	270.0,	0.0
+			4a_tree_3, 	-8.80714,	-17.3615,	270.0,	0.0
+			4a_tree_2, 	-49.0769,	-23.4317,	270.0,	0.0
+			4a_tree_2, 	12.2388,	18.5669,	270.0,	0.0
+			4a_tree_4, 	-49.4071,	26.814,	270.0,	0.0
+			4a_tree_4, 	9.13488,	-21.3526,	270.0,	0.0
+			4a_tree_2, 	7.02919,	26.6134,	270.0,	0.0
+			4a_tree_1, 	-42.0831,	-17.8595,	270.0,	0.0
+			4a_tree_2, 	36.217,	-16.5227,	270.0,	0.0
+			4a_tree_4, 	35.6995,	13.7276,	270.0,	0.0
+			4a_tree_1, 	49.4878,	-17.9973,	270.0,	0.0
+			4a_tree_4, 	42.5101,	-26.6855,	270.0,	0.0
+			4a_tree_3, 	43.4538,	24.3042,	270.0,	0.0
+			4a_tree_2, 	48.6559,	15.8332,	270.0,	0.0
+			slot_upgrade_112x64_160x128_eastern,		0,	0,	0,	0
+		}
+	}
+
+; ** MINAS ITHIL TOWER OF THE MOON/AMBIENT BUILDINGS
+
+	slot slot_mi_ambient
+	{
+		default
+		{
+			floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/minasithil_ruined_overlay.cas
+			web_mi_totm_ruined, 	32.0,	199.0,	180.0,	119.7
+			slot_112x64_empty_group, 	-225.484,	-121.784,	314.0,	0.3
+			slot_112x64_empty_group, 	285.689,	-122.264,	226.0,	0.3
+			slot_112x64_empty_group, 	-109.206,	-190.697,	180.0,	0.3
+			slot_48x32_empty_group, 	442.028,	147.807,	180.0,	0.3
+			slot_112x64_empty_group, 	366.916,	-37.0095,	46.0002,	0.3
+			slot_48x32_empty_group, 	449.015,	82.4969,	90.0,	0.3
+			slot_112x64_empty_group, 	-309.619,	-34.5831,	134.001,	0.3
+			slot_48x32_empty_group, 	426.708,	24.5518,	45.9996,	0.3
+			slot_48x32_empty_group, 	-378.607,	250.302,	180.0,	0.3
+			slot_48x32_empty_group, 	-291.575,	252.705,	180.001,	30.0
+			slot_48x32_empty_group, 	-171.275,	242.233,	353.0,	90.0
+			slot_112x64_empty_group, 	99.9714,	107.0,	180.0,	120.0
+		}
+
+		variant
+		{
+			cultures any
+			status construction
+			buildings
+			{
+				hinterland_marvels rk_temple_ithil
+			}
+			web_mi_keep, 	0,	0,	0,	0
+			web_mi_totm_ruined, 	32.0,	199.0,	180.0,	119.7
+			slot_112x64_construction_site, 	-225.484,	-121.784,	314.0,	0.3
+			slot_112x64_construction_site, 	285.689,	-122.264,	226.0,	0.3
+			slot_112x64_construction_site, 	-109.206,	-190.697,	180.0,	0.3
+			slot_48x32_construction_site, 	442.028,	147.807,	180.0,	0.3
+			slot_112x64_construction_site, 	366.916,	-37.0095,	46.0002,	0.3
+			slot_48x32_ambient_industry_group, 	449.015,	82.4969,	90.0,	0.3
+			slot_112x64_construction_site, 	-309.619,	-34.5831,	134.001,	0.3
+			slot_48x32_construction_site, 	426.708,	24.5518,	45.9996,	0.3
+			slot_48x32_construction_site, 	-378.607,	250.302,	180.0,	0.3
+			slot_48x32_construction_site, 	-291.575,	252.705,	180.001,	30.0
+			slot_48x32_construction_site, 	-171.275,	242.233,	353.0,	90.0
+			slot_112x64_construction_site, 	99.9714,	107.0,	180.0,	120.0
+			JAR_DUN_BASE_24X34, 	-329.641,	250.951,	90.0,	5.25
+			JAR_DUN_BR_76x21, 	-229.878,	-9.01807,	131.601,	30.0
+			JAR_DUN_CMD_28x28_pt1, 	203.392,	-142.882,	180.0,	0.0
+			JAR_DUN_CMD_28x28_pt2, 	203.392,	-142.882,	180.0,	0.0
+			JAR_DUN_HH_8x5, 	-285.33,	45.6919,	30.0325,	28.4282
+			JAR_DUN_HH_15x5, 	-327.667,	231.588,	0.000167847,	13.5679
+			JAR_DUN_HH2F_15x5, 	-319.546,	123.237,	13.7992,	7.401
+			JAR_DUN_HL_38x40_pt1, 	-231.734,	239.747,	135.0,	60.0
+			JAR_DUN_HL_38x40_pt2, 	-231.734,	239.747,	135.0,	60.0
+			JAR_DUN_HL_B_18x18, 	-184.615,	-188.596,	180.0,	0.3
+			JAR_DUN_HL_C_18x18, 	-370.334,	17.3749,	180.0,	0.3
+			JAR_DUN_HS_10x11, 	-279.74,	49.2506,	300.0,	30.0
+			JAR_DUN_HS_14x20, 	-205.748,	-74.1914,	136.071,	0.0
+			JAR_DUN_HSR_18x23, 	-310.944,	83.6008,	103.576,	0.0
+			JAR_DUN_HSR_A_14x20_pt1, 	180.696,	3.87598,	214.53,	60.0
+			JAR_DUN_HSR_A_14x20_pt2, 	180.696,	3.87598,	214.53,	60.0
+			JAR_DUN_HSR_A_18x23, 	-222.059,	-49.7321,	133.071,	0.3
+			JAR_DUN_MLT_22x22, 	-391.813,	278.274,	90.0,	0.3
+			JAR_DUN_MLT_41x41_pt1, 	408.151,	107.204,	180.0,	0.299999
+			JAR_DUN_MLT_41x41_pt3, 	408.151,	107.204,	180.0,	0.299999
+			JAR_DUN_MLT_A_60x60_pt1, 	-21.2853,	103.543,	270.0,	120.0
+			JAR_DUN_MLT_41x41_pt2, 	408.151,	107.204,	180.0,	0.299999
+			JAR_DUN_MLT_A_60x60_pt3, 	-21.2853,	103.543,	270.0,	120.0
+			JAR_DUN_MLT_A_60x60_pt2, 	-21.2853,	103.543,	270.0,	120.0
+			JAR_DUN_TR_12x16_pt1, 	-156.006,	-29.2268,	235.329,	10.0
+			JAR_DUN_TR_12x16_pt2, 	-156.006,	-29.2268,	235.329,	10.0
+			JAR_DUN_TR_22x22, 	-350.564,	174.283,	180.0,	0.3
+			JAR_DUN_TR_A_12x12, 	-314.956,	174.65,	180.0,	30.0
+			JAR_DUN_CMD_A_28x28, 	-140.368,	-138.638,	180.0,	0.0
+			JAR_DUN_CMD_A_28x28, 	400.4,	61.7425,	180.0,	0.0
+			JAR_DUN_CMD_B_28x28, 	32.0,	-163.909,	180.0,	0.3
+			JAR_DUN_CMD_B_28x28, 	-184.018,	87.8921,	117.5,	60.0
+			JAR_DUN_CMD_B_28x28, 	259.648,	0.125149,	228.308,	30.0
+			JAR_DUN_CMD_B_28x28, 	72.6588,	-41.8539,	190.143,	60.0
+			JAR_DUN_CMD_B_28x28, 	268.834,	145.23,	256.128,	60.0
+			JAR_DUN_CMD_A_28x28, 	220.401,	-37.3718,	214.394,	30.0
+			JAR_DUN_CMD_A_28x28, 	327.836,	139.9,	256.168,	30.0
+			JAR_DUN_CMD_A_28x28, 	-226.925,	43.5474,	207.767,	30.0
+			JAR_DUN_CMD_A_28x28, 	239.234,	73.2342,	242.112,	60.0
+			JAR_DUN_CMD_20x30, 	31.2952,	-50.7163,	90.0,	60.0
+			JAR_DUN_CMD_20x30, 	193.251,	-63.2827,	124.592,	30.0
+			JAR_DUN_CMD_20x30, 	-211.976,	153.136,	13.5744,	60.0
+			JAR_DUN_HSR_A_18x23, 	75.6721,	-152.74,	180.0,	0.3
+			JAR_DUN_HSR_A_18x23, 	256.991,	-78.6294,	226.965,	0.3
+			JAR_DUN_HSR_A_18x23, 	388.912,	179.168,	270.0,	0.3
+			JAR_DUN_HSR_A_18x23, 	316.987,	102.948,	249.046,	30.0
+			JAR_DUN_HSR_A_18x23, 	-29.3215,	-97.0496,	170.131,	30.0
+			JAR_DUN_HSR_A_18x23, 	-252.81,	104.699,	104.591,	30.0
+			JAR_DUN_HSR_A_18x23, 	-119.869,	9.54867,	135.796,	60.0
+			JAR_DUN_CMD_20x35, 	83.7099,	-99.2273,	276.577,	30.0
+			JAR_DUN_CMD_20x35, 	300.115,	237.161,	278.027,	60.0
+			JAR_DUN_CMD_20x35, 	-87.659,	-10.1468,	238.49,	60.0
+			JAR_DUN_HBH_20X20, 	-279.395,	15.9051,	129.757,	0.299999
+			JAR_DUN_HSR_18x23, 	-200.041,	17.1122,	311.389,	24.2866
+			JAR_DUN_HSR_18x23, 	361.503,	50.8875,	242.362,	0.0
+			JAR_DUN_HSR_18x23, 	288.934,	35.9705,	241.567,	30.0
+			JAR_DUN_HSR_18x23, 	45.7853,	-105.271,	180.0,	30.0
+			JAR_DUN_MLT_27x27, 	-9.78662,	-46.1425,	90.0,	60.0
+			JAR_DUN_TR_22x22, 	377.546,	222.947,	180.0,	30.0
+			JAR_DUN_HS_14x20, 	391.087,	147.168,	270.0,	0.0
+			JAR_DUN_HS_14x20, 	378.865,	173.05,	90.0,	30.0
+			JAR_DUN_HS_14x20, 	325.263,	12.0183,	61.1516,	30.0
+			JAR_DUN_HS_14x20, 	-107.627,	-72.6022,	153.796,	31.5955
+			JAR_DUN_HS_14x20, 	-300.339,	105.85,	282.699,	31.5955
+			JAR_DUN_HS_14x20, 	-197.388,	20.4172,	311.453,	60.0
+			JAR_DUN_HS_14x20, 	305.853,	116.263,	75.73,	60.0
+			JAR_DUN_TR_12x16_pt2, 	275.802,	-50.477,	318.12,	-20.0
+			JAR_DUN_TR_12x16_pt1, 	275.802,	-50.477,	318.12,	-20.0
+			JAR_DUN_HSR_14x20, 	246.045,	-74.9567,	42.9756,	30.0
+			JAR_DUN_HSR_14x20, 	320.043,	181.712,	90.0,	60.0
+			JAR_DUN_HSR_14x20, 	203.426,	-31.3994,	42.9705,	60.0
+			JAR_DUN_HSR_14x20, 	-227.193,	74.2569,	297.684,	60.0
+			JAR_DUN_BR_36x10, 	32.0,	-88.7734,	360.0,	60.0
+			JAR_DUN_HS_10x11, 	-181.951,	-73.9953,	317.5,	30.0
+			JAR_DUN_HS_10x11, 	161.612,	-75.5575,	200.0,	30.0
+			JAR_DUN_HS_10x11, 	303.475,	-11.854,	47.4999,	30.0
+			JAR_DUN_HS_10x11, 	369.127,	133.06,	77.4999,	30.0
+			JAR_DUN_HS_10x11, 	284.004,	70.9656,	60.8271,	60.0
+			JAR_DUN_HS_10x11, 	137.5,	-21.0818,	200.021,	60.0
+			JAR_DUN_HS_10x11, 	-211.063,	178.669,	89.9873,	60.0
+			JAR_DUN_TR_A_12x12, 	-266.354,	24.3341,	208.75,	30.0
+			JAR_DUN_TR_A_12x12, 	264.564,	28.4422,	229.673,	60.0
+			JAR_DUN_TR_A_12x12, 	-240.599,	107.786,	192.96,	60.0
+			JAR_DUN_TR_B_12x12, 	-264.198,	-5.50295,	180.0,	40.0
+			JAR_DUN_TR_B_12x12, 	311.832,	92.9389,	180.0,	70.0
+			JAR_DUN_TR_B_12x12, 	171.428,	-66.6372,	180.0,	70.0
+			JAR_DUN_TR_B_12x12, 	-165.517,	62.6697,	180.0,	100.0
+			JAR_DUN_HL_12x12, 	-175.83,	-4.17932,	320.584,	60.0
+			JAR_DUN_HL_C_18x18, 	-188.845,	144.301,	180.0,	90.0
+			JAR_DUN_HL_B_18x18, 	-313.828,	221.941,	180.0,	30.0
+			JAR_DUN_HH2F_15x5, 	-284.218,	27.4422,	27.9081,	11.9373
+			JAR_DUN_HH2F_15x5, 	-150.903,	-111.912,	55.581,	11.8939
+			JAR_DUN_HL_A_18x18, 	2.57562,	-167.482,	180.0,	0.0
+			JAR_DUN_HH2F_15x5, 	307.9,	-32.0782,	138.213,	7.401
+			JAR_DUN_HH2F_15x5, 	331.982,	207.175,	180.0,	39.4167
+			JAR_DUN_HH2F_15x5, 	274.256,	19.9276,	138.711,	37.6406
+			JAR_DUN_HH2F_15x5, 	-268.084,	214.287,	0.000167847,	40.0243
+			JAR_DUN_HH_15x5, 	-24.3509,	-156.448,	83.651,	15.1031
+			JAR_DUN_HH_15x5, 	-309.257,	103.352,	12.7764,	29.91
+			JAR_DUN_HH_15x5, 	216.872,	-109.93,	124.635,	13.5679
+			JAR_DUN_HH_15x5, 	344.712,	20.9818,	152.577,	13.5679
+			JAR_DUN_HH_15x5, 	385.112,	173.448,	179.821,	29.9585
+			JAR_DUN_HH_15x5, 	191.956,	-53.2886,	124.921,	43.8441
+			JAR_DUN_HH_15x5, 	-233.795,	70.9818,	27.7554,	56.8138
+			JAR_DUN_HH_8x5, 	-257.961,	126.401,	15.0386,	45.5054
+			JAR_DUN_HH_8x5, 	-186.906,	-79.261,	47.837,	28.3657
+			JAR_DUN_HH_8x5, 	308.597,	-16.6405,	137.64,	28.4005
+			JAR_DUN_HH_8x5, 	375.689,	131.374,	167.448,	28.3967
+			JAR_DUN_HH_8x5, 	290.38,	67.409,	151.254,	58.4512
+			JAR_DUN_HH_8x5, 	208.354,	-36.6953,	132.835,	57.085
+			JAR_DUN_HH_15x5, 	250.66,	-79.9315,	132.756,	26.918
+			JAR_DUN_HL_C_18x18, 	216.02,	154.235,	180.0,	90.0
+		}
+
+		variant
+		{
+			cultures any
+			buildings
+			{
+				hinterland_marvels rk_temple_pony
+			}
+			floor none ../../../bi/fatw/data/settlement_plans/slot_overlays/minasithil_ruined_overlay.cas
+			web_mi_totm_ruined, 	32.0,	199.0,	180.0,	119.7
+			slot_112x64_empty_group, 	-225.484,	-121.784,	314.0,	0.3
+			slot_112x64_construction_site, 	285.689,	-122.264,	226.0,	0.3
+			slot_112x64_empty_group, 	-109.206,	-190.697,	180.0,	0.3
+			slot_48x32_empty_group, 	442.028,	147.807,	180.0,	0.3
+			slot_112x64_construction_site, 	366.916,	-37.0095,	46.0002,	0.3
+			slot_48x32_ambient_industry_group, 	449.015,	82.4969,	90.0,	0.3
+			slot_112x64_empty_group, 	-309.619,	-34.5831,	134.001,	0.3
+			slot_48x32_construction_site, 	426.708,	24.5518,	45.9996,	0.3
+			slot_48x32_empty_group, 	-378.607,	250.302,	180.0,	0.3
+			slot_48x32_construction_site, 	-291.575,	252.705,	180.001,	30.0
+			slot_48x32_empty_group, 	-171.275,	242.233,	353.0,	90.0
+			slot_112x64_empty_group, 	99.9714,	107.0,	180.0,	120.0
+		}
+
+		variant
+		{
+			cultures any
+			buildings
+			{
+				hinterland_marvels rk_temple_ithil
+			}
+			web_mi_totm, 	32.0,	199.0,	180.0,	119.7
+			web_mi_keep, 	0,	0,	0,	0
+			slot_112x64_empty_group_roman, 	-225.484,	-121.784,	314.0,	0.3
+			slot_112x64_empty_group_mc, 	285.689,	-122.264,	226.0,	0.3
+			slot_112x64_empty_group_mc, 	-109.206,	-190.697,	180.0,	0.3
+			slot_48x32_ambient_industry_group, 	442.028,	147.807,	180.0,	0.3
+			slot_112x64_empty_group_mc, 	366.916,	-37.0095,	46.0002,	0.3
+			slot_48x32_ambient_industry_group, 	449.015,	82.4969,	90.0,	0.3
+			slot_112x64_empty_group_roman, 	-309.619,	-34.5831,	134.001,	0.3
+			slot_48x32_empty_group_mc, 	426.708,	24.5518,	45.9996,	0.3
+			slot_48x32_empty_group_roman, 	-378.607,	250.302,	180.0,	0.3
+			slot_48x32_empty_group_roman, 	-291.575,	252.705,	180.001,	30.0
+			slot_48x32_empty_group_roman, 	-171.275,	242.233,	353.0,	90.0
+			JAR_DUN_BASE_24X34, 	-329.641,	250.951,	90.0,	5.25
+			JAR_DUN_BR_36x10, 	32.0,	-149.119,	360.0,	30.0
+			JAR_DUN_BR_76x21, 	-229.878,	-9.01807,	131.601,	30.0
+			JAR_DUN_CMD_20x30, 	-28.2558,	-166.994,	90.0,	0.3
+			JAR_DUN_CMD_20x35, 	-266.34,	146.802,	193.64,	30.0
+			JAR_DUN_CMD_28x28_pt1, 	203.392,	-142.882,	180.0,	0.3
+			JAR_DUN_CMD_28x28_pt2, 	203.392,	-142.882,	180.0,	0.3
+			JAR_DUN_HBH_20X20, 	-242.48,	78.5651,	116.688,	30.0
+			JAR_DUN_HH_8x5, 	-285.33,	45.6919,	30.0325,	28.4282
+			JAR_DUN_HH_15x5, 	-327.667,	231.588,	0.000167847,	13.5679
+			JAR_DUN_HH2F_15x5, 	-319.546,	123.237,	13.7992,	7.401
+			JAR_DUN_HL_12x12, 	-293.051,	76.5719,	293.134,	30.0
+			JAR_DUN_HL_29x29, 	139.414,	111.928,	0.000167847,	120.0
+			JAR_DUN_HL_38x40_pt1, 	-231.734,	239.747,	135.0,	60.0
+			JAR_DUN_HL_38x40_pt2, 	-231.734,	239.747,	135.0,	60.0
+			JAR_DUN_HL_A_18x18, 	246.673,	-189.406,	180.0,	0.3
+			JAR_DUN_HL_B_18x18, 	-184.615,	-188.596,	180.0,	0.3
+			JAR_DUN_HL_C_18x18, 	-370.334,	17.3749,	180.0,	0.3
+			JAR_DUN_HS_10x11, 	-279.74,	49.2506,	300.0,	30.0
+			JAR_DUN_HS_14x20, 	-205.748,	-74.1914,	136.071,	0.3
+			JAR_DUN_HSR_14x20, 	-310.439,	141.36,	283.556,	30.0
+			JAR_DUN_HSR_18x23, 	-310.944,	83.6008,	103.576,	0.3
+			JAR_DUN_HSR_A_14x20_pt1, 	180.696,	3.87598,	214.53,	60.0
+			JAR_DUN_HSR_A_14x20_pt2, 	180.696,	3.87598,	214.53,	60.0
+			JAR_DUN_HSR_A_18x23, 	-222.059,	-49.7321,	133.071,	0.3
+			JAR_DUN_MA_FOUNTAIN, 	4.83488,	8.6987,	180.0,	90.0
+			JAR_DUN_MA_STATUE_LEFT, 	43.5298,	142.501,	180.0,	120.0
+			JAR_DUN_MA_STATUE_RIGHT, 	20.4506,	142.525,	180.0,	120.0
+			JAR_DUN_MLT_22x22, 	-391.813,	278.274,	90.0,	0.3
+			JAR_DUN_MLT_26x26, 	308.451,	70.5816,	62.4999,	30.0
+			JAR_DUN_MLT_27x27, 	407.836,	222.462,	180.0,	0.3
+			JAR_DUN_MLT_41x41_pt1, 	408.151,	107.204,	180.0,	0.3
+			JAR_DUN_MLT_41x41_pt3, 	408.151,	107.204,	180.0,	0.3
+			JAR_DUN_MLT_A_60x60_pt1, 	-21.2853,	103.543,	270.0,	120.0
+			JAR_DUN_MLT_41x41_pt2, 	408.151,	107.204,	180.0,	0.3
+			JAR_DUN_MLT_A_60x60_pt3, 	-21.2853,	103.543,	270.0,	120.0
+			JAR_DUN_MLT_A_60x60_pt2, 	-21.2853,	103.543,	270.0,	120.0
+			JAR_DUN_TR_12x16_pt1, 	-156.006,	-29.2268,	235.329,	10.0
+			JAR_DUN_TR_12x16_pt2, 	-156.006,	-29.2268,	235.329,	10.0
+			JAR_DUN_TR_22x22, 	-350.564,	174.283,	180.0,	0.3
+			JAR_DUN_TR_A_12x12, 	-314.956,	174.65,	180.0,	30.0
+			JAR_DUN_CMD_A_28x28, 	-140.368,	-138.638,	180.0,	0.3
+			web_market_stalls_1, 	110.878,	-165.518,	180.0,	0.3
+			web_market_stalls_2, 	82.873,	-171.148,	270.0,	0.3
+			JAR_DUN_MLT_A_60x60_pt3, 	84.7067,	103.253,	90.0005,	120.0
+			JAR_DUN_MLT_A_60x60_pt2, 	84.7067,	103.253,	90.0005,	120.0
+			JAR_DUN_MLT_A_60x60_pt1, 	84.7067,	103.253,	90.0005,	120.0
+			JAR_DUN_CMD_A_28x28, 	400.4,	61.7425,	180.0,	0.3
+			JAR_DUN_CMD_B_28x28, 	-311.207,	43.622,	205.0,	0.3
+			JAR_DUN_CMD_B_28x28, 	32.0,	-163.909,	180.0,	0.3
+			JAR_DUN_CMD_B_28x28, 	-137.449,	-51.387,	145.0,	30.0
+			JAR_DUN_CMD_B_28x28, 	-184.018,	87.8921,	117.5,	60.0
+			JAR_DUN_CMD_B_28x28, 	259.648,	0.125149,	228.308,	30.0
+			JAR_DUN_CMD_B_28x28, 	72.6588,	-41.8539,	190.143,	60.0
+			JAR_DUN_CMD_B_28x28, 	268.834,	145.23,	256.128,	60.0
+			JAR_DUN_CMD_A_28x28, 	1.3185,	-101.079,	173.126,	30.0
+			JAR_DUN_CMD_A_28x28, 	220.401,	-37.3718,	214.394,	30.0
+			JAR_DUN_CMD_A_28x28, 	327.836,	139.9,	256.168,	30.0
+			JAR_DUN_CMD_A_28x28, 	-226.925,	43.5474,	207.767,	30.0
+			JAR_DUN_CMD_A_28x28, 	-153.575,	43.5654,	221.665,	60.0
+			JAR_DUN_CMD_A_28x28, 	239.234,	73.2342,	242.112,	60.0
+			JAR_DUN_CMD_20x30, 	-178.48,	-95.9571,	55.0829,	0.3
+			JAR_DUN_CMD_20x30, 	31.2952,	-50.7163,	90.0,	60.0
+			JAR_DUN_CMD_20x30, 	193.251,	-63.2827,	124.592,	30.0
+			JAR_DUN_CMD_20x30, 	-211.976,	153.136,	13.5744,	60.0
+			web_market_stalls_1, 	98.9802,	-165.518,	180.0,	0.3
+			web_market_stalls_2, 	69.5043,	-171.148,	270.0,	0.3
+			web_market_stalls_2, 	55.1646,	-171.148,	270.0,	0.3
+			JAR_DUN_HSR_A_18x23, 	75.6721,	-152.74,	180.0,	0.3
+			JAR_DUN_HSR_A_18x23, 	256.991,	-78.6294,	226.965,	0.3
+			JAR_DUN_HSR_A_18x23, 	388.912,	179.168,	270.0,	0.3
+			JAR_DUN_HSR_A_18x23, 	316.987,	102.948,	249.046,	30.0
+			JAR_DUN_HSR_A_18x23, 	-29.3215,	-97.0496,	170.131,	30.0
+			JAR_DUN_HSR_A_18x23, 	-252.81,	104.699,	104.591,	30.0
+			JAR_DUN_HSR_A_18x23, 	-119.869,	9.54867,	135.796,	60.0
+			JAR_DUN_HSR_A_18x23, 	154.614,	-9.95646,	213.708,	60.0
+			JAR_DUN_HSR_A_18x23, 	249.913,	104.578,	241.846,	60.0
+			JAR_DUN_CMD_20x35, 	83.7099,	-99.2273,	276.577,	30.0
+			JAR_DUN_CMD_20x35, 	300.115,	237.161,	278.027,	60.0
+			JAR_DUN_CMD_20x35, 	-87.659,	-10.1468,	238.49,	60.0
+			JAR_DUN_BR_76x21, 	223.473,	1.25696,	228.268,	60.0
+			JAR_DUN_HBH_20X20, 	-279.395,	15.9051,	129.757,	0.3
+			JAR_DUN_HBH_20X20, 	218.894,	47.4981,	227.169,	60.0
+			JAR_DUN_HBH_20X20, 	225.976,	-100.089,	215.664,	0.3
+			JAR_DUN_HSR_18x23, 	-200.041,	17.1122,	311.389,	24.2866
+			JAR_DUN_HSR_18x23, 	192.205,	29.0026,	47.9327,	55.1008
+			JAR_DUN_HSR_18x23, 	361.503,	50.8875,	242.362,	0.0
+			JAR_DUN_HSR_18x23, 	288.934,	35.9705,	241.567,	30.0
+			JAR_DUN_HSR_18x23, 	45.7853,	-105.271,	180.0,	30.0
+			JAR_DUN_HSR_18x23, 	-198.973,	120.391,	103.482,	60.0
+			JAR_DUN_MLT_27x27, 	-9.78662,	-46.1425,	90.0,	60.0
+			JAR_DUN_MLT_27x27, 	-178.364,	-16.0356,	41.0033,	30.0
+			JAR_DUN_TR_22x22, 	377.546,	222.947,	180.0,	30.0
+			JAR_DUN_HS_14x20, 	391.087,	147.168,	270.0,	0.3
+			JAR_DUN_HS_14x20, 	378.865,	173.05,	90.0,	30.0
+			JAR_DUN_HS_14x20, 	325.263,	12.0183,	61.1516,	30.0
+			JAR_DUN_HS_14x20, 	-107.627,	-72.6022,	153.796,	31.5955
+			JAR_DUN_HS_14x20, 	-300.339,	105.85,	282.699,	31.5955
+			JAR_DUN_HS_14x20, 	-197.388,	20.4172,	311.453,	60.0
+			JAR_DUN_HS_14x20, 	305.853,	116.263,	75.73,	60.0
+			JAR_DUN_TR_12x16_pt2, 	275.802,	-50.477,	318.12,	-20.0
+			JAR_DUN_TR_12x16_pt1, 	275.802,	-50.477,	318.12,	-20.0
+			JAR_DUN_HSR_14x20, 	-211.446,	-45.5108,	312.287,	30.0
+			JAR_DUN_HSR_14x20, 	246.045,	-74.9567,	42.9756,	30.0
+			JAR_DUN_HSR_14x20, 	364.64,	103.023,	75.9328,	30.0
+			JAR_DUN_HSR_14x20, 	320.043,	181.712,	90.0,	60.0
+			JAR_DUN_HSR_14x20, 	203.426,	-31.3994,	42.9705,	60.0
+			JAR_DUN_HSR_14x20, 	-227.193,	74.2569,	297.684,	60.0
+			JAR_DUN_BR_36x10, 	32.0,	-88.7734,	360.0,	60.0
+			JAR_DUN_HS_10x11, 	-181.951,	-73.9953,	317.5,	30.0
+			JAR_DUN_HS_10x11, 	161.612,	-75.5575,	200.0,	30.0
+			JAR_DUN_HS_10x11, 	303.475,	-11.854,	47.4999,	30.0
+			JAR_DUN_HS_10x11, 	369.127,	133.06,	77.4999,	30.0
+			JAR_DUN_HS_10x11, 	284.004,	70.9656,	60.8271,	60.0
+			JAR_DUN_HS_10x11, 	137.5,	-21.0818,	200.021,	60.0
+			JAR_DUN_HS_10x11, 	-130.474,	-41.51,	323.778,	60.0
+			JAR_DUN_HS_10x11, 	-211.063,	178.669,	89.9873,	60.0
+			JAR_DUN_TR_A_12x12, 	-266.354,	24.3341,	208.75,	30.0
+			JAR_DUN_TR_A_12x12, 	351.833,	64.2595,	242.72,	30.0
+			JAR_DUN_TR_A_12x12, 	264.564,	28.4422,	229.673,	60.0
+			JAR_DUN_TR_A_12x12, 	-240.599,	107.786,	192.96,	60.0
+			JAR_DUN_TR_B_12x12, 	-264.198,	-5.50295,	180.0,	40.0
+			JAR_DUN_TR_B_12x12, 	-325.375,	155.751,	180.0,	40.0
+			JAR_DUN_TR_B_12x12, 	368.615,	71.3316,	180.0,	40.0
+			JAR_DUN_TR_B_12x12, 	270.261,	170.071,	180.0,	100.0
+			JAR_DUN_TR_B_12x12, 	311.832,	92.9389,	180.0,	70.0
+			JAR_DUN_TR_B_12x12, 	171.428,	-66.6372,	180.0,	70.0
+			JAR_DUN_TR_B_12x12, 	-165.517,	62.6697,	180.0,	100.0
+			JAR_DUN_TR_B_12x12, 	-214.904,	28.6492,	180.0,	70.0
+			JAR_DUN_HL_12x12, 	292.095,	-30.4535,	40.515,	30.0
+			JAR_DUN_HL_12x12, 	315.407,	152.052,	74.701,	60.0
+			JAR_DUN_HL_12x12, 	-175.83,	-4.17932,	320.584,	60.0
+			JAR_DUN_HL_C_18x18, 	-188.845,	144.301,	180.0,	90.0
+			JAR_DUN_HL_B_18x18, 	-313.828,	221.941,	180.0,	30.0
+			JAR_DUN_HL_A_18x18, 	-37.4733,	18.7712,	180.0,	90.0
+			JAR_DUN_HL_A_18x18, 	103.003,	18.7712,	180.0,	90.0
+			JAR_DUN_HL_C_18x18, 	253.033,	144.301,	180.0,	90.0
+			JAR_DUN_MA_FOUNTAIN, 	60.0609,	8.6987,	180.0,	90.0
+			JAR_DUN_HH2F_15x5, 	-284.218,	27.4422,	27.9081,	11.9373
+			JAR_DUN_HH2F_15x5, 	-150.903,	-111.912,	55.581,	11.8939
+			JAR_DUN_HL_A_18x18, 	2.57562,	-167.482,	180.0,	0.3
+			JAR_DUN_HH2F_15x5, 	127.448,	-149.483,	111.056,	10.2876
+			JAR_DUN_HH2F_15x5, 	307.9,	-32.0782,	138.213,	7.401
+			JAR_DUN_HH2F_15x5, 	331.982,	207.175,	180.0,	39.4167
+			JAR_DUN_HH2F_15x5, 	274.256,	19.9276,	138.711,	37.6406
+			JAR_DUN_HH2F_15x5, 	-268.084,	214.287,	0.000167847,	40.0243
+			JAR_DUN_HH_15x5, 	-218.169,	-51.6628,	42.6258,	26.9425
+			JAR_DUN_HH_15x5, 	-24.3509,	-156.448,	83.651,	15.1031
+			JAR_DUN_HH_15x5, 	-309.257,	103.352,	12.7764,	29.91
+			JAR_DUN_HH_15x5, 	216.872,	-109.93,	124.635,	13.5679
+			JAR_DUN_HH_15x5, 	344.712,	20.9818,	152.577,	13.5679
+			JAR_DUN_HH_15x5, 	385.112,	173.448,	179.821,	29.9585
+			JAR_DUN_HH_15x5, 	191.956,	-53.2886,	124.921,	43.8441
+			JAR_DUN_HH_15x5, 	-233.795,	70.9818,	27.7554,	56.8138
+			JAR_DUN_HH_8x5, 	-257.961,	126.401,	15.0386,	45.5054
+			JAR_DUN_HH_8x5, 	-186.906,	-79.261,	47.837,	28.3657
+			JAR_DUN_HH_8x5, 	308.597,	-16.6405,	137.64,	28.4005
+			JAR_DUN_HH_8x5, 	375.689,	131.374,	167.448,	28.3967
+			JAR_DUN_HH_8x5, 	290.38,	67.409,	151.254,	58.4512
+			JAR_DUN_HH_8x5, 	208.354,	-36.6953,	132.835,	57.085
+			JAR_DUN_HH_8x5, 	-133.588,	-45.4472,	55.1796,	58.4526
+			JAR_DUN_HH_15x5, 	250.66,	-79.9315,	132.756,	26.918
+			JAR_DUN_HL_C_18x18, 	-151.221,	152.815,	180.0,	90.0
+			JAR_DUN_HL_C_18x18, 	216.02,	154.235,	180.0,	90.0
+		}
+	}
+
+}
+
+
+
+
+; *************************
+
+; proper ROAD JOINERS
+
+; ***************************
+
+
+gateway_slots
+{
+	gateway_slot gateway_slot_into_roman_town
+	{
+		default
+		{
+			floor underlay_road_joiner_no_road_into_roman_town.cas overlay_road_joiner_no_road_into_roman_town.cas
+			road_joiner_no_road_into_roman_town,	0,	0,	0,	0
+		}
+		variant 1
+		{
+			floor underlay_road_joiner_muddy_path_into_roman_town.cas overlay_road_joiner_muddy_path_into_roman_town.cas
+			road_joiner_muddy_path_into_roman_town,	0,	0,	0,	0
+		}
+		variant 2
+		{
+			floor underlay_road_joiner_paved_road_into_roman_town.cas overlay_road_joiner_paved_road_into_roman_town.cas
+		}
+	}
+
+	gateway_slot gateway_slot_into_flat_town
+	{
+		default
+		{
+			; no overlay, as its just a flat square piece
+			floor underlay_road_joiner_no_road_into_flat_town.cas
+		}
+		variant 1
+		{
+			floor underlay_road_joiner_muddy_path_into_flat_town.cas overlay_road_joiner_muddy_path_into_flat_town.cas
+		}
+		variant 2
+		{
+			floor underlay_road_joiner_paved_road_into_flat_town.cas overlay_road_joiner_paved_road_into_flat_town.cas
+		}
+	}
+
+	gateway_slot gateway_slot_into_minas_ithil ; Minas Ithil custom gateway slot because RTW is stupid and buggy
+	{
+		default
+		{
+			floor ../../../bi/fatw/data/settlement_plans/slot_underlays/underlay_road_joiner_paved_road_into_minas_ithil.cas ../../../bi/fatw/data/settlement_plans/slot_overlays/overlay_road_joiner_paved_road_into_minas_ithil.cas
+		}
+	}
+}
+
+
+
+
+; Plans
+; A plan is an actual layout, for a specific culture (the creating culture for that settlement level)
+; and a specific level (town, city etc).  It consists of a list of positioned ambient buildings and slots.
+; There are NO fail states here;  if a plan runs out of (or has no) slots big enough or flagged as suitable for
+; a given building type, the building will just not appear in the plan.
+; Plans are declared explicitly here, and all required definitions are tested.
+
+plans
+{
+	plan	Roman_Fort			4a_duned_camp.txt
+	plan 	Roman_Village			4a_duned_fort.txt
+	plan 	Roman_Town 			4a_duned_city.txt
+	plan 	Roman_Large_Town 		4a_duned_city.txt
+	plan 	Roman_City			4a_duned_city.txt
+	plan 	Roman_Large_City		4a_duned_city.txt ;Tharbad, Fornost
+	plan 	Roman_Huge_City			4a_minas_ithil.txt ;Minas Ithil
+
+	plan	Eastern_Fort			4a_harad_camp.txt
+	plan	Eastern_Village			4a_harad_camp.txt
+	plan	Eastern_Town			4a_harad_city.txt
+	plan	Eastern_Large_Town		4a_harad_city.txt
+	plan	Eastern_City			4a_harad_city.txt
+	plan	Eastern_Large_City		4a_harad_city.txt
+	plan	Eastern_Huge_City		4a_harad_large_city.txt
+
+	plan	Carthaginian_Fort		4a_duned_camp.txt
+	plan	Carthaginian_Village		4a_duned_fort.txt
+	plan	Carthaginian_Town		4a_elf_city.txt
+	plan	Carthaginian_Large_Town		4a_elf_city.txt
+	plan	Carthaginian_City		4a_elf_city.txt
+	plan	Carthaginian_Large_City		4a_elf_city.txt
+	plan	Carthaginian_Huge_City		4a_elf_city.txt
+
+	plan	Barbarian_Fort			4a_barb_camp.txt
+	plan	Barbarian_Village		4a_barb_fort.txt
+	plan	Barbarian_Town			4a_barb_city.txt
+	plan	Barbarian_Large_Town		4a_barb_city.txt
+	plan	Barbarian_City			4a_barb_city.txt
+	plan	Barbarian_Large_City		4a_barb_city.txt
+	plan	Barbarian_Huge_City		4a_barb_large_city.txt
+
+	plan	Nomad_Fort			4a_barb_camp.txt
+	plan	Nomad_Village			4a_barb_fort.txt
+	plan	Nomad_Town			4a_dwarven_city.txt
+	plan	Nomad_Large_Town		4a_dwarven_city.txt
+	plan	Nomad_City			4a_dwarven_city.txt
+	plan	Nomad_Large_City		4a_dwarven_city.txt
+	plan	Nomad_Huge_City			4a_dwarven_city.txt
+
+	plan	custom_Fort			4a_barb_camp.txt
+	plan	custom_Village			4a_barb_fort.txt
+	plan	custom_Town			4a_barb_city.txt
+	plan	custom_Large_Town		4a_barb_city.txt
+	plan	custom_City			4a_barb_city.txt
+	plan	custom_Large_City		4a_hornburg.txt ; Hornburg
+	plan	custom_Huge_City		4a_minas_anor.txt ; Minas Anor
+
+	plan	custom2_Fort			4a_barb_camp.txt
+	plan	custom2_Village			4a_barb_fort.txt
+	plan	custom2_Town			4a_barb_city.txt
+	plan	custom2_Large_Town		4a_barb_city.txt
+	plan	custom2_City			4a_barb_city.txt
+	plan	custom2_Large_City		4a_duned_city.txt
+	plan	custom2_Huge_City		4a_duned_city.txt ; Annuminas
+}
+
+; PLANS BY LEVEL
+;
+; These define a full list of plans for all the settlement levels.
+; Format:
+; plan_levels <plan id>
+; {
+;	<level type> <level id>
+; }
+; A complete level list must be supplied.  Order is unimportant, and repeats override.
+
+plans_by_level
+{
+
+	plan_levels		Roman_plan_levels
+	{
+		village		Roman_Village
+		town		Roman_Town
+		large_town	Roman_Large_Town
+		city		Roman_City
+		large_city	Roman_Large_City
+		huge_city	Roman_Huge_City
+	}
+
+	plan_levels		Eastern_plan_levels
+	{
+		village		Eastern_Village
+		town		Eastern_Town
+		large_town	Eastern_Large_Town
+		city		Eastern_City
+		large_city	Eastern_Large_City
+		huge_city	Eastern_Huge_City
+	}
+
+	plan_levels		Barbarian_plan_levels
+	{
+		village		Barbarian_Village
+		town		Barbarian_Town
+		large_town	Barbarian_Large_Town
+		city		Barbarian_City
+		large_city	Barbarian_Large_City
+		huge_city	Barbarian_Huge_City
+	}
+
+	plan_levels		Carthaginian_plan_levels
+	{
+		village		Carthaginian_Village
+		town		Carthaginian_Town
+		large_town	Carthaginian_Large_Town
+		city		Carthaginian_City
+		large_city	Carthaginian_Large_City
+		huge_city	Carthaginian_Huge_City
+	}
+
+	plan_levels		Nomad_plan_levels
+	{
+		village		Nomad_Village
+		town		Nomad_Town
+		large_town	Nomad_Large_Town
+		city		Nomad_City
+		large_city	Nomad_Large_City
+		huge_city	Nomad_Huge_City
+	}
+
+	plan_levels		custom_plan_levels
+	{
+		village		custom_Village
+		town		custom_Town
+		large_town	custom_Large_Town
+		city		custom_City
+		large_city	custom_Large_City
+		huge_city	custom_Huge_City
+	}
+
+	plan_levels		custom2_plan_levels
+	{
+		village		custom2_Village
+		town		custom2_Town
+		large_town	custom2_Large_Town
+		city		custom2_City
+		large_city	custom2_Large_City
+		huge_city	custom2_Huge_City
+	}
+
+
+}
+
+; PLAN SETS
+; associate plan_levels and cultures; a settlement gets a full plan set, and can then keep that whatever happens.
+; There may be selection criteria at some point, eg for terrain etc.  Initially we'll have a limited set,
+; but we'll expand these.  It means we can have different plans for different cultures if we want, without
+; it ever being a problem.  Port plan sets are treated as separate - when a settlement gets a plan set, 
+; it'll know whether it's coastal or not.  How plans are chosen is unresolved; currently, a plan can be requested
+; at random (knowing inland or port) or by plan name (for settlements in template files).  Later, if we get varying 
+; height plans in, there may be extra criteria such as local terrain used when a player creates a settlement.
+
+plan_sets
+{
+	;inland	default_set
+	plan_set default_set
+	{
+		locale any
+		;default		test_levels
+
+
+		roman			Roman_plan_levels
+		nomad			Nomad_plan_levels
+		carthaginian		Carthaginian_plan_levels
+		hun			Barbarian_plan_levels
+		eastern			Eastern_plan_levels
+		barbarian		Barbarian_plan_levels
+		orkish			custom_plan_levels
+
+	}
+
+	plan_set default_custom_set
+	{
+		locale any
+		default			custom_plan_levels
+
+
+		orkish			Roman_plan_levels
+
+	}
+
+	plan_set default_custom2_set
+	{
+		locale any
+		default			custom2_plan_levels
+
+
+		orkish			Roman_plan_levels
+
+	}
+
+	
+	 ;port	default_port_set
+	plan_set default_port_set
+	{
+		locale any
+		default Roman_plan_levels
+	}
+
+}
+
+
+
+
+camps
+{
+	camp
+	{
+		culture roman
+		locale any
+		plan roman_camp_small.txt
+	}
+
+
+	camp
+	{
+		culture nomad
+		locale any
+		plan greek_camp.txt
+	}
+
+	
+	camp	
+	{
+		culture hun
+		locale any
+		plan egyptian_camp.txt
+	}
+
+	
+	camp
+	{
+		culture eastern
+		locale any
+		plan egyptian_camp.txt
+	}
+
+
+	camp
+	{
+		culture carthaginian
+		locale any
+		plan greek_camp.txt
+	}
+
+	camp
+	{
+		culture barbarian
+		locale any
+		plan barbarian_camp.txt
+	}
+
+}
+
+baggage_trains
+{
+	baggage_train
+	{
+		culture roman
+		locale any
+		plan
+		{
+			floor underlay_baggage_train.cas overlay_baggage_train.cas
+			baggage_train, 0,	0,	0,	0
+		}
+	}
+}
+
+forts
+;deriving the new fort plans from the old camp plans
+{
+	fort
+	{
+		culture roman
+		locale any
+		plan 4a_duned_camp.txt
+	}
+
+
+	fort
+	{
+		culture nomad
+		locale any
+		plan 4a_barb_camp.txt
+	}
+
+	fort	
+	{
+		culture hun
+		locale any
+		plan 4a_barb_camp.txt
+	}
+
+			
+	fort
+	{
+		culture eastern
+		locale any
+		plan 4a_harad_camp.txt
+	}
+
+
+	fort
+	{
+		culture carthaginian
+		locale any
+		plan 4a_duned_camp.txt
+	}
+
+	fort
+	{
+		culture barbarian
+		locale any
+		plan 4a_barb_camp.txt
+	}
+
+	fort
+	{
+		culture orkish
+		locale any
+		plan 4a_barb_camp.txt
+	}
+}
+
+
+ambient_plans
+{
+	plan basic_farm
+	{
+		floor underlay_baggage_train.cas overlay_baggage_train.cas
+		baggage_train, 0,	0,	0,	0
+	}
+
+	; test
+	plan __test				__test.txt
+	plan barbarian_minor_town		ambient_barbarian_minor_town.txt
+
+	; natural
+	plan clump_of_palm_trees_A		ambient_clump_of_palm_trees_A.txt
+	plan oasis2_with_trees			ambient_oasis2_with_trees.txt
+	plan small_lake2_with_trees		ambient_small_lake2_with_trees.txt
+	plan large_lake2_with_trees		ambient_large_lake2_with_trees.txt
+
+	; farms
+	plan resource_roman_farm_A		ambient_resource_roman_farm_A.txt
+	plan resource_roman_farm_B		ambient_resource_roman_farm_B.txt
+	plan resource_roman_poor_farm_A		ambient_resource_roman_poor_farm_A.txt
+	plan resource_roman_poor_farm_B		ambient_resource_roman_poor_farm_B.txt
+	plan farm_orchard_field			ambient_farm_orchard_field.txt
+	plan farm_orchard_field_winter		ambient_farm_orchard_field_winter.txt
+	plan farm_hay_corn			ambient_farm_hay_corn.txt
+	plan farm_hay_corn_winter		ambient_farm_hay_corn_winter.txt
+	plan farm_grove				ambient_farm_grove.txt
+	plan farm_grove_winter			ambient_farm_grove_winter.txt
+
+	; farms children
+	plan resource_hay_field_with_stone_wall	ambient_resource_hay_field_with_stone_wall.txt
+	plan resource_hay_field_with_stone_wall_winter	ambient_resource_hay_field_with_stone_wall_winter.txt
+	plan hayfield_new			ambient_hayfield_new.txt
+	plan hayfield_new_winter		ambient_hayfield_new_winter.txt
+	plan olive_grove			ambient_olive_grove.txt
+	plan hay_field_small_ploughed		ambient_hay_field_small_ploughed.txt
+	plan hay_field_small_ploughed_winter	ambient_hay_field_small_ploughed_winter.txt
+	plan hay_field_ruin			ambient_hay_field_ruin.txt
+	plan hay_field_ruin_winter		ambient_hay_field_ruin_winter.txt
+	plan hay_field_new_128_64		ambient_hay_field_new_128_64.txt
+	plan hay_field_new_128_64_winter	ambient_hay_field_new_128_64_winter.txt
+	plan hay_field_new_128_128		ambient_hay_field_new_128_128.txt
+	plan hay_field_new_128_128_winter	ambient_hay_field_new_128_128_winter.txt
+	plan hay_field_long_ploughed		ambient_hay_field_long_ploughed.txt
+	plan hay_field_long_ploughed_winter	ambient_hay_field_long_ploughed_winter.txt
+
+	; monuments
+	plan tholos_tomb			ambient_tholos_tomb.txt
+	plan barrow_mound			ambient_barrow_mound.txt
+	plan henge				ambient_henge.txt
+	plan henge_half_built			ambient_henge_half_built.txt
+	plan standing_stones			ambient_standing_stones.txt
+	plan ancient_battlefield		ambient_ancient_battlefield.txt
+	plan former_marching_camp		ambient_former_marching_camp.txt
+	
+	; watchtowers
+	plan watchtower_roman_greek		ambient_watchtower_roman_greek.txt
+	plan watchtower_egyptian_eastern	ambient_watchtower_egyptian_eastern.txt
+	plan watchtower_barbarian		ambient_watchtower_barbarian.txt
+
+	;ruins
+	plan roman_ruins			ambient_roman_ruins.txt
+	plan barb_ruins				ambient_barb_ruins.txt
+	plan barb_ruins_01			ambient_barb_ruins_01.txt
+	plan barb_ruins_02			ambient_barb_ruins_02.txt
+	plan barb_ruins_03			ambient_barb_ruins_03.txt
+	plan barb_ruins_04			ambient_barb_ruins_04.txt
+	plan eastern_blacksmith_ruin		ambient_eastern_blacksmith_ruin.txt
+	plan eastern_ruin_02			ambient_eastern_ruin_02.txt
+	plan eastern_ruin_03			ambient_eastern_ruin_03.txt
+	plan eastern_ruin_village		ambient_eastern_ruin_village.txt
+	plan swamp_ruins_01			ambient_swamp_ruins_01.txt
+	plan swamp_ruins_02			ambient_swamp_ruins_02.txt
+	plan swamp_ruins_03			ambient_swamp_ruins_03.txt
+	plan swamp_ruins_04			ambient_swamp_ruins_04.txt
+	plan swamp_ruins_05			ambient_swamp_ruins_05.txt
+	plan snowy_ruin_01			ambient_snowy_ruin_01.txt
+	plan snowy_ruin_02			ambient_snowy_ruin_02.txt
+	plan snow_ruins_walls			ambient_snow_ruins_walls.txt
+	plan snow_ruins_walls_2			ambient_snow_ruins_walls_2.txt
+	plan snow_ruins_walls_3			ambient_snow_ruins_walls_3.txt
+}
