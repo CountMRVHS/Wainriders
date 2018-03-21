@@ -1,0 +1,457 @@
+;0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					empire_west_rebels ; Shire ; default CB player faction ; 'bound' by super-faction hardcode
+culture					orkish
+symbol					models_strat/symbol_empire_west_rebels.CAS
+rebel_symbol				models_strat/symbol_roman_rebel.CAS
+primary_colour				red 130, green 165, blue 70
+secondary_colour			red 100, green 135, blue 40
+loading_logo				loading_screen/symbols/symbol128_empire_west_rebels.tga
+standard_index				14
+logo_index				248		; Index into strat3.rsd
+small_logo_index			261		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_shire.wmv
+defeat_movie				fmv/intros/intro_shire.wmv
+death_movie				fmv/lose/empire_west_rebels_eliminated.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			no
+;X;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					slave ; Outlaws ; 'bound' by super-faction hardcode
+culture					orkish
+symbol					models_strat/symbol_slaves.CAS
+rebel_symbol				models_strat/symbol_slaves.CAS
+primary_colour				red 155, green 145, blue 120
+secondary_colour			red 90, green 75, blue 40
+loading_logo				loading_screen/symbols/symbol128_slaves.tga
+standard_index				17
+logo_index				246		; Index into strat3.rsd
+small_logo_index			260		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/slave_win.wmv
+defeat_movie				fmv/lose/rebels_eliminated.wmv
+death_movie				fmv/lose/rebels_eliminated.wmv
+custom_battle_availability		no
+can_sap					no
+prefers_naval_invasions			no
+;X;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					roxolani, shadowing slavs ; Outlaws subfaction ; used to block alliances ; 'bound' by super-faction hardcode
+culture					orkish
+symbol					models_strat/symbol_roxolani.CAS
+rebel_symbol				models_strat/symbol_nomad_rebel.CAS
+primary_colour				red 51, green 53, blue 194
+secondary_colour			red 15, green 215, blue 255
+loading_logo				loading_screen/symbols/symbol128_roxolani.tga
+standard_index				15
+logo_index				251		; Index into strat3.rsd
+small_logo_index			265		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/roxolani_win.wmv
+defeat_movie				fmv/lose/roxolani_eliminated.wmv
+death_movie				fmv/lose/roxolani_eliminated.wmv
+custom_battle_availability		no
+can_sap					no
+prefers_naval_invasions			no
+;X;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					slavs, shadowed_by roxolani ; used for map features ; 'bound' by super-faction hardcode
+culture					orkish
+symbol					models_strat/symbol_slavs.CAS
+rebel_symbol				models_strat/symbol_nomad_rebel.CAS
+primary_colour				red 155, green 145, blue 120
+secondary_colour			red 90, green 75, blue 40
+loading_logo				loading_screen/symbols/symbol128_slavs.tga
+standard_index				14
+logo_index				243		; Index into strat3.rsd
+small_logo_index			257		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/slavs_win.wmv
+defeat_movie				fmv/lose/slavs_eliminated.wmv
+death_movie				fmv/lose/slavs_eliminated.wmv
+custom_battle_availability		no
+can_sap					no
+prefers_naval_invasions			no
+;1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					empire_east_rebels, shadowing slave ; Adunabar
+culture					roman
+symbol					models_strat/symbol_empire_east_rebels.CAS
+rebel_symbol				models_strat/symbol_roman_rebel.CAS
+primary_colour				red 110, green 70, blue 110
+secondary_colour			red 70, green 30, blue 70
+loading_logo				loading_screen/symbols/symbol128_empire_east_rebels.tga
+standard_index				1
+logo_index				249		; Index into strat3.rsd
+small_logo_index			262		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_adun.wmv
+defeat_movie				fmv/intros/intro_adun.wmv
+death_movie				fmv/adunabar_loss.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			no
+;2;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					lombardi, shadowing slave ; North Rhun
+culture					barbarian
+symbol					models_strat/symbol_lombardi.CAS
+rebel_symbol				models_strat/symbol_barb_rebel.CAS
+primary_colour				red 115, green 115, blue 55
+secondary_colour			red 85, green 85, blue 25
+loading_logo				loading_screen/symbols/symbol128_lombardi.tga
+standard_index				19
+logo_index				254		; Index into strat3.rsd
+small_logo_index			268		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_northr.wmv
+defeat_movie				fmv/intros/intro_northr.wmv
+death_movie				fmv/lose/lombardi_eliminated.wmv
+custom_battle_availability		yes
+horde_min_units				100
+horde_max_units				200
+horde_max_units_reduction_every_horde	15
+horde_unit_per_settlement_population	200
+horde_min_named_characters		8
+horde_max_percent_army_stack		100
+horde_disband_percent_on_settlement_capture	20
+horde_disband_percent_on_settlement_capture	25
+horde_disband_percent_on_settlement_capture	33
+horde_disband_percent_on_settlement_capture	50
+horde_disband_percent_on_settlement_capture	100
+horde_unit				northrhun horde warband
+horde_unit				northrhun horde axe
+horde_unit				northrhun horde spear
+horde_unit				northrhun horde greataxe
+horde_unit				northrhun horde skirmisher
+horde_unit				northrhun horde slinger
+horde_unit				northrhun horde raider
+can_sap					no
+prefers_naval_invasions			no
+;3;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					sarmatians ; Elves
+culture					carthaginian
+symbol					models_strat/symbol_sarmatians.CAS
+rebel_symbol				models_strat/symbol_nomad_rebel.CAS
+primary_colour				red 90, green 165, blue 45
+secondary_colour			red 50, green 125, blue 5
+loading_logo				loading_screen/symbols/symbol128_sarmatians.tga
+standard_index				5
+logo_index				234		; Index into strat3.rsd
+small_logo_index			248		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_elves.wmv
+defeat_movie				fmv/intros/intro_elves.wmv
+death_movie				fmv/lose/sarmatians_eliminated.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			no
+;4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					saxons ; Dwarves
+culture					nomad
+symbol					models_strat/symbol_saxons.CAS
+rebel_symbol				models_strat/symbol_barb_rebel.CAS
+primary_colour				red 210, green 210, blue 210
+secondary_colour			red 180, green 180, blue 180
+loading_logo				loading_screen/symbols/symbol128_saxons.tga
+standard_index				7
+logo_index				236		; Index into strat3.rsd
+small_logo_index			250		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_dwarves.wmv
+defeat_movie				fmv/intros/intro_dwarves.wmv
+death_movie				fmv/lose/saxons_eliminated.wmv
+custom_battle_availability		yes
+can_sap					yes
+prefers_naval_invasions			no
+;5;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					empire_east, shadowing slave ; Reunited Kingdom
+culture					roman
+symbol					models_strat/symbol_empire_east.CAS
+rebel_symbol				models_strat/symbol_roman_rebel.CAS
+primary_colour				red 40, green 40, blue 40
+secondary_colour			red 0, green 0, blue 0
+loading_logo				loading_screen/symbols/symbol128_empire_east.tga
+standard_index				2
+logo_index				24		; Index into strat3.rsd
+small_logo_index			244		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_rk.wmv
+defeat_movie				fmv/intros/intro_rk.wmv
+death_movie				fmv/rk_loss.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			yes
+;6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					goths, shadowing slave ; Dale ; default CB AI faction
+culture					hun
+symbol					models_strat/symbol_goths.CAS
+rebel_symbol				models_strat/symbol_nomad_rebel.CAS
+primary_colour				red 70, green 90, blue 160
+secondary_colour			red 30, green 50, blue 120
+loading_logo				loading_screen/symbols/symbol128_goths.tga
+standard_index				9
+logo_index				238		; Index into strat3.rsd
+small_logo_index			252		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_dale.wmv
+defeat_movie				fmv/intros/intro_dale.wmv
+death_movie				fmv/lose/goths_eliminated.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			yes
+;7;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					huns, shadowing slave ; Rohan
+culture					hun
+symbol					models_strat/symbol_huns.CAS
+rebel_symbol				models_strat/symbol_hun_rebel.CAS
+primary_colour				red 60, green 105, blue 0
+secondary_colour			red 20, green 65, blue 0
+loading_logo				loading_screen/symbols/symbol128_huns.tga
+standard_index				4
+logo_index				233		; Index into strat3.rsd
+small_logo_index			247		; Index into shared.rsd
+triumph_value				5
+intro_movie					
+victory_movie				fmv/victory/win_rohan.wmv
+defeat_movie				fmv/intros/intro_rohan.wmv
+death_movie				fmv/rohan_loss.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			no
+;8;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					sassanids, shadowing slave ; Harad
+culture					eastern
+symbol					models_strat/symbol_sassanids.CAS
+rebel_symbol				models_strat/symbol_eastern_rebel.CAS
+primary_colour				red 180, green 20, blue 0
+secondary_colour			red 140, green 5, blue 0
+loading_logo				loading_screen/symbols/symbol128_sassanids.tga
+standard_index				6
+logo_index				235		; Index into strat3.rsd
+small_logo_index			249		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_harad.wmv
+defeat_movie				fmv/intros/intro_harad.wmv
+death_movie				fmv/harad_loss.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			yes
+;9;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					franks, shadowing slave ; Rhun
+culture					barbarian
+symbol					models_strat/symbol_franks.CAS
+rebel_symbol				models_strat/symbol_barb_rebel.CAS
+primary_colour				red 150, green 50, blue 40
+secondary_colour			red 105, green 10, blue 10
+loading_logo				loading_screen/symbols/symbol128_franks.tga
+standard_index				3
+logo_index				232		; Index into strat3.rsd
+small_logo_index			246		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_rhun.wmv
+defeat_movie				fmv/intros/intro_rhun.wmv
+death_movie				fmv/rhun_loss.wmv
+custom_battle_availability		yes
+horde_min_units				100
+horde_max_units				200
+horde_max_units_reduction_every_horde	15
+horde_unit_per_settlement_population	200
+horde_min_named_characters		8
+horde_max_percent_army_stack		100
+horde_disband_percent_on_settlement_capture	20
+horde_disband_percent_on_settlement_capture	25
+horde_disband_percent_on_settlement_capture	33
+horde_disband_percent_on_settlement_capture	50
+horde_disband_percent_on_settlement_capture	100
+horde_unit				rhun horde warband
+horde_unit				rhun horde axe
+horde_unit				rhun horde spear
+horde_unit				rhun horde darkhelm
+horde_unit				rhun horde skirmisher
+horde_unit				rhun horde archer
+horde_unit				rhun horde raider
+horde_unit				rhun horde rider
+horde_unit				rhun horde warwain
+can_sap					no
+prefers_naval_invasions			no
+;10;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					celts, shadowing slave ; Dunland
+culture					barbarian
+symbol					models_strat/symbol_celts.CAS
+rebel_symbol				models_strat/symbol_barb_rebel.CAS
+primary_colour				red 140, green 90, blue 0
+secondary_colour			red 100, green 50, blue 0
+loading_logo				loading_screen/symbols/symbol128_celts.tga
+standard_index				10
+logo_index				239		; Index into strat3.rsd
+small_logo_index			253		; Index into shared.rsd
+triumph_value				5
+intro_movie					
+victory_movie				fmv/victory/win_dunl.wmv
+defeat_movie				fmv/intros/intro_dunl.wmv
+death_movie				fmv/dunland_loss.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			no
+;11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					empire_west, shadowing slave ; Tharbad
+culture					roman
+symbol					models_strat/symbol_empire_west.CAS
+rebel_symbol				models_strat/symbol_roman_rebel.CAS
+primary_colour				red 0, green 0, blue 64
+secondary_colour			red 0, green 0, blue 34
+loading_logo				loading_screen/symbols/symbol128_empire_west.tga
+standard_index				8
+logo_index				22		; Index into strat3.rsd
+small_logo_index			245		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_tharb.wmv
+defeat_movie				fmv/intros/intro_tharb.wmv
+death_movie				fmv/lose/empire_west_eliminated.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			yes
+;12;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					vandals, shadowing slave ; Far Harad
+culture					eastern
+symbol					models_strat/symbol_vandals.CAS
+rebel_symbol				models_strat/symbol_barb_rebel.CAS
+primary_colour				red 210, green 180, blue 130
+secondary_colour			red 110, green 90, blue 50
+loading_logo				loading_screen/symbols/symbol128_vandals.tga
+standard_index				15
+logo_index				237		; Index into strat3.rsd
+small_logo_index			251		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_farh.wmv
+defeat_movie				fmv/intros/intro_farh.wmv
+death_movie				fmv/lose/vandals_eliminated.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			no
+;13;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					berbers, shadowing slave ; Harondor
+culture					barbarian
+symbol					models_strat/symbol_berbers.CAS
+rebel_symbol				models_strat/symbol_carthage_rebel.CAS
+primary_colour				red 50, green 0, blue 0
+secondary_colour			red 20, green 0, blue 0
+loading_logo				loading_screen/symbols/symbol128_berbers.tga
+standard_index				16
+logo_index				245		; Index into strat3.rsd
+small_logo_index			259		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_haron.wmv
+defeat_movie				fmv/intros/intro_haron.wmv
+death_movie				fmv/lose/berbers_eliminated.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			yes
+;14;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					ostrogoths, shadowing slave ; Rhovanion
+culture					barbarian
+symbol					models_strat/symbol_enedwaith.CAS
+rebel_symbol				models_strat/symbol_nomad_rebel.CAS
+primary_colour				red 150, green 150, blue 0
+secondary_colour			red 120, green 120, blue 0
+loading_logo				loading_screen/symbols/symbol128_ostrogoths.tga
+standard_index				12
+logo_index				241		; Index into strat3.rsd
+small_logo_index			255		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_rhov.wmv
+defeat_movie				fmv/intros/intro_rhov.wmv
+death_movie				fmv/lose/ostrogoths_eliminated.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			no
+;15;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					romano_british, shadowing slave ; Dorwinion
+culture					hun
+symbol					models_strat/symbol_romano_british.CAS
+rebel_symbol				models_strat/symbol_roman_rebel.CAS
+primary_colour				red 150, green 20, blue 95
+secondary_colour			red 120, green 0, blue 85
+loading_logo				loading_screen/symbols/symbol128_romano_british.tga
+standard_index				13
+logo_index				242		; Index into strat3.rsd
+small_logo_index			256		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_dorw.wmv
+defeat_movie				fmv/intros/intro_dorw.wmv
+death_movie				fmv/lose/romano_british_eliminated.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			no
+;16;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					burgundii, shadowing slave ; Beornings
+culture					hun
+symbol					models_strat/symbol_burgundii.CAS
+rebel_symbol				models_strat/symbol_barb_rebel.CAS
+primary_colour				red 125, green 95, blue 15
+secondary_colour			red 95, green 65, blue 45
+loading_logo				loading_screen/symbols/symbol128_burgundii.tga
+standard_index				18
+logo_index				244		; Index into strat3.rsd
+small_logo_index			258		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_heorn.wmv
+defeat_movie				fmv/intros/intro_beorn.wmv
+death_movie				fmv/lose/burgundii_eliminated.wmv
+custom_battle_availability		yes
+can_sap					no
+prefers_naval_invasions			no
+;17;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+faction					alemanni, shadowing slave ; Khand
+culture					barbarian
+symbol					models_strat/symbol_alemanni.CAS
+rebel_symbol				models_strat/symbol_barb_rebel.CAS
+primary_colour				red 210, green 210, blue 130
+secondary_colour			red 100, green 100, blue 50
+loading_logo				loading_screen/symbols/symbol128_alemanni.tga
+standard_index				0
+logo_index				23		; Index into strat3.rsd
+small_logo_index			243		; Index into shared.rsd
+triumph_value				5
+intro_movie
+victory_movie				fmv/victory/win_khand.wmv
+defeat_movie				fmv/intros/intro_khand.wmv
+death_movie				fmv/lose/alemanni_eliminated.wmv
+custom_battle_availability		yes
+horde_min_units				100
+horde_max_units				200
+horde_max_units_reduction_every_horde	15
+horde_unit_per_settlement_population	200
+horde_min_named_characters		8
+horde_max_percent_army_stack		100
+horde_disband_percent_on_settlement_capture	20
+horde_disband_percent_on_settlement_capture	25
+horde_disband_percent_on_settlement_capture	33
+horde_disband_percent_on_settlement_capture	50
+horde_disband_percent_on_settlement_capture	100
+horde_unit				khand horde watch
+horde_unit				khand horde axe
+horde_unit				khand horde warrior
+horde_unit				khand horde bow
+horde_unit				khand horde archer
+horde_unit				khand horde rider
+horde_unit				khand horde outrider
+horde_unit				khand horde mountedarcher
+horde_unit				khand horde dragonshield
+can_sap					no
+prefers_naval_invasions			no
